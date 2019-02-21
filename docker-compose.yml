@@ -9,6 +9,7 @@ services:
     build: .
     ports:
       - '88:3000'
+      - '3003:3003'
     links:
       - mongo
     volumes:

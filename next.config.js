@@ -7,6 +7,9 @@ module.exports = withSass({
         importLoaders: 1,
         localIdentName: "[folder]_[local]_[hash:base64:5]",
     },
+    onDemandEntries: {
+        websocketPort: 3003,
+    },
     webpack: (config, {dev}) => {
         config.module.rules.push(
             {
