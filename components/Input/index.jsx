@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeMethods, useState} from 'react';
+import React, {forwardRef, useImperativeHandle, useState} from 'react';
 import classNames from 'classnames';
 
 import InputHidden from '../InputHidden';
@@ -17,7 +17,7 @@ function Input({className, errorMessage, id = generateID(), label, name, type = 
         return <InputHidden name={name} value={value}/>;
     }
 
-    useImperativeMethods(ref, () => ({
+    useImperativeHandle(ref, () => ({
         isEmpty: () => stateValue.trim() === '',
         reset: () => setStateValue(value),
         value: () => stateValue,

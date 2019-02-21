@@ -1,8 +1,6 @@
 import React from 'react';
 
 import Input from '../Input';
-import SongPicker from '../SongPicker';
-import Wysiwyg from '../Wysiwyg';
 
 function Form({action = '/', children, className, method = 'POST', onSubmit}) {
     const refs = new Map();
@@ -18,7 +16,7 @@ function Form({action = '/', children, className, method = 'POST', onSubmit}) {
     }
 
     function isFormElement(child) {
-        return child.type === Input || child.type === Wysiwyg || child.type === SongPicker;
+        return child.type === Input;
     }
 
     const referencedChildren = React.Children.map(children, child => {
@@ -35,7 +33,7 @@ function Form({action = '/', children, className, method = 'POST', onSubmit}) {
 
     return (
         <form action={action}
-              onSubmit={handleSubmit}
+              onSubmit={e => handleSubmit(e)}
               method={method} className={className}>
             {referencedChildren}
         </form>
