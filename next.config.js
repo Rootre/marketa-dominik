@@ -18,8 +18,10 @@ module.exports = withSass({
 
         Object.assign(config.resolve.alias, {
             Api: path.resolve(__dirname, 'api'),
+            Consts: path.resolve(__dirname, 'consts'),
             Components: path.resolve(__dirname, 'components'),
             Helpers: path.resolve(__dirname, 'helpers'),
+            Prototypes: path.resolve(__dirname, 'prototypes'),
             Sass: path.resolve(__dirname, 'static/sass'),
             Svg: path.resolve(__dirname, 'static/svg'),
         });
