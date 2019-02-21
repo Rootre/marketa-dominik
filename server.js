@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const cookie = require('cookie');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -8,6 +9,8 @@ const next = require('next');
 const SALT = require('./consts/jwt/salt');
 const COOKIE = require('./consts/jwt/cookie');
 const User = require('./prototypes/User');
+
+const UserModel = require('./mongo/models/User');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -28,6 +31,7 @@ app.prepare()
     .then(() => {
         const server = express();
 
+        server.use(bodyParser.json());
         server.use(cookieParser());
 
         // check and update jwt token
@@ -59,7 +63,32 @@ app.prepare()
             next();
         });
 
-        server.get('*', function (req, res) {
+        server.post('/admin/user/login', async (res, req) => {
+            try {
+                const dbUser = await UserModel.findOne({
+                    login: req.body.login,
+                    password: req.body.password,
+                });
+
+                if (!dbUser) {
+                    return res.status(200).json({error: 'Špatné přihlašovací údaje'});
+                }
+
+                const user = new User(dbUser.login);
+
+                const token = user.login();
+
+                res.cookie(COOKIE.name, token, {maxAge: COOKIE.maxAge});
+
+                res.status(200).json({
+                    success: true,
+                });
+            } catch (e) {
+                res.status(500).json(e);
+            }
+        });
+
+        server.get('*', (req, res) => {
             return handle(req, res);
         });
 

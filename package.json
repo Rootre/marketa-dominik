@@ -12,14 +12,18 @@
     "generate": "plop"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "classnames": "^2.2.6",
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
+    "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.14",
     "next": "^8.0.1",
     "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react-dom": "^16.8.3",
+    "reactn": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
