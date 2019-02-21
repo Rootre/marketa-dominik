@@ -7,9 +7,9 @@ function Index() {
     return (
         <div>
             <Head>
-                <title>{`Sing along!`}</title>
+                <title>{`Markéta &amp; Dominik`}</title>
             </Head>
-            <h1>Marketa &amp; Dominik</h1>
+            <h1>Markéta &amp; Dominik</h1>
         </div>
     );
 }

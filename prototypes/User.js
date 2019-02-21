@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
-const SALT = require('Consts/jwt/salt');
-const IDLE_TIME = require('Consts/jwt/idle_time');
+const SALT = require('../consts/jwt/salt');
+const IDLE_TIME = require('../consts/jwt/idle_time');
 
 let userName = '';
 

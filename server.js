@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const next = require('next');
 
-const SALT = require('Consts/jwt/salt');
-const COOKIE = require('Consts/jwt/cookie');
-const User = require('Prototypes/User');
+const SALT = require('./consts/jwt/salt');
+const COOKIE = require('./consts/jwt/cookie');
+const User = require('./prototypes/User');
 
 const dev = process.env.NODE_ENV !== 'production';
 
