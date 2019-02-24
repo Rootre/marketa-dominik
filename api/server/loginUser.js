@@ -10,8 +10,6 @@ const loginUser = async (req, res) => {
             password: req.body.password,
         });
 
-        console.log('dbUser', dbUser, req.body.login, req.body.password);
-
         if (!dbUser) {
             return res.status(200).json({error: 'Špatné přihlašovací údaje'});
         }

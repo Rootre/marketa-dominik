@@ -1,0 +1,1 @@
+export const RETINA_PIXEL_RATIO = 1.5;
