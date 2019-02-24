@@ -1,3 +1,26 @@
 @import "~Sass/helpers.scss";
+.menu {
+    border-bottom: 1px solid $mercury;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
 
+    a {
+        border-bottom: 1px solid transparent;
+        display: inline-block;
+        padding: 14px 0;
+        text-transform: uppercase;
+        transition: border-color .3s;
+
+        &:hover {
+            border-bottom-color: $black;
+            color: $black;
+        }
+    }
+    li {
+        display: inline-block;
+        padding: 0 18px;
+    }
+}
 .wrapper {}
