@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Head from 'next/head';
-import {setGlobal, useGlobal} from 'reactn';
+import {setGlobal} from 'reactn';
 
 import Menu from 'Components/menu/Menu';
 import BreakpointWatcher from 'Components/BreakpointWatcher';
 
 import 'Sass/global.scss';
+import Claim from "../components/Claim";
 
 setGlobal({
     breakpoint: '',
@@ -13,16 +14,13 @@ setGlobal({
 });
 
 function Index() {
-    const [breakpoint] = useGlobal('breakpoint');
-
     return (
         <div>
             <BreakpointWatcher/>
             <Head>
                 <title>{`Markéta &amp; Dominik | Svatba`}</title>
             </Head>
-            <h1>Markéta &amp; Dominik</h1>
-
+            <Claim heading={'Markéta & Dominik'} date={'někdy v květnu...'}/>
             <Menu items={[
                 {
                     title: 'Jak se to semlelo',

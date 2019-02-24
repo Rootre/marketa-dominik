@@ -1,0 +1,24 @@
+@import "~Sass/helpers.scss";
+
+.date {
+    margin: 0;
+    margin-bottom: -30px;
+}
+.heading {
+    margin: 0;
+    margin-top: -15px;
+}
+.wreath {
+    @include dim(250px, 120px);
+    fill: $white;
+
+    &.up {
+        transform: rotate(180deg);
+    }
+}
+.wrapper {
+    background-color: $silver-chalice;
+    color: $white;
+    padding: 50px 0;
+    text-align: center;
+}

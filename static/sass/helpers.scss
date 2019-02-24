@@ -27,10 +27,10 @@ $padding--default: 1em;
 $padding--big: 2em;
 
 /* mixins */
-@mixin size($width, $height) {
+@mixin dim($width, $height) {
     width: $width;
     height: $height;
 }
 @mixin square($size) {
-    @include size($size, $size);
+    @include dim($size, $size);
 }
