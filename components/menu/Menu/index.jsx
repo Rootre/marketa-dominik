@@ -8,14 +8,14 @@ import {isAboveTablet} from 'Helpers/client'
 
 import styles from './styles.scss';
 
-function Menu() {
+function Menu({items}) {
     const [breakpoint] = useGlobal('breakpoint');
 
     return (
         <div className={styles.wrapper}>
             {isAboveTablet(breakpoint)
-            ? <Stripe/>
-            : <Hamburger/>}
+            ? <Stripe items={items}/>
+            : <Hamburger items={items}/>}
         </div>
     )
 }

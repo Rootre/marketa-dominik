@@ -1,3 +1,34 @@
 @import "~Sass/helpers.scss";
 
+.close,
+.hamburger {
+    @include square(30px);
+    cursor: pointer;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+.menu {
+    background-color: $white;
+    left: 0;
+    list-style: none;
+    margin: 0 auto;
+    padding: 47px 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 90%;
+
+    a {
+        border-bottom: 1px solid $silver-chalice;
+        display: block;
+        color: $tundora;
+        padding: 14px 0;
+        text-transform: uppercase;
+    }
+    li {
+
+    }
+}
 .wrapper {}
