@@ -13,6 +13,11 @@ body {
     margin: 0;
     padding: 0;
 }
+img {
+    border: 0;
+    height: auto;
+    max-width: 100%;
+}
 
 %rightButton {
     cursor: pointer;
@@ -51,6 +56,11 @@ body {
     max-width: $wrapper-width;
     padding-left: $padding--default;
     padding-right: $padding--default;
+
+    &Smaller {
+        @extend .wrapper;
+        max-width: 550px;
+    }
 }
 
 :global(.fade) {

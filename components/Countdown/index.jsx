@@ -2,7 +2,6 @@ import React from 'react';
 import CountdownNow from 'react-countdown-now';
 import classNames from 'classnames';
 
-import TheDate from 'Consts/TheDate';
 import {isSameDay} from 'Helpers/date';
 import {inflectString} from 'Helpers/strings';
 
@@ -30,8 +29,8 @@ function Countdown({date}) {
     };
 
     return (
-        <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <CountdownNow date={TheDate} renderer={renderer}/>
+        <div className={classNames(globalStyles.wrapperSmaller, styles.wrapper)}>
+            <CountdownNow date={date} renderer={renderer}/>
         </div>
     )
 }

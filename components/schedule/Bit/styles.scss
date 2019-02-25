@@ -1,0 +1,95 @@
+@import "~Sass/helpers.scss";
+
+.content {
+    width: 100%;
+
+    @include media(tablet) {
+        padding-left: 45px;
+        text-align: left;
+        width: 50%;
+
+        .even & {
+            padding-left: 0;
+            padding-right: 45px;
+            text-align: right;
+        }
+    }
+}
+.heading {
+    font-size: $font-size-lg;
+    position: relative;
+
+    @include media(tablet) {
+        &:before {
+            @include dim(26px, 1px);
+            background-color: $alto;
+            content: '';
+            margin-right: 9px;
+            margin-top: -1px;
+            position: absolute;
+            right: 100%;
+            top: 50%;
+
+            .even & {
+                left: 100%;
+                margin-left: 9px;
+                margin-right: 0;
+                right: auto;
+            }
+        }
+    }
+    @include media(desktop) {
+        padding-left: 78px;
+        padding-right: 78px;
+
+        &:before {
+            left: -33px;
+            width: 100px;
+
+            .even & {
+                left: auto;
+                right: -33px;
+            }
+        }
+    }
+}
+.image {
+    display: block;
+    max-width: 100%;
+
+    @include media(tablet) {
+        padding-right: 45px;
+        max-width: 50%;
+
+        .even & {
+            padding-right: 0;
+            padding-left: 45px;
+        }
+    }
+}
+.text {
+    margin-bottom: $margin--big;
+}
+.wrapper {
+    clear: both;
+
+    @include media(tablet) {
+        &.even {
+            .content {
+                float: left;
+            }
+
+            img {
+                float: right;
+            }
+        }
+
+        .content {
+            float: right;
+        }
+
+        img {
+            float: left;
+        }
+    }
+}

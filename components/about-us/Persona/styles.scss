@@ -1,0 +1,40 @@
+@import "~Sass/helpers.scss";
+
+.content {
+    background-color: $white;
+    padding: 30px;
+
+    &.bride {
+        background-color: $cosmos;
+    }
+    &.groom {
+        background-color: $desert-storm;
+    }
+
+    @include media(desktop) {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        opacity: 0;
+        right: 0;
+        top: 0;
+        transition: opacity .3s;
+    }
+}
+.heading {
+    font-size: $font-size-lg + 2;
+    margin: 0 0 15px;
+}
+.wrapper {
+    position: relative;
+
+    img {
+        display: block;
+    }
+
+    @include media(desktop) {
+        &:hover .content {
+            opacity: 1;
+        }
+    }
+}

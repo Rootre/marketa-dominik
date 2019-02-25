@@ -1,0 +1,21 @@
+@import "~Sass/helpers.scss";
+
+.bits {
+    overflow: hidden;
+    position: relative;
+
+    @include media(tablet) {
+        &:before {
+            background-color: $alto;
+            bottom: 0;
+            content: '';
+            left: 50%;
+            position: absolute;
+            top: 0;
+            width: 1px;
+        }
+    }
+}
+.wrapper {
+    max-width: 800px;
+}
