@@ -23,6 +23,7 @@
     "mongoose": "^5.4.14",
     "next": "^8.0.1",
     "react": "^16.8.3",
+    "react-countdown-now": "^2.1.0",
     "react-dom": "^16.8.3",
     "react-transition-group": "^2.5.3",
     "reactn": "^1.0.0"

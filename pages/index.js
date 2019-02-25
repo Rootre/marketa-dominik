@@ -2,11 +2,12 @@ import React from 'react';
 import Head from 'next/head';
 import {setGlobal} from 'reactn';
 
+import Claim from 'Components/Claim';
+import Countdown from 'Components/Countdown';
 import Menu from 'Components/menu/Menu';
 import BreakpointWatcher from 'Components/BreakpointWatcher';
 
 import 'Sass/global.scss';
-import Claim from "../components/Claim";
 
 setGlobal({
     breakpoint: '',
@@ -35,6 +36,7 @@ function Index() {
                     link: '#kdy-a-kde',
                 },
             ]}/>
+            <Countdown date={new Date().setDate(new Date().getDate()+1)}/>
         </div>
     );
 }

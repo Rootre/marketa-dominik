@@ -1,0 +1,27 @@
+@import "~Sass/helpers.scss";
+
+.counter {
+    align-items: stretch;
+    display: flex;
+    flex-flow: row nowrap;
+
+    span {
+        display: inline-block;
+        flex-grow: 1;
+        font-size: $font-size-lg;
+    }
+    strong {
+        display: block;
+        font-size: $font-size * 2;
+        font-weight: 400;
+
+        @include media(desktop) {
+            font-size: $font-size * 2 + 10;
+        }
+    }
+}
+.wrapper {
+    margin-bottom: $margin--big;
+    margin-top: $margin--big;
+    text-align: center;
+}
