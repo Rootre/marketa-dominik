@@ -7,7 +7,7 @@ import BreakpointWatcher from 'Components/BreakpointWatcher';
 import Claim from 'Components/Claim';
 import Countdown from 'Components/Countdown';
 import Menu from 'Components/menu/Menu';
-import Schedule from 'Components/schedule/Schedule';
+import OurStory from 'components/our-story/OurStory';
 
 import menuItems from 'Consts/menu';
 import TheDate from 'Consts/TheDate';
@@ -18,6 +18,29 @@ setGlobal({
     breakpoint: '',
     isRetina: false,
 });
+
+const bits = [
+    {
+        image: 'https://via.placeholder.com/400x520',
+        text: 'Lorem ipsum',
+        title: 'Jak jsme začali',
+    },
+    {
+        image: 'https://via.placeholder.com/400x520',
+        text: 'Lorem ipsum',
+        title: 'Co jsme spolu strávili',
+    },
+    {
+        image: 'https://via.placeholder.com/400x520',
+        text: 'Lorem ipsum',
+        title: 'Jak někdo požádal o ruku',
+    },
+    {
+        image: 'https://via.placeholder.com/400x520',
+        text: 'Lorem ipsum',
+        title: 'Bereme se!',
+    },
+];
 
 function Index() {
     return (
@@ -30,7 +53,7 @@ function Index() {
             <Menu items={menuItems}/>
             <AboutUs/>
             <Countdown date={TheDate}/>
-            <Schedule/>
+            <OurStory bits={bits}/>
         </div>
     );
 }
