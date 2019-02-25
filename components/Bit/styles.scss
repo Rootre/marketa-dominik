@@ -40,13 +40,16 @@
     }
     @include media(desktop) {
         padding-left: 78px;
-        padding-right: 78px;
 
         &:before {
             left: -33px;
             width: 100px;
+        }
+        .even & {
+            padding-left: 0;
+            padding-right: 78px;
 
-            .even & {
+            &:before {
                 left: auto;
                 right: -33px;
             }
@@ -74,6 +77,14 @@
     clear: both;
 
     @include media(tablet) {
+        margin-bottom: $margin--big;
+        padding-top: $padding--big;
+
+        &:after {
+            content: '';
+            clear: both;
+            display: table;
+        }
         &.even {
             .content {
                 float: left;
@@ -90,6 +101,7 @@
 
         img {
             float: left;
+            margin-top: -50px;
         }
     }
 }

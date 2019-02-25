@@ -7,7 +7,7 @@ import BreakpointWatcher from 'Components/BreakpointWatcher';
 import Claim from 'Components/Claim';
 import Countdown from 'Components/Countdown';
 import Menu from 'Components/menu/Menu';
-import OurStory from 'components/our-story/OurStory';
+import OurStory from 'Components/OurStory';
 
 import menuItems from 'Consts/menu';
 import TheDate from 'Consts/TheDate';

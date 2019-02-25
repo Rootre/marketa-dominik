@@ -1,7 +1,6 @@
 @import "~Sass/helpers.scss";
 
-.bits {
-    overflow: hidden;
+.wrapper {
     position: relative;
 
     @include media(tablet) {
@@ -15,7 +14,4 @@
             width: 1px;
         }
     }
-}
-.wrapper {
-    max-width: 800px;
 }
