@@ -23,10 +23,18 @@
     &.up {
         transform: rotate(180deg);
     }
+
+    @include media(desktop) {
+        @include dim(300px, 150px);
+    }
 }
 .wrapper {
     background-color: $silver-chalice;
     color: $white;
     padding: 50px 0;
     text-align: center;
+
+    @include media(desktop) {
+        min-height: 90vh;
+    }
 }
