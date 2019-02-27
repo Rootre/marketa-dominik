@@ -8,7 +8,7 @@ import Bits from "../Bits";
 function OurStory({bits}) {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <h2>Naše cesta</h2>
+            <h2 className={globalStyles.heading}>Naše cesta</h2>
             <Bits bits={bits}/>
         </div>
     )

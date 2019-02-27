@@ -10,10 +10,12 @@ function Claim({date, heading}) {
 
     return (
         <div className={styles.wrapper}>
-            <WreathSvg className={classNames(styles.wreath, styles.up)}/>
-            <h1 className={styles.heading}>{heading}</h1>
-            <p className={styles.date}>{date.getDate()}. {date.getMonth() + 1}. {date.getFullYear()}</p>
-            <WreathSvg className={classNames(styles.wreath, styles.down)}/>
+            <div className={styles.claim}>
+                <WreathSvg className={classNames(styles.wreath, styles.up)}/>
+                <h1 className={styles.heading}>{heading}</h1>
+                <p className={styles.date}>{date.getDate()}. {date.getMonth() + 1}. {date.getFullYear()}</p>
+                <WreathSvg className={classNames(styles.wreath, styles.down)}/>
+            </div>
         </div>
     )
 }

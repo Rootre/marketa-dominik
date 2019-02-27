@@ -9,7 +9,7 @@ import styles from './styles.scss';
 function AboutUs() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <h2>My</h2>
+            <h2 className={globalStyles.heading}>My</h2>
             <div className={styles.us}>
                 <Persona
                     image={'https://via.placeholder.com/700x500'}

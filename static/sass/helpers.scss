@@ -20,12 +20,16 @@ $white: #fff;
 $font-size: 16px;
 $font-size-sm: 14px;
 $font-size-lg: 22px;
-$font-family: 'Cedarville Cursive', cursive;
+$font-family: Arial, sans-serif;
+$font-family-hand: 'Cedarville Cursive', cursive;
 
 /* grid */
 $wrapper-width: 930px;
-$margin--default: 1em;
+
 $margin--big: 2em;
+$margin--default: 1em;
+$margin--small: .5em;
+
 $padding--default: 1em;
 $padding--big: 2em;
 

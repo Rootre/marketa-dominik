@@ -1,5 +1,8 @@
 @import "~Sass/helpers.scss";
 
+.claim {
+    font-family: $font-family-hand;
+}
 .date {
     font-size: $font-size-lg + 6;
     font-weight: 700;
@@ -29,8 +32,11 @@
     }
 }
 .wrapper {
+    align-items: center;
     background-color: $silver-chalice;
     color: $white;
+    display: flex;
+    justify-content: center;
     padding: 50px 0;
     text-align: center;
 

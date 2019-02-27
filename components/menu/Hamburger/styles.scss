@@ -17,10 +17,10 @@
 
     a {
         border-bottom: 1px solid $silver-chalice;
-        display: block;
         color: $tundora;
+        display: block;
         padding: 14px 0;
-        text-transform: uppercase;
+        text-transform: lowercase;
     }
     li:last-child a {
         border-bottom: none;

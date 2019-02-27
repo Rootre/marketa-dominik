@@ -1,3 +1,6 @@
 @import "~Sass/helpers.scss";
 
-.wrapper {}
+.wrapper {
+    font-family: $font-family-hand;
+    font-size: $font-size-lg;
+}

@@ -10,6 +10,7 @@ a {
 body {
     color: $black;
     font-family: $font-family;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
@@ -49,6 +50,12 @@ img {
 }
 .deleteSVG {
     @extend %rightButton, %redButton;
+}
+.heading {
+    font-family: $font-family-hand;
+    font-size: $font-size * 2;
+    margin: $margin--big auto $margin--small;
+    text-align: center;
 }
 .wrapper {
     margin-left: auto;
