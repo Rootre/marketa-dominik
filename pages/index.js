@@ -54,11 +54,11 @@ function Index() {
             <Claim heading={'Markéta & Dominik'} date={TheDate}/>
             <Menu items={menuItems}/>
             <Navigation>
-                <div>
+                <div id={'my'}>
                     <AboutUs/>
                     <Countdown date={TheDate}/>
                 </div>
-                <div>
+                <div id={'jak-se-to-semlelo'}>
                     <OurStory bits={bits}/>
                 </div>
             </Navigation>

@@ -9,8 +9,8 @@ import styles from './styles.scss';
 function Navigation({children}) {
     const [, setActiveItem] = useGlobal('activeItem');
 
-    const activateWaypoint = (item, e) => {
-        console.log(e);
+    const activateWaypoint = (item, _, child) => {
+        self.location.hash = `#${child.props.id}`;
         setActiveItem(item);
     };
 
@@ -18,8 +18,8 @@ function Navigation({children}) {
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             {React.Children.map(children, (child, index) => (
                 <Waypoint
-                    onEnter={e => activateWaypoint(index, e)}
-                    onLeave={e => activateWaypoint(index - 1, e)}
+                    bottomOffset={'40%'}
+                    onEnter={e => activateWaypoint(index, e, child)}
                 >
                     {child}
                 </Waypoint>

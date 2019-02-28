@@ -9,16 +9,12 @@ function Stripe({items}) {
     const [isPinned, setIsPinned] = useState(false);
     const [activeItem] = useGlobal('activeItem');
 
-    const pinStripe = (e) => {
-        setIsPinned(true);
-    };
-
     return (
-        <Waypoint onLeave={pinStripe} topOffset={64}>
-            <div className={classNames(styles.wrapper, {
-                [styles.pinned]: isPinned,
-            })}>
-                <ul className={styles.menu}>
+        <Waypoint onLeave={() => setIsPinned(true)} onEnter={() => setIsPinned(false)} topOffset={64}>
+            <div className={styles.wrapper}>
+                <ul className={classNames(styles.menu, {
+                    [styles.pinned]: isPinned,
+                })}>
                     {items.map(({link, title}, index) => (
                         <li key={index}>
                             <a href={link}

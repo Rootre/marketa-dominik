@@ -16,7 +16,7 @@ function Hamburger({items}) {
                     <ul className={styles.menu}>
                         {items.map(({link, title}) => (
                             <li key={link}>
-                                <a href={link}>{title}</a>
+                                <a href={link} onClick={() => setIsOpen(false)}>{title}</a>
                             </li>
                         ))}
                     </ul>
