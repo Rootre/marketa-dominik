@@ -49,6 +49,14 @@ $phablet: "only screen and (min-width: #{$container--mobile + 1})";
 $mobile: "only screen";
 $retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 
+/* z-indexes - Order matters, from highest to lowest - use: z-index: z-index(popup); */
+//
+//  )
+$z-indexes: (
+    popup,
+    menu
+);
+
 /* mixins */
 @mixin dim($width, $height) {
     width: $width;
@@ -77,4 +85,11 @@ $retina: "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
 
 @mixin square($size) {
     @include dim($size, $size);
+}
+
+// Get z-index values from $z-indexes list.
+@function z-index($name) {
+    $_starts-from: 10; // Safe, to prevent conflicts with plugins or local z-index values
+
+    @return (length($z-indexes) - index($z-indexes, $name)) + ($_starts-from - 1);
 }

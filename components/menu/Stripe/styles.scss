@@ -1,4 +1,5 @@
 @import "~Sass/helpers.scss";
+
 .menu {
     border-bottom: 1px solid $mercury;
     list-style: none;
@@ -13,6 +14,7 @@
         text-transform: lowercase;
         transition: border-color .3s;
 
+        &.active,
         &:hover {
             border-bottom-color: $black;
             color: $black;
@@ -23,4 +25,14 @@
         padding: 0 18px;
     }
 }
-.wrapper {}
+.wrapper {
+    background-color: $white;
+
+    &.pinned {
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: z-index(menu);
+    }
+}

@@ -13,8 +13,10 @@ import menuItems from 'Consts/menu';
 import TheDate from 'Consts/TheDate';
 
 import 'Sass/global.scss';
+import Navigation from "../components/Navigation";
 
 setGlobal({
+    activeItem: 0,
     breakpoint: '',
     isRetina: false,
 });
@@ -51,9 +53,15 @@ function Index() {
             </Head>
             <Claim heading={'Markéta & Dominik'} date={TheDate}/>
             <Menu items={menuItems}/>
-            <AboutUs/>
-            <Countdown date={TheDate}/>
-            <OurStory bits={bits}/>
+            <Navigation>
+                <div>
+                    <AboutUs/>
+                    <Countdown date={TheDate}/>
+                </div>
+                <div>
+                    <OurStory bits={bits}/>
+                </div>
+            </Navigation>
         </div>
     );
 }
