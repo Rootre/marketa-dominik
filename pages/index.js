@@ -6,6 +6,7 @@ import AboutUs from 'Components/about-us/AboutUs';
 import BreakpointWatcher from 'Components/BreakpointWatcher';
 import Claim from 'Components/Claim';
 import Countdown from 'Components/Countdown';
+import Gifts from 'Components/Gifts';
 import Menu from 'Components/menu/Menu';
 import OurStory from 'Components/OurStory';
 
@@ -14,11 +15,13 @@ import TheDate from 'Consts/TheDate';
 
 import 'Sass/global.scss';
 import Navigation from "../components/Navigation";
+import Notifications from "../components/Notifications";
 
 setGlobal({
     activeItem: 0,
     breakpoint: '',
     isRetina: false,
+    notifications: new Map(),
 });
 
 const bits = [
@@ -51,6 +54,7 @@ function Index() {
             <Head>
                 <title>{`Markéta &amp; Dominik | Svatba`}</title>
             </Head>
+            <Notifications/>
             <Claim heading={'Markéta & Dominik'} date={TheDate}/>
             <Menu items={menuItems}/>
             <Navigation>
@@ -60,6 +64,9 @@ function Index() {
                 </div>
                 <div id={'jak-se-to-semlelo'}>
                     <OurStory bits={bits}/>
+                </div>
+                <div id={'dary'}>
+                    <Gifts/>
                 </div>
             </Navigation>
         </div>

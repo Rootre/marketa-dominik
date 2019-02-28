@@ -24,6 +24,7 @@ module.exports = withSass({
             Consts: path.resolve(__dirname, 'consts'),
             Components: path.resolve(__dirname, 'components'),
             Helpers: path.resolve(__dirname, 'helpers'),
+            Hooks: path.resolve(__dirname, 'hooks'),
             Images: path.resolve(__dirname, 'static/images'),
             Prototypes: path.resolve(__dirname, 'prototypes'),
             Sass: path.resolve(__dirname, 'static/sass'),
