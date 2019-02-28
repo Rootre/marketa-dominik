@@ -9,8 +9,8 @@ import styles from './styles.scss';
 function Navigation({children}) {
     const [, setActiveItem] = useGlobal('activeItem');
 
-    const activateWaypoint = (item, _, child) => {
-        self.location.hash = `#${child.props.id}`;
+    const activateWaypoint = (item, id) => {
+        self.location.hash = `#${id}`;
         setActiveItem(item);
     };
 
@@ -19,9 +19,17 @@ function Navigation({children}) {
             {React.Children.map(children, (child, index) => (
                 <Waypoint
                     bottomOffset={'40%'}
-                    onEnter={e => activateWaypoint(index, e, child)}
+                    onEnter={() => activateWaypoint(index, child.props.id || `nav-${index}`)}
+                    topOffset={'59%'}
                 >
-                    {child}
+                    {child.props.id
+                        ? child
+                        : (
+                            <div id={`nav-${index}`}>
+                                {child}
+                            </div>
+                        )
+                    }
                 </Waypoint>
             ))}
         </div>
