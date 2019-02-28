@@ -10,6 +10,7 @@ function Claim({date, heading}) {
 
     return (
         <div className={styles.wrapper}>
+            <img src={'static/img/claim.jpg'} alt={heading} className={styles.image}/>
             <div className={styles.claim}>
                 <WreathSvg className={classNames(styles.wreath, styles.up)}/>
                 <h1 className={styles.heading}>{heading}</h1>

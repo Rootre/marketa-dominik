@@ -12,13 +12,13 @@ function AboutUs() {
             <h2 className={globalStyles.heading}>My</h2>
             <div className={styles.us}>
                 <Persona
-                    image={'https://via.placeholder.com/700x500'}
+                    image={'static/img/marketa.jpg'}
                     text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
                     title={'O Markétě'}
                     bride
                 />
                 <Persona
-                    image={'https://via.placeholder.com/700x500'}
+                    image={'static/img/dominik.jpg'}
                     text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
                     title={'O Dominikovi'}
                     groom
