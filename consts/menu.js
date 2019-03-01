@@ -1,5 +1,9 @@
 export default [
     {
+        title: 'Intro',
+        link: '#intro',
+    },
+    {
         title: 'My',
         link: '#my',
     },
@@ -13,6 +17,6 @@ export default [
     },
     {
         title: 'Kdy a kde',
-        link: '#kdy-a-kde',
+        link: '#plan-dne',
     },
 ];
