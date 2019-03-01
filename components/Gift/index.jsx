@@ -1,15 +1,17 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import styles from './styles.scss';
 
 function Gift({gift: {image, name, reserved, url}}) {
     return (
-        <div className={styles.wrapper}>
+        <div className={classNames(styles.wrapper, {
+            [styles.withImage]: !!image,
+            [styles.reserved]: reserved,
+        })}>
             {image && <img src={image} alt={name} className={styles.image}/>}
-            <p>
-                <a href={url}>{name}</a>
-                {reserved ? 'reserved' : 'free'}
-            </p>
+            <a href={url} className={styles.name} target={'_blank'}>{name}</a>
+            <em className={styles.status}>{reserved ? 'reserved' : 'free'}</em>
         </div>
     )
 }

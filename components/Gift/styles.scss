@@ -1,4 +1,31 @@
 @import "~Sass/helpers.scss";
 
 .image {}
-.wrapper {}
+.name {
+    color: inherit;
+    display: block;
+    padding: $padding--default 0;
+}
+.status {
+    color: $mountain-meadow;
+    position: absolute;
+    right: 0;
+    top: $padding--default;
+
+    .reserved & {
+        color: $wild-strawberry;
+    }
+}
+.wrapper {
+    position: relative;
+
+    &.reserved {
+        text-decoration: line-through;
+    }
+    &.withImage {
+        padding-left: 30px;
+    }
+    & + & {
+        border-top: 1px solid $mercury;
+    }
+}

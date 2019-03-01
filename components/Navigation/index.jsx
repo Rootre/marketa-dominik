@@ -8,7 +8,7 @@ function Navigation({children}) {
     const [, setActiveItem] = useGlobal('activeItem');
 
     const activateWaypoint = (item, id) => {
-        self.location.hash = `#${id}`;
+        // self.location.hash = `#${id}`;
         setActiveItem(item);
     };
 

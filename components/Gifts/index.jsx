@@ -14,9 +14,11 @@ function Gifts() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <h2 className={globalStyles.heading}>Dary</h2>
-            {[...gifts.values()].map((gift) => (
-                <Gift key={gift._id} gift={gift}/>
-            ))}
+            <div className={styles.gifts}>
+                {[...gifts.values()].map((gift) => (
+                    <Gift key={gift._id} gift={gift}/>
+                ))}
+            </div>
         </div>
     )
 }
