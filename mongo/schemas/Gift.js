@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const GiftSchema = new Schema({
+    active: {
+        type: Boolean,
+        required: true,
+        default: true,
+    },
     image: {
         type: String,
     },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
 import {setGlobal} from 'reactn';
 
@@ -16,10 +16,12 @@ import TheDate from 'Consts/TheDate';
 import 'Sass/global.scss';
 import Navigation from "../components/Navigation";
 import Notifications from "../components/Notifications";
+import useGlobalMap from "../hooks/useGlobalMap";
 
 setGlobal({
     activeItem: 0,
     breakpoint: '',
+    gifts: new Map(),
     isRetina: false,
     notifications: new Map(),
 });
@@ -47,12 +49,18 @@ const bits = [
     },
 ];
 
-function Index() {
+function Index({gifts}) {
+    const [, addGift] = useGlobalMap('gifts');
+
+    useEffect(() => {
+        gifts.forEach(gift => addGift(gift._id, gift));
+    }, []);
+
     return (
         <div>
             <BreakpointWatcher/>
             <Head>
-                <title>{`Markéta &amp; Dominik | Svatba`}</title>
+                <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
             <Notifications/>
             <Claim heading={'Markéta & Dominik'} date={TheDate}/>
@@ -72,5 +80,11 @@ function Index() {
         </div>
     );
 }
+
+Index.getInitialProps = ({req, res: {gifts}}) => {
+    return {
+        gifts,
+    };
+};
 
 export default Index;

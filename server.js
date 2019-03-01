@@ -2,10 +2,11 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
+const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
 
-const next = require('next');
+const GiftModel = require('./mongo/models/Gift');
 
 const checkUserToken = require('./api/server/checkUserToken');
 const loginUser = require('./api/server/loginUser');
@@ -32,11 +33,23 @@ app.prepare()
 
         server.all('*', checkUserToken);
 
-        server.post('/admin/user/login', loginUser);
+        server.get('*', async (req, res) => {
+            let gifts = [];
 
-        server.get('*', (req, res) => {
-            return handle(req, res);
+            if (req.url === '/') {
+                try {
+                    gifts = await GiftModel.find({active: true});
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            return handle(req, Object.assign(res, {
+                gifts,
+            }));
         });
+
+        server.post('/admin/user/login', loginUser);
 
         server.listen(APP_PORT, (err) => {
             if (err) {
