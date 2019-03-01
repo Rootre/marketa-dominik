@@ -1,4 +1,8 @@
 const mongoose = require('mongoose');
 const GiftSchema = require('../schemas/Gift');
 
-module.exports = Gift = mongoose.model('gift', GiftSchema);
+module.exports = mongoose.models && mongoose.models.gift
+    ? mongoose.models.gift
+    : mongoose.model
+        ? mongoose.model('gift', GiftSchema)
+        : null;

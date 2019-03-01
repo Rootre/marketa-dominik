@@ -1,6 +1,4 @@
-import useGlobalMap from 'Hooks/useGlobalMap';
-
-const GiftDb = require('../mongo/models/Gift');
+const GiftModel = require('../mongo/models/Gift');
 
 let giftImage = '';
 let giftName = '';
@@ -14,33 +12,27 @@ const Gift = () => {
         setName,
         setUrl,
     }
-}
+};
 
 async function create() {
-    const [, addNotification] = useGlobalMap('notifications');
-
-    const newGift = new GiftDb({
-        image: giftImage,
-        name: giftName,
-        url: giftUrl,
-    });
-
     try {
-        await newGift.save();
+        await GiftModel.save({
+            image: giftImage,
+            name: giftName,
+            url: giftUrl,
+        });
     } catch (e) {
-        addNotification(e.message);
+        console.error(e);
     }
 }
 
 async function getAll() {
-    const [, addNotification] = useGlobalMap('notifications');
-
     let gifts = [];
 
     try {
-        gifts = await GiftDb.find();
+        gifts = await GiftModel.find();
     } catch (e) {
-        addNotification(e.message);
+        console.error(e);
     }
 
     return gifts;
