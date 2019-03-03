@@ -1,21 +1,21 @@
-module.exports = [
+export default [
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/our-story/1.jpg',
         text: 'Lorem ipsum',
         title: 'Jak jsme začali',
     },
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/our-story/2.jpg',
         text: 'Lorem ipsum',
         title: 'Co jsme spolu strávili',
     },
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/our-story/3.jpg',
         text: 'Lorem ipsum',
         title: 'Jak někdo požádal o ruku',
     },
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/our-story/4.jpg',
         text: 'Lorem ipsum',
         title: 'Bereme se!',
     },

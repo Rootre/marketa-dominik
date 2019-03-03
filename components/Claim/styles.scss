@@ -20,12 +20,8 @@
         font-size: $font-size * 2 + 20;
     }
 }
-.image {
-    @include square(100%);
-    object-fit: cover;
-    left: 0;
+.slider {
     position: absolute;
-    top: 0;
 }
 .wreath {
     @include dim(250px, 120px);
@@ -41,7 +37,6 @@
 }
 .wrapper {
     align-items: center;
-    background-color: $silver-chalice;
     color: $white;
     display: flex;
     justify-content: center;
@@ -50,6 +45,6 @@
     text-align: center;
 
     @include media(desktop) {
-        min-height: 90vh;
+        height: 90vh;
     }
 }

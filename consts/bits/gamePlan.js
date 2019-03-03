@@ -1,28 +1,26 @@
-module.exports = [
+export default [
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/game-plan/sraz.jpg',
         text: 'Lorem ipsum',
-        time: 'Lorem ipsum',
+        time: '15:00',
         title: 'Sraz před kostelem',
     },
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/game-plan/foceni.jpg',
         text: 'Lorem ipsum',
-        title: 'Hodně zpěvu',
+        time: '16:00 - 17:00',
+        title: 'Poobřadní focení',
     },
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/game-plan/cekame.jpg',
         text: 'Lorem ipsum',
-        title: 'Hodně potlesku',
+        time: '17:30',
+        title: 'Přesun na hostinu',
     },
     {
-        image: 'https://via.placeholder.com/400x520',
+        image: 'static/img/game-plan/party.jpg',
         text: 'Lorem ipsum',
-        title: 'Hodně smíchu',
-    },
-    {
-        image: 'https://via.placeholder.com/400x520',
-        text: 'Lorem ipsum',
-        title: 'Hodně tance',
+        time: '18:00',
+        title: 'Party time!',
     },
 ];
