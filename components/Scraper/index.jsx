@@ -14,7 +14,7 @@ function Scraper({callback}) {
     const scrape = async () => {
         const url = inputRef.current.value().replace(/^https?:\/\//g, 'http://');
 
-        const corsUrl = `https://crossorigin.me/${encodeURIComponent(url)}`;
+        const corsUrl = `http://anyorigin.com/go?url=${encodeURIComponent(url)}`;
 
         const result = await fetch(corsUrl, {
             mode: 'cors',
