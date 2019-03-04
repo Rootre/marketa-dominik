@@ -19,7 +19,7 @@ services:
     container_name: marketa_dominik_mongo
     image: mongo
     ports:
-      - '27017:27017'
+      - '27010:27017'
 
 volumes:
   app-node-modules:
