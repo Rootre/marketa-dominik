@@ -7,4 +7,8 @@ export default [
         alt: 'Společně proti vlnám',
         image: 'static/img/slider/2.jpg',
     },
+    {
+        alt: 'S výhledem na budoucnost',
+        image: 'static/img/slider/3.jpg',
+    },
 ]

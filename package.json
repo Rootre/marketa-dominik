@@ -25,6 +25,7 @@
     "react": "^16.8.3",
     "react-countdown-now": "^2.1.0",
     "react-dom": "^16.8.3",
+    "react-slick": "^0.23.2",
     "react-transition-group": "^2.5.3",
     "react-waypoint": "^9.0.0",
     "reactn": "^1.0.0"
