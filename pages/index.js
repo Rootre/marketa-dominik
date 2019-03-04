@@ -25,6 +25,7 @@ import 'Sass/global.scss';
 setGlobal({
     activeItem: 0,
     breakpoint: '',
+    fetching: new Map(),
     gifts: new Map(),
     isRetina: false,
     notifications: new Map(),

@@ -9,6 +9,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const GiftModel = require('./mongo/models/Gift');
 
 const checkUserToken = require('./api/server/checkUserToken');
+const editGift = require('./api/server/editGift');
 const loginUser = require('./api/server/loginUser');
 
 const app = next({ dev });
@@ -50,6 +51,7 @@ app.prepare()
         });
 
         server.post('/admin/user/login', loginUser);
+        server.post('/admin/gift/edit', editGift);
 
         server.listen(APP_PORT, (err) => {
             if (err) {

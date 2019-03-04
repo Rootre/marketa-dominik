@@ -25,9 +25,6 @@ const GiftSchema = new Schema({
         required: true,
         default: false,
     },
-    reservedBy: {
-        type: String,
-    },
     created: {
         type: Date,
         default: Date.now,

@@ -1,4 +1,7 @@
-const GiftModel = require('../mongo/models/Gift');
+import {
+    editGift,
+    fetchGiftById,
+} from 'Api/client';
 
 let giftImage = '';
 let giftName = '';
@@ -7,7 +10,8 @@ let giftUrl = '';
 const Gift = () => {
     return {
         create,
-        getAll,
+        edit,
+        fetchById,
         setImage,
         setName,
         setUrl,
@@ -16,21 +20,25 @@ const Gift = () => {
 
 async function create() {
     try {
-        await GiftModel.save({
-            image: giftImage,
-            name: giftName,
-            url: giftUrl,
-        });
+
     } catch (e) {
         console.error(e);
     }
 }
 
-async function getAll() {
+async function edit(id, set) {
+    try {
+        await editGift(id, set);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+async function fetchById(id) {
     let gifts = [];
 
     try {
-        gifts = await GiftModel.find();
+        gifts = await fetchGiftById(id);
     } catch (e) {
         console.error(e);
     }

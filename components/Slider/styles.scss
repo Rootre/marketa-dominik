@@ -9,13 +9,8 @@
     transition: opacity .3s;
 }
 .slide {
-    height: 80vh;
-    min-height: 400px;
+    height: 100%;
     position: relative;
-
-    @include media(desktop) {
-        height: 90vh;
-    }
 }
 .wrapper {
     @include square(100%);
@@ -24,6 +19,9 @@
 
 
 :global {
+    .slick-list, .slick-track, .slick-slide > div {
+        height: 100%;
+    }
     .slick-list,.slick-slider,.slick-track {
         position: relative;
         display: block
