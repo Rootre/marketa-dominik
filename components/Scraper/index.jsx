@@ -12,7 +12,11 @@ function Scraper({callback}) {
     const inputRef = React.createRef();
 
     const scrape = async () => {
-        const result = await fetch(inputRef.current.value(), {
+        const url = inputRef.current.value().replace(/^https?:\/\//g, 'http://');
+
+        const corsUrl = `https://crossorigin.me/${encodeURIComponent(url)}`;
+
+        const result = await fetch(corsUrl, {
             mode: 'cors',
         });
 
