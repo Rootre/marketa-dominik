@@ -3,11 +3,16 @@ const GiftModel = require('../../mongo/models/Gift');
 const readGift = async (req, res) => {
     const {id} = req.body;
 
+    let gift;
     try {
-        const gift = await GiftModel.findOne({_id: id});
+        if (id) {
+            gift = await GiftModel.findOne({_id: id});
+        } else {
+            gift = await GiftModel.find();
+        }
 
         res.status(200).json({
-            gift,
+            data: gift,
             success: true,
         });
     } catch (e) {

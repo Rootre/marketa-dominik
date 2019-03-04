@@ -2,9 +2,12 @@ import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
 import {setGlobal, useGlobal} from 'reactn';
 
-import AdminLogin from '../components/AdminLogin';
+import AdminContent from '../components/admin/AdminContent';
+import AdminLogin from '../components/admin/AdminLogin';
 import Loading from '../components/Loading';
 import Notification from '../components/Notification';
+
+import UserPrototype from 'Prototypes/User';
 
 import '../static/sass/global.scss';
 
@@ -20,8 +23,9 @@ function Admin() {
 
 
     useEffect(() => {
-        //TODO: think of a way to set token from server to false after using it here
-        // set user log with setIsLogged(boolean);
+        const admin = new UserPrototype('admin');
+
+        setIsLogged(admin.isLogged());
         setIsLoaded(true);
     }, []);
 
@@ -34,7 +38,7 @@ function Admin() {
 
             <Notification notifications={notifications}/>
             {isLoaded ? isLogged ? (
-                <div>tajná sekce!</div>
+                <AdminContent/>
             ) : (
                 <AdminLogin/>
             ) : (

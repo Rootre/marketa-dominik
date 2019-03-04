@@ -1,17 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import FormLoginUser from '../FormLoginUser';
+import AdminGifts from 'Components/admin/AdminGifts';
 
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
 
-function AdminLogin() {
+function Admin() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <FormLoginUser/>
+            <h1>Vítej v administraci</h1>
+
+            <AdminGifts/>
         </div>
     )
 }
 
-export default AdminLogin;
+export default Admin;

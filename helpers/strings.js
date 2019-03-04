@@ -27,3 +27,22 @@ export function inflectString(count, strings) {
 
     return strings[1];
 }
+
+/**
+ * Converts object into url parameters
+ * @param {object} params
+ * @returns {string}
+ */
+export function getDataAsURL(params) {
+    if (!params) {
+        return '';
+    }
+
+    return Object.entries(params).map(([key, val]) => {
+        if (Array.isArray(val)) {
+            return val.map(val => `${key}[]=${val}`).join('&');
+        }
+
+        return `${key}=${val}`;
+    }).join('&');
+}

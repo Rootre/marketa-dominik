@@ -8,7 +8,7 @@ import {generateID} from '../../helpers/strings';
 
 import styles from './styles.scss';
 
-function Input({className, errorMessage, id = generateID(), label, name, type = 'text', value = ''}, ref) {
+function Input({className, errorMessage, id = generateID(), label, name, type = 'text', value = '', ...rest}, ref) {
     const [stateValue, setStateValue] = useState(value);
     const [isFocused, setIsFocused] = useState(false);
     const [hasError] = useState(false);
@@ -40,6 +40,7 @@ function Input({className, errorMessage, id = generateID(), label, name, type = 
                        onFocus={() => setIsFocused(true)}
                        onBlur={() => setIsFocused(false)}
                        onChange={(e) => setStateValue(e.target.value)}
+                       {...rest}
                 />
             )}
             {hasError && <p className={styles.error}>{errorMessage}</p>}

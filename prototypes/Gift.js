@@ -1,7 +1,9 @@
 import {
     createGift,
+    deleteGift,
     editGift,
     fetchGiftById,
+    fetchGifts,
 } from 'Api/client';
 
 let giftImage = '';
@@ -11,7 +13,9 @@ let giftUrl = '';
 const Gift = () => {
     return {
         create,
+        deleteOne,
         edit,
+        fetchAll,
         fetchById,
         setImage,
         setName,
@@ -27,6 +31,14 @@ async function create() {
     }
 }
 
+async function deleteOne(id) {
+    try {
+        await deleteGift(id);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 async function edit(id, set) {
     try {
         await editGift(id, set);
@@ -35,16 +47,32 @@ async function edit(id, set) {
     }
 }
 
-async function fetchById(id) {
+async function fetchAll() {
     let gifts = [];
 
     try {
-        gifts = await fetchGiftById(id);
+        const result = await fetchGifts();
+
+        gifts = result.data;
     } catch (e) {
         console.error(e);
     }
 
     return gifts;
+}
+
+async function fetchById(id) {
+    let gift = [];
+
+    try {
+        const result = await fetchGiftById(id);
+
+        gift = result.data;
+    } catch (e) {
+        console.error(e);
+    }
+
+    return gift;
 }
 
 function setImage(image) {
