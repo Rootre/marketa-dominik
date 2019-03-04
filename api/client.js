@@ -3,12 +3,20 @@ import {remove as removeCookie} from 'js-cookie';
 
 import {AppError, ApiError, API_ERRORS, ERR_NETWORK, ERR_NETWORK_MSG} from './errors';
 import {
+    GIFT_CREATE_URL,
     GIFT_EDIT_URL,
-    GIFT_FETCH_URL,
+    GIFT_READ_URL,
     USER_LOGIN_URL,
 } from './urls';
 import COOKIE from 'Consts/jwt/cookie';
 
+export function createGift(image, name, url) {
+    return apiFetch(GIFT_CREATE_URL, 'POST', {
+        image,
+        name,
+        url,
+    });
+}
 export function editGift(id, set) {
     return apiFetch(GIFT_EDIT_URL, 'POST', {
         id,
@@ -16,7 +24,7 @@ export function editGift(id, set) {
     });
 }
 export function fetchGiftById(id) {
-    return apiFetch(GIFT_FETCH_URL, 'POST', {
+    return apiFetch(GIFT_READ_URL, 'POST', {
         id,
     });
 }

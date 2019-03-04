@@ -1,6 +1,6 @@
 const GiftModel = require('../../mongo/models/Gift');
 
-const fetchGiftById = async (req, res) => {
+const readGift = async (req, res) => {
     const {id} = req.body;
 
     try {
@@ -15,4 +15,4 @@ const fetchGiftById = async (req, res) => {
     }
 };
 
-module.exports = fetchGiftById;
+module.exports = readGift;

@@ -1,4 +1,5 @@
 import {
+    createGift,
     editGift,
     fetchGiftById,
 } from 'Api/client';
@@ -20,7 +21,7 @@ const Gift = () => {
 
 async function create() {
     try {
-
+        await createGift(giftImage, giftName, giftUrl);
     } catch (e) {
         console.error(e);
     }

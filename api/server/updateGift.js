@@ -1,6 +1,6 @@
 const GiftModel = require('../../mongo/models/Gift');
 
-const editGift = async (req, res) => {
+const updateGift = async (req, res) => {
     const {id, set} = req.body;
 
     try {
@@ -12,4 +12,4 @@ const editGift = async (req, res) => {
     }
 };
 
-module.exports = editGift;
+module.exports = updateGift;
