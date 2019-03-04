@@ -50,6 +50,7 @@
             position: absolute;
             transform: translate3d(0, 50%, 0);
             transition: box-shadow .3s, max-width .3s, max-height .3s, padding .3s;
+            z-index: 1;
 
             &:hover {
                 background-color: $white;
