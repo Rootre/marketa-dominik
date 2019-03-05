@@ -30,6 +30,7 @@ function Countdown({date}) {
 
     return (
         <div className={classNames(globalStyles.wrapperSmaller, styles.wrapper)}>
+            <h2 className={globalStyles.heading}>Počítejte s námi</h2>
             <CountdownNow date={date} renderer={renderer}/>
         </div>
     )

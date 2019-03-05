@@ -14,19 +14,28 @@
 .status {
     color: $mountain-meadow;
     cursor: pointer;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    top: $padding--default;
-    transition: opacity .3s;
+    display: block;
+    margin-top: $padding--small;
 
     .reserved & {
         color: $wild-strawberry;
         cursor: default;
-        opacity: 1;
     }
     .reserved.myReservation & {
         cursor: pointer;
+    }
+
+    @include media(desktop) {
+        margin-top: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        top: $padding--default;
+        transition: opacity .3s;
+
+        .reserved & {
+            opacity: 1;
+        }
     }
 }
 .wrapper {
@@ -37,7 +46,9 @@
         opacity: 1;
     }
     &.reserved {
-        text-decoration: line-through;
+        a {
+            text-decoration: line-through;
+        }
     }
     &.withImage {
         padding-left: 90px;

@@ -12,7 +12,7 @@ import styles from './styles.scss';
 function AboutUs() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <h2 className={globalStyles.heading}>Co o nás svědci napsali</h2>
+            <h2 className={globalStyles.heading}>Co o nás napsali svědci</h2>
             <div className={styles.us}>
                 <Persona
                     image={bride.image}

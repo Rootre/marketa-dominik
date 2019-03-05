@@ -47,7 +47,7 @@ function Index({gifts}) {
             <Notifications/>
             <Navigation>
                 <div id={'intro'}>
-                    <Claim heading={'Markéta & Dominik'} date={TheDate}/>
+                    <Claim heading={'Markéta a Dominik'} date={TheDate}/>
                     <Menu items={menuItems}/>
                 </div>
                 <div id={'my'}>

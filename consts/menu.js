@@ -1,6 +1,6 @@
 export default [
     {
-        title: 'Intro',
+        title: '',
         link: '#intro',
     },
     {

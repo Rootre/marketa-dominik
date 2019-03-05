@@ -37,26 +37,10 @@ img {
     fill: $wild-strawberry;
 }
 
-.addSVG {
-    @extend %rightButton, %greenButton;
-    transform: rotate(0);
-    transition: transform .3s, fill .3s;
-
-    &.active {
-        @extend %redButton;
-        transform: rotate(45deg);
-    }
-}
-.closeSVG {
-    @extend %rightButton, %redButton;
-    transform: rotate(45deg);
-}
-.deleteSVG {
-    @extend %rightButton, %redButton;
-}
 .heading {
     font-family: $font-family-hand;
     font-size: $font-size * 2;
+    line-height: 1;
     margin: 0 auto $margin--small;
     padding-top: $padding--big;
     text-align: center;

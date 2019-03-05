@@ -1,5 +1,10 @@
 @import "~Sass/helpers.scss";
 
+.empty {
+    font-size: $font-size-sm;
+    font-style: italic;
+    text-align: center;
+}
 .gifts {
     background-color: $desert-storm;
     padding: $padding--default;

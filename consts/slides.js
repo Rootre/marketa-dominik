@@ -2,6 +2,7 @@ export default [
     {
         alt: 'Při západu slunce',
         image: 'static/img/slider/1.jpg',
+        dark: true,
     },
     {
         alt: 'Společně proti vlnám',
@@ -10,5 +11,6 @@ export default [
     {
         alt: 'S výhledem na budoucnost',
         image: 'static/img/slider/3.jpg',
+        dark: true,
     },
 ]
