@@ -13,6 +13,7 @@ import styles from './styles.scss';
 
 function Scraper({afterScrape, beforeScrape}) {
     const [fetching] = useGlobalMap('fetching');
+    const [, addNotification] = useGlobalMap('notifications');
     const [inputValue, setInputValue] = useState('');
 
     const inputChange = (name, value) => {
@@ -20,16 +21,20 @@ function Scraper({afterScrape, beforeScrape}) {
     };
     const scrape = async () => {
         const url = inputValue.replace(/\?.*$/, '');
+        let data;
 
         beforeScrape();
-        try {
-            const {data} = await scrapeGift(url);
 
-            afterScrape(data, url);
+        try {
+            const result = await scrapeGift(url);
+            data = result.data;
+
             setInputValue('');
         } catch (e) {
-            console.error(e);
+            addNotification(e.message, 'error');
         }
+
+        afterScrape(data, url);
     };
 
     return (

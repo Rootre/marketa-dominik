@@ -23,6 +23,12 @@ function AdminGifts() {
     const [values, setValues] = useState({image: '', name: '', url: ''});
 
     const afterScrape = (data, url) => {
+        deleteFetching(SCRAPING_GIFT);
+
+        if (!data) {
+            return;
+        }
+
         setValues({
             image: scrapeImage(data),
             name: scrapeTitle(data),
@@ -30,8 +36,6 @@ function AdminGifts() {
         });
 
         setFormStep(2);
-
-        deleteFetching(SCRAPING_GIFT);
     };
     const beforeScrape = () => {
         addFetching(SCRAPING_GIFT);
