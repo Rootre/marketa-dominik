@@ -12,7 +12,7 @@ function Bit({even, image, text, title}) {
         })}>
             <div className={styles.content}>
                 <h3 className={styles.heading}>{title}</h3>
-                <div className={styles.text}>{text}</div>
+                <div className={styles.text} dangerouslySetInnerHTML={{__html: text}}/>
             </div>
             <LazyImage className={styles.image} src={image} alt={title}/>
         </div>
