@@ -7,6 +7,7 @@ import {
     GIFT_DELETE_URL,
     GIFT_EDIT_URL,
     GIFT_READ_URL,
+    GIFT_SCRAPE_URL,
     USER_LOGIN_URL,
 } from './urls';
 import COOKIE from 'Consts/jwt/cookie';
@@ -47,8 +48,15 @@ export function login(login, password) {
 export function logout() {
     return removeCookie(COOKIE.name);
 }
+export function scrapeGift(url) {
+    return apiFetch(GIFT_SCRAPE_URL, 'POST', {
+        url,
+    });
+}
 
-export async function apiFetch(url, method = 'POST', body) {
+export async function apiFetch(url, method = 'POST', body, headers = {
+    'Content-Type': 'application/json',
+}) {
     let result;
 
     if (method.toUpperCase() === 'GET') {
@@ -59,10 +67,7 @@ export async function apiFetch(url, method = 'POST', body) {
         result = await fetch(url, {
             body: method.toUpperCase() === 'GET' ? null : JSON.stringify(body),
             method,
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers,
             mode: 'no-cors',
         });
     } catch (e) {

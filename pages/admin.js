@@ -12,6 +12,7 @@ import UserPrototype from 'Prototypes/User';
 import '../static/sass/global.scss';
 
 setGlobal({
+    fetching: new Map(),
     isLogged: false,
     notifications: new Map(),
 });

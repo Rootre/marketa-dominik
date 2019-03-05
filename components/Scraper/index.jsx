@@ -1,32 +1,37 @@
 import React from 'react';
 import classNames from 'classnames';
-import fetch from 'cross-fetch';
 
 import Input from 'Components/Input';
 import Button from 'Components/Button';
 
+import {scrapeGift} from 'Api/client';
+import {SCRAPING_GIFT} from 'Consts/fetching';
+import useGlobalMap from 'Hooks/useGlobalMap';
+
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
 
-function Scraper({callback}) {
+function Scraper({afterScrape, beforeScrape}) {
+    const [fetching] = useGlobalMap('fetching');
     const inputRef = React.createRef();
 
     const scrape = async () => {
-        const url = inputRef.current.value().replace(/^https?:\/\//g, 'http://');
+        const url = inputRef.current.value().replace(/\?.*$/, '');
 
-        const corsUrl = `http://anyorigin.com/go?url=${encodeURIComponent(url)}`;
+        beforeScrape();
+        try {
+            const {data} = await scrapeGift(url);
 
-        const result = await fetch(corsUrl, {
-            mode: 'cors',
-        });
-
-        callback(await result.text());
+            afterScrape(data, url);
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <Input ref={inputRef} name={'scrape'} placeholder={'Vlož odkaz'}/>
-            <Button type={'button'} label={'Předvyplnit údaje'} onClick={() => scrape()}/>
+            <Button busy={fetching.has(SCRAPING_GIFT)} type={'button'} label={'Předvyplnit údaje'} onClick={scrape}/>
         </div>
     )
 }

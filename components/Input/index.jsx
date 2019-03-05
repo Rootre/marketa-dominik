@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeHandle, useState} from 'react';
+import React, {forwardRef, useImperativeHandle, useEffect, useState} from 'react';
 import classNames from 'classnames';
 
 import InputHidden from '../InputHidden';
@@ -9,7 +9,7 @@ import {generateID} from '../../helpers/strings';
 import styles from './styles.scss';
 
 function Input({className, errorMessage, id = generateID(), label, name, type = 'text', value = '', ...rest}, ref) {
-    const [stateValue, setStateValue] = useState(value);
+    const [stateValue, setStateValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const [hasError] = useState(false);
 
@@ -20,6 +20,7 @@ function Input({className, errorMessage, id = generateID(), label, name, type = 
     useImperativeHandle(ref, () => ({
         isEmpty: () => stateValue.trim() === '',
         reset: () => setStateValue(value),
+        set: (_value) => setStateValue(_value),
         value: () => stateValue,
     }));
 
@@ -39,7 +40,7 @@ function Input({className, errorMessage, id = generateID(), label, name, type = 
                        name={name}
                        onFocus={() => setIsFocused(true)}
                        onBlur={() => setIsFocused(false)}
-                       onChange={(e) => setStateValue(e.target.value)}
+                       onChange={e => setStateValue(e.target.value)}
                        {...rest}
                 />
             )}

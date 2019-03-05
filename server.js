@@ -13,6 +13,7 @@ const createGift = require('./api/server/createGift');
 const deleteGift = require('./api/server/deleteGift');
 const loginUser = require('./api/server/loginUser');
 const readGift = require('./api/server/readGift');
+const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
 
 const app = next({ dev });
@@ -57,6 +58,7 @@ app.prepare()
         server.post('/admin/gift/delete', deleteGift);
         server.post('/admin/gift/edit', updateGift);
         server.post('/admin/gift/read', readGift);
+        server.post('/admin/gift/scrape', scrapeGift);
         server.post('/admin/user/login', loginUser);
 
         server.listen(APP_PORT, (err) => {
