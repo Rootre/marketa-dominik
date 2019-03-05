@@ -8,7 +8,6 @@ export default class MyDocument extends Document {
             <Head>
                 <meta charSet={`UTF-8`}/>
                 <meta name={`viewport`} content={`initial-scale=1.0, width=device-width`}/>
-                <!--link href={'https://fonts.googleapis.com/css?family=Cedarville+Cursive'} rel={'stylesheet'}/-->
                 <style dangerouslySetInnerHTML={{
                     __html: `
                         @font-face {

@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import LazyImage from 'Components/LazyImage';
+
 import styles from './styles.scss';
-import LazyImage from "../LazyImage";
 
 function Bit({even, image, text, title}) {
     return (
