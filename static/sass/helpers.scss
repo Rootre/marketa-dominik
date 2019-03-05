@@ -1,3 +1,6 @@
+/* urls */
+$fonts-url: '../fonts/';
+
 /* colors from: http://chir.ag/projects/name-that-color/ */
 $alto: #d8d8d8;
 $black: #000;
@@ -21,7 +24,8 @@ $font-size: 16px;
 $font-size-sm: 14px;
 $font-size-lg: 22px;
 $font-family: Arial, sans-serif;
-$font-family-hand: 'Cedarville Cursive', cursive;
+//$font-family-hand: 'Cedarville Cursive', cursive;
+$font-family-hand: 'Skolacek', sans-serif;
 
 /* grid */
 $wrapper-width: 930px;
@@ -62,6 +66,17 @@ $z-indexes: (
     width: $width;
     height: $height;
 }
+// insert font-face from defined directory
+@mixin font-face($font-family, $font-name, $path) {
+    @font-face {
+        font-family: $font-family;
+        src: url('#{$path}#{$font-name}.woff2') format('woff2'),
+        url('#{$path}#{$font-name}.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+        @content;
+    }
+}
 @mixin media($type) {
     $media: $mobile;
     @if $type == desktop-beyond {
@@ -82,11 +97,10 @@ $z-indexes: (
         @content;
     }
 }
-
+// includes squared dimenstions
 @mixin square($size) {
     @include dim($size, $size);
 }
-
 // Get z-index values from $z-indexes list.
 @function z-index($name) {
     $_starts-from: 10; // Safe, to prevent conflicts with plugins or local z-index values

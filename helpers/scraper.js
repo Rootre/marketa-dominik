@@ -1,5 +1,5 @@
 export function scrapeTitle(data) {
-    const match = data.match(/<title.+?>(.+?)<\/title>/i);
+    const match = data.match(/<title.*?>[\s]*(.+?)[\s]*<\/title>/i);
 
     return match ? match[1] : '';
 }

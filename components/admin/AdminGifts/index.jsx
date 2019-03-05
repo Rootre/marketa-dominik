@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Button from 'Components/Button';
 import Input from 'Components/Input';
 import Scraper from 'Components/Scraper';
+import CloseSVG from 'Svg/close.svg';
 
 import {SAVING_GIFT, SCRAPING_GIFT} from 'Consts/fetching';
 import {scrapeImage, scrapeTitle} from 'Helpers/scraper';
@@ -16,7 +17,7 @@ import styles from './styles.scss';
 function AdminGifts() {
     const [fetching, addFetching, deleteFetching] = useGlobalMap('fetching');
     const [, addNotification] = useGlobalMap('notifications');
-    const [showForm, setShowForm] = useState(true);
+    const [showForm, setShowForm] = useState(false);
     const [gifts, setGifts] = useState([]);
     const [values, setValues] = useState({image: '', name: '', url: ''});
 
@@ -31,6 +32,21 @@ function AdminGifts() {
     };
     const beforeScrape = () => {
         addFetching(SCRAPING_GIFT);
+    };
+    const deleteGift = async id => {
+        if (!confirm('Opravdu smazat?')) {
+            return;
+        }
+
+        const gift = new GiftPrototype();
+
+        try {
+            await gift.deleteOne(id);
+
+            setGifts(gifts.filter(({_id}) => _id !== id));
+        } catch (e) {
+            addNotification(e.message, 'error');
+        }
     };
     const fetchGifts = async () => {
         const gift = new GiftPrototype();
@@ -58,8 +74,9 @@ function AdminGifts() {
             });
 
             setGifts(gifts.concat(newGift));
+            addNotification('Uloženo!', 'success');
         } catch (e) {
-            addNotification(e.message);
+            addNotification(e.message, 'error');
         }
         deleteFetching(SAVING_GIFT);
     };
@@ -70,16 +87,16 @@ function AdminGifts() {
 
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <p>AdminGifts Component</p>
+            <h2>Správa darů</h2>
 
             {showForm
                 ? (
                     <div>
                         <Scraper beforeScrape={beforeScrape} afterScrape={afterScrape}/>
-                        <Input onChange={inputChange} label={'Name'} value={values.name} name={'name'}/>
-                        <Input onChange={inputChange} label={'Image URL'} value={values.image} name={'image'}/>
-                        <Input onChange={inputChange} label={'URL'} value={values.url} name={'url'}/>
-                        <Button busy={fetching.has(SAVING_GIFT)} label={'Ulož'} type={'button'} onClick={saveGift}/>
+                        <Input onChange={inputChange} label={'Jméno'} value={values.name} name={'name'}/>
+                        <Input onChange={inputChange} label={'Odkaz na obrázek'} value={values.image} name={'image'}/>
+                        <Input onChange={inputChange} label={'Odkaz'} value={values.url} name={'url'}/>
+                        <Button busy={fetching.has(SAVING_GIFT)} label={'Vlož dar'} type={'button'} onClick={saveGift}/>
                     </div>
                 )
                 : (
@@ -89,7 +106,7 @@ function AdminGifts() {
 
             <ul>
                 {gifts.map(({_id, name}) => (
-                    <li key={_id}>{name}</li>
+                    <li key={_id}>{name} <CloseSVG className={styles.delete} onClick={() => deleteGift(_id)}/></li>
                 ))}
             </ul>
         </div>

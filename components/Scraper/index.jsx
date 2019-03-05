@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 
 import Input from 'Components/Input';
@@ -13,16 +13,20 @@ import styles from './styles.scss';
 
 function Scraper({afterScrape, beforeScrape}) {
     const [fetching] = useGlobalMap('fetching');
-    const inputRef = React.createRef();
+    const [inputValue, setInputValue] = useState('');
 
+    const inputChange = (name, value) => {
+        setInputValue(value);
+    };
     const scrape = async () => {
-        const url = inputRef.current.value().replace(/\?.*$/, '');
+        const url = inputValue.replace(/\?.*$/, '');
 
         beforeScrape();
         try {
             const {data} = await scrapeGift(url);
 
             afterScrape(data, url);
+            setInputValue('');
         } catch (e) {
             console.error(e);
         }
@@ -30,7 +34,7 @@ function Scraper({afterScrape, beforeScrape}) {
 
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <Input ref={inputRef} name={'scrape'} placeholder={'Vlož odkaz'}/>
+            <Input onChange={inputChange} value={inputValue} name={'scrape'} placeholder={'Vlož odkaz'}/>
             <Button busy={fetching.has(SCRAPING_GIFT)} type={'button'} label={'Předvyplnit údaje'} onClick={scrape}/>
         </div>
     )

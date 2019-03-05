@@ -1,3 +1,11 @@
 @import "~Sass/helpers.scss";
 
-.wrapper {}
+.delete {
+    @include square(20px);
+    cursor: pointer;
+    fill: $wild-strawberry;
+}
+.wrapper {
+    border: 1px solid $gray-chateau;
+    padding: $padding--default;
+}
