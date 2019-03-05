@@ -4,14 +4,16 @@ const createGift = async (req, res) => {
     const {image, name, url} = req.body;
 
     try {
-        const gift = await GiftModel.save({
+        const newGift = new GiftModel({
             image,
             name,
             url,
         });
 
+        await newGift.save();
+
         res.status(200).json({
-            gift,
+            newGift,
             success: true,
         });
     } catch (e) {

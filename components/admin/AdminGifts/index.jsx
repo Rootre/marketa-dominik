@@ -5,7 +5,7 @@ import Button from 'Components/Button';
 import Input from 'Components/Input';
 import Scraper from 'Components/Scraper';
 
-import {SCRAPING_GIFT} from 'Consts/fetching';
+import {SAVING_GIFT, SCRAPING_GIFT} from 'Consts/fetching';
 import {scrapeImage, scrapeTitle} from 'Helpers/scraper';
 import useGlobalMap from 'Hooks/useGlobalMap';
 import GiftPrototype from 'Prototypes/Gift';
@@ -14,17 +14,18 @@ import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
 
 function AdminGifts() {
-    const [, addFetching, deleteFetching] = useGlobalMap('fetching');
+    const [fetching, addFetching, deleteFetching] = useGlobalMap('fetching');
+    const [, addNotification] = useGlobalMap('notifications');
     const [showForm, setShowForm] = useState(true);
-    const [scrapedImage, setScrapedImage] = useState('');
-    const [scrapedTitle, setScrapedTitle] = useState('');
-    const [scrapedUrl, setScrapedUrl] = useState('');
     const [gifts, setGifts] = useState([]);
+    const [values, setValues] = useState({image: '', name: '', url: ''});
 
     const afterScrape = (data, url) => {
-        setScrapedImage(scrapeImage(data));
-        setScrapedTitle(scrapeTitle(data));
-        setScrapedUrl(url);
+        setValues({
+            image: scrapeImage(data),
+            name: scrapeTitle(data),
+            url,
+        });
 
         deleteFetching(SCRAPING_GIFT);
     };
@@ -37,8 +38,30 @@ function AdminGifts() {
 
         setGifts(gifts);
     };
+    const inputChange = (name, value) => {
+        setValues({...values, [name]: value});
+    };
     const saveGift = async () => {
-        console.log('saveGift');
+        const gift = new GiftPrototype();
+        gift.setImage(values.image);
+        gift.setName(values.name);
+        gift.setUrl(values.url);
+
+        addFetching(SAVING_GIFT);
+        try {
+            const {newGift} = await gift.create();
+
+            setValues({
+                image: '',
+                name: '',
+                url: '',
+            });
+
+            setGifts(gifts.concat(newGift));
+        } catch (e) {
+            addNotification(e.message);
+        }
+        deleteFetching(SAVING_GIFT);
     };
 
     useEffect(() => {
@@ -53,10 +76,10 @@ function AdminGifts() {
                 ? (
                     <div>
                         <Scraper beforeScrape={beforeScrape} afterScrape={afterScrape}/>
-                        <Input label={'Name'} value={scrapedTitle} name={'name'}/>
-                        <Input label={'Image URL'} value={scrapedImage} name={'image'}/>
-                        <Input label={'URL'} value={scrapedUrl} name={'url'}/>
-                        <Button label={'Ulož'} type={'button'} onClick={saveGift}/>
+                        <Input onChange={inputChange} label={'Name'} value={values.name} name={'name'}/>
+                        <Input onChange={inputChange} label={'Image URL'} value={values.image} name={'image'}/>
+                        <Input onChange={inputChange} label={'URL'} value={values.url} name={'url'}/>
+                        <Button busy={fetching.has(SAVING_GIFT)} label={'Ulož'} type={'button'} onClick={saveGift}/>
                     </div>
                 )
                 : (

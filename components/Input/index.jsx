@@ -8,7 +8,7 @@ import {generateID} from '../../helpers/strings';
 
 import styles from './styles.scss';
 
-function Input({className, errorMessage, id = generateID(), label, name, type = 'text', value = '', ...rest}, ref) {
+function Input({className, errorMessage, id = generateID(), label, name, onChange, type = 'text', value = '', ...rest}, ref) {
     const [stateValue, setStateValue] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const [hasError] = useState(false);
@@ -27,7 +27,7 @@ function Input({className, errorMessage, id = generateID(), label, name, type = 
     return (
         <div className={classNames(styles.container, className, {
             [styles.focused]: isFocused,
-            [styles.filled]: stateValue && stateValue.length > 0,
+            [styles.filled]: onChange ? value && value.length > 0 : stateValue && stateValue.length > 0,
             [styles.hasError]: hasError,
         })}>
             {label && <label className={styles.label} htmlFor={id}>{label}</label>}
@@ -36,11 +36,11 @@ function Input({className, errorMessage, id = generateID(), label, name, type = 
             ) : (
                 <input id={id}
                        type={type}
-                       value={stateValue}
+                       value={onChange ? value : stateValue}
                        name={name}
                        onFocus={() => setIsFocused(true)}
                        onBlur={() => setIsFocused(false)}
-                       onChange={e => setStateValue(e.target.value)}
+                       onChange={({target: {value}}) => onChange ? onChange(name, value) : setStateValue(value)}
                        {...rest}
                 />
             )}

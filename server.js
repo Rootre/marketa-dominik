@@ -15,6 +15,14 @@ const loginUser = require('./api/server/loginUser');
 const readGift = require('./api/server/readGift');
 const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
+const {
+    GIFT_CREATE_URL,
+    GIFT_DELETE_URL,
+    GIFT_EDIT_URL,
+    GIFT_READ_URL,
+    GIFT_SCRAPE_URL,
+    USER_LOGIN_URL,
+} = require('./api/urls');
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -54,12 +62,12 @@ app.prepare()
             }));
         });
 
-        server.post('/admin/gift/create', createGift);
-        server.post('/admin/gift/delete', deleteGift);
-        server.post('/admin/gift/edit', updateGift);
-        server.post('/admin/gift/read', readGift);
-        server.post('/admin/gift/scrape', scrapeGift);
-        server.post('/admin/user/login', loginUser);
+        server.post(GIFT_CREATE_URL, createGift);
+        server.post(GIFT_DELETE_URL, deleteGift);
+        server.post(GIFT_EDIT_URL, updateGift);
+        server.post(GIFT_READ_URL, readGift);
+        server.post(GIFT_SCRAPE_URL, scrapeGift);
+        server.post(USER_LOGIN_URL, loginUser);
 
         server.listen(APP_PORT, (err) => {
             if (err) {

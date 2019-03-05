@@ -23,28 +23,16 @@ const Gift = () => {
     }
 };
 
-async function create() {
-    try {
-        await createGift(giftImage, giftName, giftUrl);
-    } catch (e) {
-        console.error(e);
-    }
+function create() {
+    return createGift(giftImage, giftName, giftUrl);
 }
 
-async function deleteOne(id) {
-    try {
-        await deleteGift(id);
-    } catch (e) {
-        console.error(e);
-    }
+function deleteOne(id) {
+    return deleteGift(id);
 }
 
-async function edit(id, set) {
-    try {
-        await editGift(id, set);
-    } catch (e) {
-        console.error(e);
-    }
+function edit(id, set) {
+    return editGift(id, set);
 }
 
 async function fetchAll() {
