@@ -1,13 +1,19 @@
 @import "~Sass/helpers.scss";
 
 .claim {
+    color: $white;
     font-family: $font-family-hand;
+    transition: text-shadow .5s;
     position: relative;
+
+    &.light {
+        text-shadow: 0 0 5px rgba($black, .5);
+    }
 }
 .date {
     font-size: $font-size-lg + 6;
     font-weight: 700;
-    line-height: 1;
+    line-height: .5;
     margin: 0 0 -30px;
 }
 .heading {
@@ -36,7 +42,6 @@
 }
 .wrapper {
     align-items: center;
-    color: $white;
     display: flex;
     justify-content: center;
     padding: 50px 0;

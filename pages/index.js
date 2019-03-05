@@ -28,6 +28,7 @@ setGlobal({
     fetching: new Map(),
     gifts: new Map(),
     isRetina: false,
+    isSliderLight: false,
     notifications: new Map(),
 });
 
