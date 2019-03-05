@@ -35,7 +35,7 @@ function Scraper({afterScrape, beforeScrape}) {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <Input onChange={inputChange} value={inputValue} name={'scrape'} placeholder={'Vlož odkaz'}/>
-            <Button busy={fetching.has(SCRAPING_GIFT)} type={'button'} label={'Předvyplnit údaje'} onClick={scrape}/>
+            <Button busy={fetching.has(SCRAPING_GIFT)} type={'button'} label={'Pokračovat'} onClick={scrape}/>
         </div>
     )
 }

@@ -1,9 +1,51 @@
 @import "~Sass/helpers.scss";
 
-.delete {
-    @include square(20px);
+.add {
+    @include square(30px);
+    display: inline-block;
+    fill: $mountain-meadow;
+    transform: rotate(45deg);
+    vertical-align: middle;
+}
+.cancelReservation {
     cursor: pointer;
-    fill: $wild-strawberry;
+    margin-right: $margin--small;
+
+    svg {
+        @include square(16px);
+    }
+}
+.close {
+    @include square(30px);
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+.delete {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: sub;
+
+    svg {
+        @include square(20px);
+        fill: $wild-strawberry;
+    }
+}
+.name {
+    margin-right: $margin--default;
+}
+.new {
+    cursor: pointer;
+    display: block;
+    font-size: $font-size-lg;
+    font-family: $font-family-hand;
+}
+.newGiftWrapper {
+    padding-top: $padding--default;
+    position: relative;
+}
+.reserved {
+    text-decoration: line-through;
 }
 .wrapper {
     border: 1px solid $gray-chateau;
