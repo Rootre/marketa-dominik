@@ -4,7 +4,11 @@ export function scrapeTitle(data) {
     return match ? match[1] : '';
 }
 export function scrapeImage(data) {
-    const match = data.match(/<meta.*?property="og:image".*?content="(.+?)".*?\/?>/i);
+    let match = data.match(/<meta [^>]*property=[\"']og:image[\"'] [^>]*content=[\"']([^'^\"]+?)[\"'][^>]*>/i);
+
+    if (!match) {
+        match = data.match(/<meta [^>]*content=[\"']([^'^\"]+?)[\"'] [^>]*property=[\"']og:image[\"'][^>]*>/i);
+    }
 
     return match ? match[1].replace('&amp;', '&') : '';
 }
