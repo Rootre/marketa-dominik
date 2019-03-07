@@ -31,17 +31,17 @@
 .wrapper {
     position: relative;
 
-    img {
-        @include square(100%);
-        display: block;
-        max-width: none;
-        object-fit: cover;
-        object-position: 50% 50%;
-        position: absolute;
-        z-index: -1;
-    }
-
     @include media(desktop) {
+        img {
+            @include square(100%);
+            display: block;
+            max-width: none;
+            object-fit: cover;
+            object-position: 50% 50%;
+            position: absolute;
+            z-index: -1;
+        }
+
         &:hover .content {
             opacity: 1;
         }
