@@ -31,10 +31,13 @@
 .wrapper {
     position: relative;
 
+    img {
+        display: block;
+    }
+
     @include media(desktop) {
         img {
             @include square(100%);
-            display: block;
             max-width: none;
             object-fit: cover;
             object-position: 50% 50%;
