@@ -7,13 +7,11 @@ import styles from './styles.scss';
 function Bits({bits}) {
     return (
         <div className={styles.wrapper}>
-            {bits.map(({image, text, title}, index) => (
+            {bits.map((bit, index) => (
                 <Bit
-                    key={title}
+                    key={index}
                     even={index % 2 === 0}
-                    image={image}
-                    text={text}
-                    title={title}
+                    {...bit}
                 />
             ))}
         </div>

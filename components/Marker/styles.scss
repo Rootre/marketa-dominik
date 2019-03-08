@@ -1,0 +1,32 @@
+@import "~Sass/helpers.scss";
+
+.wrapper {
+    @include square(40px);
+    background: url('/static/favicon.ico') 50% 50% / 90% no-repeat $white;
+    border: 2px solid $white;
+    border-radius: 100%;
+    cursor: pointer;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+
+    &:active,
+    &:hover {
+        z-index: 1;
+
+        &:before {
+            background: $white;
+            bottom: 100%;
+            border-radius: 6px;
+            content: attr(data-text);
+            margin-bottom: $margin--default;
+            padding: $padding--default;
+            position: absolute;
+            text-align: center;
+            left: -45px;
+            width: 100px;
+        }
+    }
+}

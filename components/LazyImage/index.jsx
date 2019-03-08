@@ -6,7 +6,7 @@ import Spinner from 'Components/Spinner';
 
 import styles from './styles.scss';
 
-const LazyImage = ({className, debounce = 200, height, offset = 200, once = true, overflow = false, src, ...rest}) => {
+const LazyImage = ({className, debounce = 100, height, offset = 400, once = true, overflow = false, src, ...rest}) => {
     return (
         <LazyLoad debounce={debounce}
                   height={height}
