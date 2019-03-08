@@ -9,6 +9,9 @@ const dev = process.env.NODE_ENV !== 'production';
 const GiftModel = require('./mongo/models/Gift');
 
 const checkUserToken = require('./api/server/checkUserToken');
+const createAttendee = require('./api/server/createAttendee');
+const deleteAttendee = require('./api/server/deleteAttendee');
+const readAttendee = require('./api/server/readAttendee');
 const createGift = require('./api/server/createGift');
 const deleteGift = require('./api/server/deleteGift');
 const loginUser = require('./api/server/loginUser');
@@ -16,6 +19,9 @@ const readGift = require('./api/server/readGift');
 const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
 const {
+    ATTENDEE_CREATE_URL,
+    ATTENDEE_DELETE_URL,
+    ATTENDEE_READ_URL,
     GIFT_CREATE_URL,
     GIFT_DELETE_URL,
     GIFT_EDIT_URL,
@@ -62,6 +68,9 @@ app.prepare()
             }));
         });
 
+        server.post(ATTENDEE_CREATE_URL, createAttendee);
+        server.post(ATTENDEE_DELETE_URL, deleteAttendee);
+        server.post(ATTENDEE_READ_URL, readAttendee);
         server.post(GIFT_CREATE_URL, createGift);
         server.post(GIFT_DELETE_URL, deleteGift);
         server.post(GIFT_EDIT_URL, updateGift);

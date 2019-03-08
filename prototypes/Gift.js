@@ -6,11 +6,13 @@ import {
     fetchGifts,
 } from 'Api/client';
 
-let giftImage = '';
-let giftName = '';
-let giftUrl = '';
+let giftImage, giftName, giftUrl;
 
-const Gift = () => {
+const Gift = (image = '', name = '', url = '') => {
+    setImage(image);
+    setName(name);
+    setUrl(url);
+
     return {
         create,
         deleteOne,

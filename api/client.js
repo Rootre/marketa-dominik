@@ -3,6 +3,9 @@ import {remove as removeCookie} from 'js-cookie';
 
 import {AppError, ApiError, API_ERRORS, ERR_NETWORK, ERR_NETWORK_MSG} from './errors';
 import {
+    ATTENDEE_CREATE_URL,
+    ATTENDEE_DELETE_URL,
+    ATTENDEE_READ_URL,
     GIFT_CREATE_URL,
     GIFT_DELETE_URL,
     GIFT_EDIT_URL,
@@ -20,6 +23,17 @@ export function createGift(image, name, url) {
         url,
     });
 }
+export function createAttendee(name, guests = 0) {
+    return apiFetch(ATTENDEE_CREATE_URL, 'POST', {
+        name,
+        guests,
+    });
+}
+export function deleteAttendee(id) {
+    return apiFetch(ATTENDEE_DELETE_URL, 'POST', {
+        id,
+    });
+}
 export function deleteGift(id) {
     return apiFetch(GIFT_DELETE_URL, 'POST', {
         id,
@@ -31,6 +45,11 @@ export function editGift(id, set) {
         set,
     });
 }
+export function fetchAttendeeById(id) {
+    return apiFetch(ATTENDEE_READ_URL, 'POST', {
+        id,
+    });
+}
 export function fetchGiftById(id) {
     return apiFetch(GIFT_READ_URL, 'POST', {
         id,
@@ -38,6 +57,9 @@ export function fetchGiftById(id) {
 }
 export function fetchGifts() {
     return apiFetch(GIFT_READ_URL, 'POST');
+}
+export function fetchAttendees() {
+    return apiFetch(ATTENDEE_READ_URL, 'POST');
 }
 export function login(login, password) {
     return apiFetch(USER_LOGIN_URL, 'POST', {
