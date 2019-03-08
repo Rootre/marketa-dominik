@@ -3,21 +3,40 @@
 .claim {
     color: $white;
     font-family: $font-family-hand;
-    transition: text-shadow .5s;
+    overflow: hidden;
+    padding: 0 20px;
     position: relative;
+    transition: text-shadow .5s;
 
     &.light {
         text-shadow: 0 0 5px rgba($black, .5);
     }
 }
+.claimSvg {
+    @include dim(400px, 100%);
+    left: 50%;
+    margin-left: -200px;
+    position: absolute;
+    top: -3%;
 
+    @include media(desktop) {
+        margin-left: -225px;
+        width: 450px;
+    }
+}
 .date {
     font-size: $font-size-lg + 6;
     font-weight: 700;
     line-height: .5;
     margin: 0 0 -30px;
 }
-
+.dateSvg {
+    @include dim(200px, 100%);
+    left: 50%;
+    margin-left: -100px;
+    position: absolute;
+    top: 15%;
+}
 .heading {
     font-size: $font-size * 2 + 10;
     line-height: 1;
@@ -27,23 +46,9 @@
         font-size: $font-size * 2 + 20;
     }
 }
-
 .slider {
     height: 100%;
 }
-
-.wreath {
-    @include dim(250px, 120px);
-
-    &.up {
-        transform: rotate(180deg);
-    }
-
-    @include media(desktop) {
-        @include dim(300px, 150px);
-    }
-}
-
 .wrapper {
     align-items: center;
     display: flex;
@@ -56,9 +61,23 @@
         height: 90vh;
     }
 }
+.wreath {
+    @include dim(250px, 120px);
+    display: block;
+
+    &.up {
+        margin-bottom: 50px;
+        transform: rotate(180deg);
+    }
+
+    @include media(desktop) {
+        @include dim(300px, 150px);
+    }
+}
 
 // created with https://maxwellito.github.io/vivus-instant/
 :global {
+    // wreath animations
     .oaMnZrYp_0 {
         stroke-dasharray: 666 668;
         stroke-dashoffset: 667;
@@ -100,21 +119,34 @@
         stroke-dashoffset: 2461;
         animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
     }
+
+    // claim header text animation
+    .iClaOZAW_0 {
+        stroke-dasharray: 2966 2968;
+        stroke-dashoffset: 2967;
+        animation: iClaOZAW_draw 7000ms ease-in 0ms forwards;
+    }
+
+    // claim date animation
+    .XetTfpqD_0 {
+        stroke-dasharray: 1038 1040;
+        stroke-dashoffset: 1039;
+        animation: XetTfpqD_draw 5000ms ease-in 0ms forwards;
+    }
 }
 
-@keyframes :global(oaMnZrYp_draw) {
+@keyframes:global(oaMnZrYp_draw) {
     100% {
         stroke-dashoffset: 0;
     }
 }
-@keyframes :global(oaMnZrYp_fade) {
-    0% {
-        stroke-opacity: 1;
-    }
-    94.44444444444444% {
-        stroke-opacity: 1;
-    }
+@keyframes:global(iClaOZAW_draw) {
     100% {
-        stroke-opacity: 0;
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes :global(XetTfpqD_draw) {
+    100% {
+        stroke-dashoffset: 0;
     }
 }
