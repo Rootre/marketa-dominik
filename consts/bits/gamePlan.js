@@ -20,7 +20,7 @@ export default [
     {
         image: 'static/img/game-plan/foceni.jpg',
         text: 'Po skončení obřadu se sejdeme před kostelem a uděláme si společné foto. Chceme vás tam všechny, tak se neostýchejte se s námi vyfotit. Pro ty, kteří se nechystají na oslavu, bude možnost pogratulovat po společném focení.',
-        time: '16:00 - 17:00',
+        time: '16:30 - 17:00',
         title: 'Poobřadní focení',
     },
     {

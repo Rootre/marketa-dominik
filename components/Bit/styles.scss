@@ -25,7 +25,6 @@
         background-color: $white;
         float: right;
         line-height: 1;
-        min-width: 90px;
         padding: 10px;
         text-align: center;
         white-space: nowrap;
@@ -53,10 +52,19 @@
         }
 
         .time {
+            line-height: .5;
             position: absolute;
-            left: 100%;
+            right: 100%;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translate(-7px, -50%);
+            width: 75px;
+            white-space: normal;
+
+            .even & {
+                left: 100%;
+                right: auto;
+                transform: translate(7px, -50%);
+            }
         }
     }
     @include media(desktop) {
