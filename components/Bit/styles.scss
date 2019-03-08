@@ -21,6 +21,16 @@
     margin-bottom: 0;
     position: relative;
 
+    .time {
+        background-color: $white;
+        float: right;
+        line-height: 1;
+        min-width: 90px;
+        padding: 10px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
     @include media(tablet) {
         margin-bottom: $margin--small;
 
@@ -40,6 +50,13 @@
                 margin-right: 0;
                 right: auto;
             }
+        }
+
+        .time {
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
         }
     }
     @include media(desktop) {
@@ -84,8 +101,8 @@
     clear: both;
 
     @include media(tablet) {
-        //margin-bottom: $margin--big;
-        //padding-top: $padding--big;
+        margin-bottom: $margin--big;
+        padding-top: $padding--big;
 
         &:after {
             content: '';
@@ -108,7 +125,7 @@
 
         img {
             float: left;
-            margin-top: 80px;
+            margin-top: -40px;
         }
     }
 }
