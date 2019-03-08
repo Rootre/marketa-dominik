@@ -49,7 +49,7 @@ app.prepare()
         server.get('*', async (req, res) => {
             let gifts = [];
 
-            if (req.url === '/') {
+            if (req.url.replace(/\?.*$/, '') === '/') {
                 try {
                     gifts = await GiftModel.find({active: true});
                 } catch (e) {
