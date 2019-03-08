@@ -75,77 +75,75 @@
     }
 }
 
+
+// SVG animations
+$wreath_duration: 7s;
+$wreath_delay: 5s;
+$header_duration: 7s;
+$header_delay: 2s;
+$date_duration: 5s;
+$date_delay: 0s;
 // created with https://maxwellito.github.io/vivus-instant/
 :global {
     // wreath animations
     .oaMnZrYp_0 {
         stroke-dasharray: 666 668;
         stroke-dashoffset: 667;
-        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+        animation: svg_draw $wreath_duration ease-in $wreath_delay forwards;
     }
 
     .oaMnZrYp_1 {
         stroke-dasharray: 292 294;
         stroke-dashoffset: 293;
-        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+        animation: svg_draw $wreath_duration ease-in $wreath_delay forwards;
     }
 
     .oaMnZrYp_2 {
         stroke-dasharray: 315 317;
         stroke-dashoffset: 316;
-        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+        animation: svg_draw $wreath_duration ease-in $wreath_delay forwards;
     }
 
     .oaMnZrYp_3 {
         stroke-dasharray: 306 308;
         stroke-dashoffset: 307;
-        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+        animation: svg_draw $wreath_duration ease-in $wreath_delay forwards;
     }
 
     .oaMnZrYp_4 {
         stroke-dasharray: 931 933;
         stroke-dashoffset: 932;
-        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+        animation: svg_draw $wreath_duration ease-in $wreath_delay forwards;
     }
 
     .oaMnZrYp_5 {
         stroke-dasharray: 2565 2567;
         stroke-dashoffset: 2566;
-        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+        animation: svg_draw $wreath_duration ease-in $wreath_delay forwards;
     }
 
     .oaMnZrYp_6 {
         stroke-dasharray: 2460 2462;
         stroke-dashoffset: 2461;
-        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+        animation: svg_draw $wreath_duration ease-in $wreath_delay forwards;
     }
 
     // claim header text animation
     .iClaOZAW_0 {
         stroke-dasharray: 2966 2968;
         stroke-dashoffset: 2967;
-        animation: iClaOZAW_draw 7000ms ease-in 0ms forwards;
+        animation: svg_draw $header_duration ease-in $header_delay forwards;
     }
 
     // claim date animation
     .XetTfpqD_0 {
         stroke-dasharray: 1038 1040;
         stroke-dashoffset: 1039;
-        animation: XetTfpqD_draw 5000ms ease-in 0ms forwards;
+        animation: svg_draw $date_duration ease-in $date_delay forwards;
     }
 }
 
-@keyframes:global(oaMnZrYp_draw) {
-    100% {
-        stroke-dashoffset: 0;
-    }
-}
-@keyframes:global(iClaOZAW_draw) {
-    100% {
-        stroke-dashoffset: 0;
-    }
-}
-@keyframes :global(XetTfpqD_draw) {
+@keyframes :global(svg_draw) {
     100% {
         stroke-dashoffset: 0;
     }
