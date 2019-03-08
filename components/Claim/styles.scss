@@ -10,12 +10,14 @@
         text-shadow: 0 0 5px rgba($black, .5);
     }
 }
+
 .date {
     font-size: $font-size-lg + 6;
     font-weight: 700;
     line-height: .5;
     margin: 0 0 -30px;
 }
+
 .heading {
     font-size: $font-size * 2 + 10;
     line-height: 1;
@@ -25,12 +27,13 @@
         font-size: $font-size * 2 + 20;
     }
 }
+
 .slider {
     height: 100%;
 }
+
 .wreath {
     @include dim(250px, 120px);
-    fill: $white;
 
     &.up {
         transform: rotate(180deg);
@@ -40,6 +43,7 @@
         @include dim(300px, 150px);
     }
 }
+
 .wrapper {
     align-items: center;
     display: flex;
@@ -50,5 +54,67 @@
 
     @include media(desktop) {
         height: 90vh;
+    }
+}
+
+// created with https://maxwellito.github.io/vivus-instant/
+:global {
+    .oaMnZrYp_0 {
+        stroke-dasharray: 666 668;
+        stroke-dashoffset: 667;
+        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+    }
+
+    .oaMnZrYp_1 {
+        stroke-dasharray: 292 294;
+        stroke-dashoffset: 293;
+        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+    }
+
+    .oaMnZrYp_2 {
+        stroke-dasharray: 315 317;
+        stroke-dashoffset: 316;
+        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+    }
+
+    .oaMnZrYp_3 {
+        stroke-dasharray: 306 308;
+        stroke-dashoffset: 307;
+        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+    }
+
+    .oaMnZrYp_4 {
+        stroke-dasharray: 931 933;
+        stroke-dashoffset: 932;
+        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+    }
+
+    .oaMnZrYp_5 {
+        stroke-dasharray: 2565 2567;
+        stroke-dashoffset: 2566;
+        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+    }
+
+    .oaMnZrYp_6 {
+        stroke-dasharray: 2460 2462;
+        stroke-dashoffset: 2461;
+        animation: oaMnZrYp_draw 7000ms ease-in 1000ms forwards;
+    }
+}
+
+@keyframes :global(oaMnZrYp_draw) {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes :global(oaMnZrYp_fade) {
+    0% {
+        stroke-opacity: 1;
+    }
+    94.44444444444444% {
+        stroke-opacity: 1;
+    }
+    100% {
+        stroke-opacity: 0;
     }
 }
