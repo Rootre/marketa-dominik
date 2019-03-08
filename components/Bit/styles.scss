@@ -18,9 +18,12 @@
 .heading {
     font-family: $font-family-hand;
     font-size: $font-size-lg;
+    margin-bottom: 0;
     position: relative;
 
     @include media(tablet) {
+        margin-bottom: $margin--small;
+
         &:before {
             @include dim(26px, 1px);
             background-color: $alto;
