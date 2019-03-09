@@ -11,10 +11,10 @@ function AttendeeList() {
 
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <h3>Kdo přijde</h3>
-            <ul>
+            <h2 className={globalStyles.heading}>Kdo přijde</h2>
+            <ul className={styles.list}>
                 {[...attendees.values()].map(({_id, guests, name}) => (
-                    <li key={_id}>
+                    <li className={styles.attendee} key={_id}>
                         {name} {guests > 0 && `(+${guests})`}
                     </li>
                 ))}

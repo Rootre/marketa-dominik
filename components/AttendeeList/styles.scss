@@ -1,3 +1,15 @@
 @import "~Sass/helpers.scss";
 
+.attendee {
+    padding: $padding--default 0;
+
+    & + & {
+        border-top: 1px solid $mercury;
+    }
+}
+.list {
+    background-color: $desert-storm;
+    list-style: none;
+    padding: $padding--default;
+}
 .wrapper {}
