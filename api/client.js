@@ -23,7 +23,7 @@ export function createGift(image, name, url) {
         url,
     });
 }
-export function createAttendee(name, guests = 0) {
+export function createAttendee(name, guests) {
     return apiFetch(ATTENDEE_CREATE_URL, 'POST', {
         name,
         guests,

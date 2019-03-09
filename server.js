@@ -6,6 +6,7 @@ const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
 
+const AttendeeModel = require('./mongo/models/Attendee');
 const GiftModel = require('./mongo/models/Gift');
 
 const checkUserToken = require('./api/server/checkUserToken');
@@ -53,17 +54,20 @@ app.prepare()
         server.all('*', checkUserToken);
 
         server.get('*', async (req, res) => {
+            let attendees = [];
             let gifts = [];
 
             if (req.url.replace(/\?.*$/, '') === '/') {
                 try {
                     gifts = await GiftModel.find({active: true});
+                    attendees = await AttendeeModel.find();
                 } catch (e) {
                     console.error(e);
                 }
             }
 
             return handle(req, Object.assign(res, {
+                attendees,
                 gifts,
             }));
         });

@@ -17,7 +17,7 @@ const Attendee = (name = '', guests = 0) => {
         fetchAll,
         fetchById,
         setName,
-        setUrl: setGuests,
+        setGuests,
     }
 };
 

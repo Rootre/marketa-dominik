@@ -1,16 +1,18 @@
 import React, {useEffect} from 'react';
 import Head from 'next/head';
-import {setGlobal} from 'reactn';
+import {setGlobal, useGlobal} from 'reactn';
 
 import AboutUs from 'Components/about-us/AboutUs';
+import AttendeeList from 'Components/AttendeeList';
 import BreakpointWatcher from 'Components/BreakpointWatcher';
 import Claim from 'Components/Claim';
 import Countdown from 'Components/Countdown';
+import FormNewAttendee from 'Components/FormNewAttendee';
 import GamePlan from 'Components/GamePlan';
 import Gifts from 'Components/Gifts';
 import Menu from 'Components/menu/Menu';
 import Navigation from 'Components/Navigation';
-import Notifications from 'Components/Notifications';
+import Notification from 'Components/Notification';
 import OurStory from 'Components/OurStory';
 
 import useGlobalMap from 'Hooks/useGlobalMap';
@@ -23,6 +25,7 @@ import TheDate from 'Consts/TheDate';
 import 'Sass/global.scss';
 
 setGlobal({
+    attendees: new Map(),
     activeItem: 0,
     breakpoint: '',
     fetching: new Map(),
@@ -32,10 +35,13 @@ setGlobal({
     notifications: new Map(),
 });
 
-function Index({gifts}) {
+function Index({attendees, gifts}) {
     const [, addGift] = useGlobalMap('gifts');
+    const [, addAttendee] = useGlobalMap('attendees');
+    const [notifications] = useGlobal('notifications');
 
     useEffect(() => {
+        attendees.forEach(attendee => addAttendee(attendee._id, attendee));
         gifts.forEach(gift => addGift(gift._id, gift));
     }, []);
 
@@ -45,7 +51,7 @@ function Index({gifts}) {
             <Head>
                 <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
-            <Notifications/>
+            <Notification notifications={notifications}/>
             <Navigation>
                 <div id={'intro'}>
                     <Claim heading={'Markéta a Dominik'} date={TheDate}/>
@@ -64,13 +70,18 @@ function Index({gifts}) {
                 <div id={'plan-dne'}>
                     <GamePlan bits={bitsGamePlan}/>
                 </div>
+                <div id={'prihlaste-se'}>
+                    <FormNewAttendee/>
+                    <AttendeeList/>
+                </div>
             </Navigation>
         </div>
     );
 }
 
-Index.getInitialProps = ({req, res: {gifts}}) => {
+Index.getInitialProps = ({req, res: {attendees, gifts}}) => {
     return {
+        attendees,
         gifts,
     };
 };
