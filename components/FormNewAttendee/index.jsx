@@ -6,6 +6,13 @@ import Input from 'Components/Input';
 
 import AttendeePrototype from 'Prototypes/Attendee';
 
+import {
+    ERR_BACKEND,
+    MONGO_ERRORS,
+    MONGO_ERROR_CODES,
+    MONGO_INPUTS,
+} from 'Api/errors';
+
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
 import useGlobalMap from "../../hooks/useGlobalMap";
@@ -46,7 +53,7 @@ function FormNewAttendee() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <h2 className={globalStyles.heading}>Budete tam?</h2>
-            <p>Prosím, potvrďte svoji účast, ať můžeme spočítat, kolik sudů narazit.</p>
+            <p>Prosíme, potvrďte svoji účast, ať víme, kolik sudů narazit.</p>
             <Input label={'Vaše jméno'} name={'name'} onChange={inputChange} value={values.name}/>
             <Input label={'Berete někoho s sebou?'} name={'guests'} onChange={inputChange} type={'number'}
                    value={values.guests}/>

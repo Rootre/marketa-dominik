@@ -1,7 +1,14 @@
 import fetch from 'cross-fetch';
 import {remove as removeCookie} from 'js-cookie';
 
-import {AppError, ApiError, API_ERRORS, ERR_NETWORK, ERR_NETWORK_MSG} from './errors';
+import {
+    AppError,
+    ApiError,
+    API_ERRORS,
+    ERR_BACKEND,
+    ERR_NETWORK,
+    ERR_NETWORK_MSG,
+} from './errors';
 import {
     ATTENDEE_CREATE_URL,
     ATTENDEE_DELETE_URL,
@@ -14,6 +21,7 @@ import {
     USER_LOGIN_URL,
 } from './urls';
 import COOKIE from 'Consts/jwt/cookie';
+import assembleMongoErrors from 'Helpers/assembleMongoErrors';
 import {getDataAsURL} from 'Helpers/strings';
 
 export function createGift(image, name, url) {
@@ -99,8 +107,7 @@ export async function apiFetch(url, method = 'POST', body, headers = {
     if (result.status >= 400) {
         result = await result.json();
 
-        //TODO: better way to parse error messages
-        throw new AppError(ERR_NETWORK, result.errmsg || result.message);
+        throw new AppError(ERR_BACKEND, assembleMongoErrors(result));
     }
 
     result = await result.json();

@@ -72,7 +72,6 @@ function Index({attendees, gifts}) {
                 </div>
                 <div id={'prihlaste-se'}>
                     <FormNewAttendee/>
-                    <AttendeeList/>
                 </div>
             </Navigation>
         </div>
