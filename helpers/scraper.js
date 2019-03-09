@@ -10,5 +10,18 @@ export function scrapeImage(data) {
         match = data.match(/<meta [^>]*content=[\"']([^'^\"]+?)[\"'] [^>]*property=[\"']og:image[\"'][^>]*>/i);
     }
 
-    return match ? match[1].replace('&amp;', '&') : '';
+    if (!match) {
+        return '';
+    }
+
+    const imageEncoded = match[1];
+    const element = document.createElement('div');
+
+    element.innerHTML = imageEncoded;
+
+    const imageDecoded = element.textContent;
+
+    element.textContent = '';
+
+    return imageDecoded;
 }
