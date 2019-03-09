@@ -10,14 +10,19 @@ import Notification from '../components/Notification';
 import UserPrototype from 'Prototypes/User';
 
 import '../static/sass/global.scss';
+import useGlobalMap from "../hooks/useGlobalMap";
 
 setGlobal({
+    attendees: new Map(),
     fetching: new Map(),
+    gifts: new Map(),
     isLogged: false,
     notifications: new Map(),
 });
 
-function Admin() {
+function Admin({attendees, gifts}) {
+    const [, addGift] = useGlobalMap('gifts');
+    const [, addAttendee] = useGlobalMap('attendees');
     const [isLoaded, setIsLoaded] = useState(false);
     const [isLogged, setIsLogged] = useGlobal('isLogged');
     const [notifications] = useGlobal('notifications');
@@ -27,6 +32,8 @@ function Admin() {
         const admin = new UserPrototype('admin');
 
         setIsLogged(admin.isLogged());
+        attendees.forEach(attendee => addAttendee(attendee._id, attendee));
+        gifts.forEach(gift => addGift(gift._id, gift));
         setIsLoaded(true);
     }, []);
 
@@ -49,10 +56,10 @@ function Admin() {
     );
 }
 
-Admin.getInitialProps = ({req, res: {activeRepertoire, songs}}) => {
+Admin.getInitialProps = ({req, res: {attendees, gifts}}) => {
     return {
-        activeRepertoire,
-        songs,
+        attendees,
+        gifts,
     };
 };
 

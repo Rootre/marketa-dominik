@@ -7,6 +7,15 @@
         border-top: 1px solid $mercury;
     }
 }
+.delete {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: sub;
+
+    svg {
+        fill: $wild-strawberry;
+    }
+}
 .list {
     background-color: $desert-storm;
     list-style: none;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames';
 
 import Button from 'Components/Button';
@@ -17,9 +17,9 @@ import styles from './styles.scss';
 
 function AdminGifts() {
     const [fetching, addFetching, deleteFetching] = useGlobalMap('fetching');
+    const [gifts, addGift, deleteGift] = useGlobalMap('gifts');
     const [, addNotification] = useGlobalMap('notifications');
     const [formStep, setFormStep] = useState(0);
-    const [gifts, setGifts] = useState([]);
     const [values, setValues] = useState({image: '', name: '', url: ''});
 
     const afterScrape = (data, url) => {
@@ -52,18 +52,15 @@ function AdminGifts() {
                 reserved: false,
             });
 
-            setGifts(gifts.map(gift => gift._id === id
-                ? ({
-                    ...gift,
-                    reserved: false,
-                })
-                : gift)
-            )
+            addGift(id, {
+                ...gifts.get(id),
+                reserved: false,
+            })
         } catch (e) {
             addFetching(e.message, 'error');
         }
     };
-    const deleteGift = async id => {
+    const removeGift = async id => {
         if (!confirm('Opravdu smazat?')) {
             return;
         }
@@ -73,16 +70,10 @@ function AdminGifts() {
         try {
             await gift.deleteOne(id);
 
-            setGifts(gifts.filter(({_id}) => _id !== id));
+            deleteGift(id);
         } catch (e) {
             addNotification(e.message, 'error');
         }
-    };
-    const fetchGifts = async () => {
-        const gift = new GiftPrototype();
-        const gifts = await gift.fetchAll();
-
-        setGifts(gifts);
     };
     const inputChange = (name, value) => {
         setValues({...values, [name]: value});
@@ -103,7 +94,7 @@ function AdminGifts() {
                 url: '',
             });
 
-            setGifts(gifts.concat(newGift));
+            addGift(newGift._id, newGift);
             addNotification('Uloženo!', 'success');
             setFormStep(1);
         } catch (e) {
@@ -111,10 +102,6 @@ function AdminGifts() {
         }
         deleteFetching(SAVING_GIFT);
     };
-
-    useEffect(() => {
-        fetchGifts();
-    }, []);
 
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
@@ -149,7 +136,7 @@ function AdminGifts() {
             }
 
             <ul>
-                {gifts.map(({_id, name, url, reserved}) => (
+                {[...gifts.values()].map(({_id, name, url, reserved}) => (
                     <li key={_id}>
                         <a
                             href={url}
@@ -166,7 +153,7 @@ function AdminGifts() {
                                 <ChainBrokenSVG/>
                             </span>
                         )}
-                        <span className={styles.delete} title={'Smazat'} onClick={() => deleteGift(_id)}>
+                        <span className={styles.delete} title={'Smazat'} onClick={() => removeGift(_id)}>
                             <CloseSVG/>
                         </span>
                     </li>

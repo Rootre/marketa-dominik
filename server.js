@@ -57,7 +57,9 @@ app.prepare()
             let attendees = [];
             let gifts = [];
 
-            if (req.url.replace(/\?.*$/, '') === '/') {
+            const url = req.url.replace(/\?.*$/, '');
+
+            if (['/', '/admin'].indexOf(url) >= 0) {
                 try {
                     gifts = await GiftModel.find({active: true});
                     attendees = await AttendeeModel.find();
