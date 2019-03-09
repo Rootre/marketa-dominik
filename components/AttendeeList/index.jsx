@@ -9,6 +9,10 @@ import styles from './styles.scss';
 function AttendeeList() {
     const [attendees] = useGlobalMap('attendees');
 
+    if (attendees.size === 0) {
+        return null;
+    }
+
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <h2 className={globalStyles.heading}>Kdo přijde</h2>
