@@ -32,6 +32,12 @@ function FormNewAttendee() {
     const formSubmit = async () => {
         const attendeeModel = new AttendeePrototype(values.name, values.guests);
 
+        if (values.name.trim() === '' || values.guests < 0) {
+            addNotification('Špatně vyplněná pole', 'error');
+
+            return;
+        }
+
         setFetching(true);
 
         try {
@@ -54,10 +60,14 @@ function FormNewAttendee() {
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <h2 className={globalStyles.heading}>Budete tam?</h2>
             <p>Prosíme, potvrďte svoji účast, ať víme, kolik sudů narazit.</p>
-            <Input label={'Vaše jméno'} name={'name'} onChange={inputChange} value={values.name}/>
-            <Input label={'Berete někoho s sebou?'} name={'guests'} onChange={inputChange} type={'number'}
-                   value={values.guests}/>
-            <Button busy={fetching} label={'Potvrdit účast'} onClick={formSubmit}/>
+            <div className={styles.form}>
+                <div className={styles.inputs}>
+                    <Input label={'Vaše jméno'} name={'name'} onChange={inputChange} required value={values.name}/>
+                    <Input label={'Berete někoho s sebou?'} min={0} name={'guests'} onChange={inputChange} type={'number'}
+                           value={values.guests}/>
+                    <Button busy={fetching} label={'Potvrdit účast'} onClick={formSubmit}/>
+                </div>
+            </div>
         </div>
     )
 }

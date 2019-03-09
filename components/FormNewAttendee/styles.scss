@@ -1,3 +1,11 @@
 @import "~Sass/helpers.scss";
 
+.form {
+    background-color: $desert-storm;
+    padding: $padding--default;
+}
+.inputs {
+    max-width: 500px;
+    margin: auto;
+}
 .wrapper {}
