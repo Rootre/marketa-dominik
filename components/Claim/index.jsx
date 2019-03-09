@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Slider from 'Components/Slider';
 import ClaimSVG from 'Svg/marketa_dominik_animated.svg';
 import DateSVG from 'Svg/date_animated.svg';
-import WreathSvg from 'Svg/wreath_animated.svg';
+import WreathSvg from 'Svg/wreath.svg';
 
 import slides from 'Consts/slides';
 
