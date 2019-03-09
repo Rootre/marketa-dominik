@@ -19,4 +19,8 @@ export default [
         title: 'Kdy a kde',
         link: '#plan-dne',
     },
+    {
+        title: 'Přijdete?',
+        link: '#prihlaste-se',
+    },
 ];

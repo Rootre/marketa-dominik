@@ -12,7 +12,7 @@ body {
     font-family: $font-family;
     line-height: 1.6;
     margin: 0;
-    padding: 0;
+    padding: 0 0 $padding--big;
 }
 html {
     scroll-behavior: smooth;
