@@ -7,7 +7,7 @@
   "author": "Ondřej Tůma <ondr@centrum.cz>",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env BABEL_ENV=production next",
+    "build": "cross-env BABEL_ENV=production node server.js",
     "dev": "cross-env BABEL_ENV=development node server.js",
     "generate": "plop"
   },
