@@ -9,5 +9,6 @@ module.exports = {
     GIFT_EDIT_URL: `${API_URL}gift/edit`,
     GIFT_READ_URL: `${API_URL}gift/read`,
     GIFT_SCRAPE_URL: `${API_URL}gift/scrape`,
+    IMAGE_UPLOAD_URL: `${API_URL}image/upload`,
     USER_LOGIN_URL: `${API_URL}user/login`,
 };

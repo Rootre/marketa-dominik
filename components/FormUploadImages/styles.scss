@@ -1,0 +1,7 @@
+@import "~Sass/helpers.scss";
+
+.wrapper {
+    border: 2px dashed $silver-chalice;
+    border-radius: 10px;
+    padding: $padding--default;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import AdminAttendees from 'Components/admin/AdminAttendees';
+import AdminGallery from 'Components/admin/AdminGallery';
 import AdminGifts from 'Components/admin/AdminGifts';
 
 import globalStyles from 'Sass/global.scss';
@@ -14,6 +15,7 @@ function Admin() {
 
             <AdminGifts/>
             <AdminAttendees/>
+            <AdminGallery/>
         </div>
     )
 }

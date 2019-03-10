@@ -5,7 +5,6 @@ version: '3'
 services:
   app:
     container_name: marketa_dominik
-    restart: always
     build: .
     ports:
       - '83:3000'
@@ -13,7 +12,7 @@ services:
     links:
       - mongo
     volumes:
-      - ./:/usr/src/app
+      - app:/usr/src/app
       - app-node-modules:/usr/src/app/node_modules/
   mongo:
     container_name: marketa_dominik_mongo
@@ -23,3 +22,4 @@ services:
 
 volumes:
   app-node-modules:
+  app:

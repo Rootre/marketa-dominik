@@ -19,6 +19,8 @@ const loginUser = require('./api/server/loginUser');
 const readGift = require('./api/server/readGift');
 const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
+const uploadImage = require('./api/server/uploadImage');
+
 const {
     ATTENDEE_CREATE_URL,
     ATTENDEE_DELETE_URL,
@@ -28,6 +30,7 @@ const {
     GIFT_EDIT_URL,
     GIFT_READ_URL,
     GIFT_SCRAPE_URL,
+    IMAGE_UPLOAD_URL,
     USER_LOGIN_URL,
 } = require('./api/urls');
 
@@ -82,6 +85,7 @@ app.prepare()
         server.post(GIFT_EDIT_URL, updateGift);
         server.post(GIFT_READ_URL, readGift);
         server.post(GIFT_SCRAPE_URL, scrapeGift);
+        server.post(IMAGE_UPLOAD_URL, uploadImage);
         server.post(USER_LOGIN_URL, loginUser);
 
         server.listen(APP_PORT, (err) => {
