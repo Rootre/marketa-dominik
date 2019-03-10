@@ -32,8 +32,8 @@ function Admin({attendees, gifts}) {
         const admin = new UserPrototype('admin');
 
         setIsLogged(admin.isLogged());
-        attendees.forEach(attendee => addAttendee(attendee._id, attendee));
-        gifts.forEach(gift => addGift(gift._id, gift));
+        attendees && attendees.forEach(attendee => addAttendee(attendee._id, attendee));
+        gifts && gifts.forEach(gift => addGift(gift._id, gift));
         setIsLoaded(true);
     }, []);
 

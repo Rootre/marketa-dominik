@@ -3,7 +3,6 @@ import Head from 'next/head';
 import {setGlobal, useGlobal} from 'reactn';
 
 import AboutUs from 'Components/about-us/AboutUs';
-import AttendeeList from 'Components/AttendeeList';
 import BreakpointWatcher from 'Components/BreakpointWatcher';
 import Claim from 'Components/Claim';
 import Countdown from 'Components/Countdown';
@@ -41,8 +40,8 @@ function Index({attendees, gifts}) {
     const [notifications] = useGlobal('notifications');
 
     useEffect(() => {
-        attendees.forEach(attendee => addAttendee(attendee._id, attendee));
-        gifts.forEach(gift => addGift(gift._id, gift));
+        attendees && attendees.forEach(attendee => addAttendee(attendee._id, attendee));
+        gifts && gifts.forEach(gift => addGift(gift._id, gift));
     }, []);
 
     return (
