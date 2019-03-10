@@ -8,6 +8,8 @@ export default class MyDocument extends Document {
             <Head>
                 <meta charSet={`UTF-8`}/>
                 <meta name={`viewport`} content={`initial-scale=1.0, width=device-width`}/>
+                <link href="https://fonts.googleapis.com/css?family=Dancing+Script&amp;subset=latin-ext" rel="stylesheet"/>
+                {/*}
                 <style dangerouslySetInnerHTML={{
                     __html: `
                         @font-face {
@@ -17,6 +19,7 @@ export default class MyDocument extends Document {
                             url('/static/fonts/janeausu-webfont.woff') format('woff');
                         }`
                 }}/>
+                {*/}
                 <link rel='shortcut icon' type='image/x-icon' href='/static/favicon.ico'/>
             </Head>
             <body>
