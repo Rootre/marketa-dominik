@@ -1,7 +1,7 @@
-var fs = require('fs');
-var formidable = require('formidable');
+const fs = require('fs');
+const formidable = require('formidable');
 
-var UPLOAD_IMAGES_DIR = require('../../consts/dirs').UPLOAD_IMAGES_DIR;
+const UPLOAD_IMAGES_DIR = require('../../consts/dirs').UPLOAD_IMAGES_DIR;
 
 const uploadImage = async (req, res) => {
     const form = new formidable.IncomingForm();

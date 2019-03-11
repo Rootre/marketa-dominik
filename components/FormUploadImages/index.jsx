@@ -3,10 +3,11 @@ import Dropzone from 'dropzone';
 import classNames from 'classnames';
 
 import {IMAGE_UPLOAD_URL} from 'Api/urls';
-import {UPLOAD_IMAGES_DIR} from 'Consts/dirs';
+import {UPLOAD_IMAGES_DIR, UPLOAD_IMAGE_THUMBS_DIR} from 'Consts/dirs';
 import ImagePrototype from 'Prototypes/Image';
 
 import useGlobalMap from 'Hooks/useGlobalMap';
+import dataUrlToBlob from 'Helpers/dataUrlToBlob';
 
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
@@ -29,6 +30,7 @@ function FormUploadImages() {
         console.log('addedFile');
         processedImages.set(name, {
             ...processedImages.get(name),
+            thumbUrl: UPLOAD_IMAGE_THUMBS_DIR + name,
             url: UPLOAD_IMAGES_DIR + name,
         });
     };
@@ -36,9 +38,9 @@ function FormUploadImages() {
         console.log('queueComplete');
         const image = new ImagePrototype();
 
-        [...processedImages.values()].map(async ({thumb, url}) => {
+        [...processedImages.values()].map(async ({thumb, thumbUrl, url}) => {
             try {
-                const {newImage} = await image.create(url, thumb);
+                const {newImage} = await image.create(url, thumb, thumbUrl);
 
                 addImage(newImage._id, newImage);
             } catch (e) {

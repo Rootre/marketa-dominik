@@ -15,10 +15,11 @@ const Image = () => {
     }
 };
 
-function create(url, thumb) {
+function create(url, thumb, thumbUrl) {
     return apiFetch(IMAGE_CREATE_URL, 'POST', {
         url,
         thumb,
+        thumbUrl,
     });
 }
 
