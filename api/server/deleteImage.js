@@ -16,18 +16,19 @@ const deleteImage = async (req, res) => {
 
         fs.unlink(image.url, err => {
             if (err) {
-                throw err;
+                res.status(500).json(err);
+
+                return;
             }
 
             console.log(' === DELETED IMAGE FILE: ===');
-            console.log(image);
+            console.log(image.url);
         });
 
         await ImageModel.deleteOne({_id: id});
 
         res.status(200).json({success: true});
     } catch (e) {
-        console.error(e);
         res.status(500).json(e);
     }
 };

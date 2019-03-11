@@ -22,20 +22,24 @@ function FormUploadImages() {
     const [dropzone, setDropzone] = useState(null);
     const [, addNotification] = useGlobalMap('notifications');
     const [, addImage] = useGlobalMap('images');
+    const uploadedImages = [];
 
     useEffect(() => {
         const dropzoneInstance = new Dropzone(`#${CONTAINER_ID}`, DROPZONE_SETTINGS);
 
-        dropzoneInstance.on('addedfile', async file => {
+        dropzoneInstance.on('addedfile', ({name}) => uploadedImages.push(UPLOAD_IMAGES_DIR + name));
+        dropzoneInstance.on('queuecomplete', async () => {
             const image = new ImagePrototype();
 
-            try {
-                const {newImage} = await image.create(UPLOAD_IMAGES_DIR + file.name);
+            uploadedImages.map(async url => {
+                try {
+                    const {newImage} = await image.create(url);
 
-                addImage(newImage._id, newImage);
-            } catch (e) {
-                addNotification(e.message, 'error');
-            }
+                    addImage(newImage._id, newImage);
+                } catch (e) {
+                    addNotification(e.message, 'error');
+                }
+            });
         });
 
         setDropzone(dropzoneInstance);

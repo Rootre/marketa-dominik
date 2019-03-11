@@ -40,6 +40,10 @@ function Images() {
         setFetching(false);
     };
 
+    if (images.size === 0) {
+        return null;
+    }
+
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <h2 className={globalStyles.heading}>Fotogalerie</h2>
