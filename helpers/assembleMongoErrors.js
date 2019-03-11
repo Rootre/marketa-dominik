@@ -7,7 +7,9 @@ import {
 export default function (result) {
     const {code, errors, name} = result;
 
-    console.log(result);
+    if (!code || !errors || !name) {
+        return 'empty result';
+    }
 
     let message = MONGO_ERRORS[name] || name;
     message += ': ';

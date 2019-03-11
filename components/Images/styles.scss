@@ -1,0 +1,11 @@
+@import "~Sass/helpers.scss";
+
+.delete {
+    cursor: pointer;
+    fill: $wild-strawberry;
+}
+.thumb {
+    border: 5px solid $desert-storm;
+    max-width: 250px;
+}
+.wrapper {}

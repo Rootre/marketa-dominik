@@ -8,6 +8,7 @@ const dev = process.env.NODE_ENV !== 'production';
 
 const AttendeeModel = require('./mongo/models/Attendee');
 const GiftModel = require('./mongo/models/Gift');
+const ImageModel = require('./mongo/models/Image');
 
 const checkUserToken = require('./api/server/checkUserToken');
 const createAttendee = require('./api/server/createAttendee');
@@ -66,6 +67,7 @@ app.prepare()
         server.get('*', async (req, res) => {
             let attendees = [];
             let gifts = [];
+            let images = [];
 
             const url = req.url.replace(/\?.*$/, '');
 
@@ -73,6 +75,7 @@ app.prepare()
                 try {
                     gifts = await GiftModel.find({active: true});
                     attendees = await AttendeeModel.find();
+                    images = await ImageModel.find();
                 } catch (e) {
                     console.error(e);
                 }
@@ -81,13 +84,14 @@ app.prepare()
             return handle(req, Object.assign(res, {
                 attendees,
                 gifts,
+                images,
             }));
         });
 
         // image handling
         server.post(IMAGE_CREATE_URL, createImage);
+        server.post(IMAGE_DELETE_URL, deleteImage);
         server.get(IMAGE_READ_URL, readImage);
-        server.get(IMAGE_DELETE_URL, deleteImage);
 
         // api handling
         server.post(ATTENDEE_CREATE_URL, createAttendee);

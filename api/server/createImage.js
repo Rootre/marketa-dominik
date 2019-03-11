@@ -6,6 +6,7 @@ const createImage = async (req, res) => {
     try {
         const newImage = new ImageModel({
             url,
+            thumb: url,
         });
 
         await newImage.save();

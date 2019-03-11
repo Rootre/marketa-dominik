@@ -16,13 +16,15 @@ setGlobal({
     attendees: new Map(),
     fetching: new Map(),
     gifts: new Map(),
+    images: new Map(),
     isLogged: false,
     notifications: new Map(),
 });
 
-function Admin({attendees, gifts}) {
-    const [, addGift] = useGlobalMap('gifts');
+function Admin({attendees, gifts, images}) {
     const [, addAttendee] = useGlobalMap('attendees');
+    const [, addGift] = useGlobalMap('gifts');
+    const [, addImage] = useGlobalMap('images');
     const [isLoaded, setIsLoaded] = useState(false);
     const [isLogged, setIsLogged] = useGlobal('isLogged');
     const [notifications] = useGlobal('notifications');
@@ -34,6 +36,7 @@ function Admin({attendees, gifts}) {
         setIsLogged(admin.isLogged());
         attendees && attendees.forEach(attendee => addAttendee(attendee._id, attendee));
         gifts && gifts.forEach(gift => addGift(gift._id, gift));
+        images && images.forEach(image => addImage(image._id, image));
         setIsLoaded(true);
     }, []);
 
@@ -56,10 +59,11 @@ function Admin({attendees, gifts}) {
     );
 }
 
-Admin.getInitialProps = ({req, res: {attendees, gifts}}) => {
+Admin.getInitialProps = ({req, res: {attendees, gifts, images}}) => {
     return {
         attendees,
         gifts,
+        images,
     };
 };
 

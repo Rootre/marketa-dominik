@@ -14,8 +14,6 @@ const DROPZONE_SETTINGS = {
     parallelUploads: 20,
 };
 
-console.log('env:', process.env.NODE_ENV);
-
 function FormUploadImages() {
     const [dropzone, setDropzone] = useState(null);
 
@@ -27,7 +25,7 @@ function FormUploadImages() {
         <form
             action={IMAGE_UPLOAD_URL}
             className={classNames(globalStyles.wrapper, styles.wrapper)}
-            enctype={'multipart/form-data'}
+            encType={'multipart/form-data'}
             id={CONTAINER_ID}
             method={'post'}
         >

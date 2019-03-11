@@ -9,6 +9,7 @@ import Countdown from 'Components/Countdown';
 import FormNewAttendee from 'Components/FormNewAttendee';
 import GamePlan from 'Components/GamePlan';
 import Gifts from 'Components/Gifts';
+import Images from 'Components/Images';
 import Menu from 'Components/menu/Menu';
 import Navigation from 'Components/Navigation';
 import Notification from 'Components/Notification';
@@ -29,19 +30,22 @@ setGlobal({
     breakpoint: '',
     fetching: new Map(),
     gifts: new Map(),
+    images: new Map(),
     isRetina: false,
     isSliderLight: false,
     notifications: new Map(),
 });
 
-function Index({attendees, gifts}) {
-    const [, addGift] = useGlobalMap('gifts');
+function Index({attendees, gifts, images}) {
     const [, addAttendee] = useGlobalMap('attendees');
+    const [, addGift] = useGlobalMap('gifts');
+    const [, addImage] = useGlobalMap('images');
     const [notifications] = useGlobal('notifications');
 
     useEffect(() => {
         attendees && attendees.forEach(attendee => addAttendee(attendee._id, attendee));
         gifts && gifts.forEach(gift => addGift(gift._id, gift));
+        images && images.forEach(image => addImage(image._id, image));
     }, []);
 
     return (
@@ -72,15 +76,19 @@ function Index({attendees, gifts}) {
                 <div id={'prihlaste-se'}>
                     <FormNewAttendee/>
                 </div>
+                <div id={'galerie'}>
+                    <Images/>
+                </div>
             </Navigation>
         </div>
     );
 }
 
-Index.getInitialProps = ({req, res: {attendees, gifts}}) => {
+Index.getInitialProps = ({req, res: {attendees, gifts, images}}) => {
     return {
         attendees,
         gifts,
+        images,
     };
 };
 

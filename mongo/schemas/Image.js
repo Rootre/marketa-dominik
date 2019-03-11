@@ -6,16 +6,16 @@ const ImageSchema = new Schema({
         type: String,
     },
     url: {
-        type: String,
         required: true,
+        type: String,
         unique: true,
     },
     thumb: {
         type: String,
     },
     created: {
-        type: Date,
         default: Date.now,
+        type: Date,
     },
 });
 
