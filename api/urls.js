@@ -10,6 +10,7 @@ module.exports = {
     GIFT_READ_URL: `${API_URL}gift/read`,
     GIFT_SCRAPE_URL: `${API_URL}gift/scrape`,
     IMAGE_CREATE_URL: `${API_URL}image/create`,
+    IMAGE_CREATE_THUMB_URL: `${API_URL}image/create/thumb`,
     IMAGE_DELETE_URL: `${API_URL}image/delete`,
     IMAGE_READ_URL: `${API_URL}image/read`,
     IMAGE_UPDATE_URL: `${API_URL}image/update`,

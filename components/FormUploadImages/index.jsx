@@ -7,7 +7,6 @@ import {UPLOAD_IMAGES_DIR, UPLOAD_IMAGE_THUMBS_DIR} from 'Consts/dirs';
 import ImagePrototype from 'Prototypes/Image';
 
 import useGlobalMap from 'Hooks/useGlobalMap';
-import dataUrlToBlob from 'Helpers/dataUrlToBlob';
 
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
@@ -50,11 +49,13 @@ function FormUploadImages() {
     };
     const thumbnailCreated = async ({name}, dataUrl) => {
         console.log('thumbnailCreated');
+        const image = new ImagePrototype();
 
-        processedImages.set(name, {
-            ...processedImages.get(name),
-            thumb: dataUrl,
-        });
+        try {
+            await image.createThumb(dataUrl, UPLOAD_IMAGE_THUMBS_DIR + name);
+        } catch (e) {
+            addNotification(e.message, 'error');
+        }
     };
 
     useEffect(() => {

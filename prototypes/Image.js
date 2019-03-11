@@ -1,6 +1,7 @@
 import {apiFetch} from 'Api/client';
 import {
     IMAGE_CREATE_URL,
+    IMAGE_CREATE_THUMB_URL,
     IMAGE_DELETE_URL,
     IMAGE_READ_URL,
     IMAGE_UPDATE_URL,
@@ -9,6 +10,7 @@ import {
 const Image = () => {
     return {
         create,
+        createThumb,
         deleteOne,
         fetchAll,
         update,
@@ -19,6 +21,13 @@ function create(url, thumb, thumbUrl) {
     return apiFetch(IMAGE_CREATE_URL, 'POST', {
         url,
         thumb,
+        thumbUrl,
+    });
+}
+
+function createThumb(dataUrl, thumbUrl) {
+    return apiFetch(IMAGE_CREATE_THUMB_URL, 'POST', {
+        dataUrl,
         thumbUrl,
     });
 }
