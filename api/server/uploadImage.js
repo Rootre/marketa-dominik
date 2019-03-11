@@ -3,8 +3,6 @@ var formidable = require('formidable');
 
 var UPLOAD_IMAGES_DIR = require('../../consts/dirs').UPLOAD_IMAGES_DIR;
 
-const ImageModel = require('../../mongo/models/Image');
-
 const uploadImage = async (req, res) => {
     const form = new formidable.IncomingForm();
 
@@ -17,12 +15,8 @@ const uploadImage = async (req, res) => {
                     throw err;
                 }
 
-                const newImage = new ImageModel({
-                    url: newPath,
-                    thumb: newPath,
-                });
-
-                newImage.save();
+                console.log(' === CREATED IMAGE FILE: ===');
+                console.log(newPath);
             });
         });
 

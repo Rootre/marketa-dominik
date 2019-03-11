@@ -19,7 +19,8 @@ const deleteImage = async (req, res) => {
                 throw err;
             }
 
-            console.log('deleted image file:', image);
+            console.log(' === DELETED IMAGE FILE: ===');
+            console.log(image);
         });
 
         await ImageModel.deleteOne({_id: id});

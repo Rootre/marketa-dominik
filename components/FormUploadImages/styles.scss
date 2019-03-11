@@ -1,5 +1,8 @@
 @import "~Sass/helpers.scss";
 
+.label {
+    pointer-events: none;
+}
 .wrapper {
     border: 2px dashed $silver-chalice;
     border-radius: 10px;
