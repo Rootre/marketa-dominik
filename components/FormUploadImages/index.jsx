@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Dropzone from 'dropzone';
 import classNames from 'classnames';
 
-import Button from 'Components/Button';
-
 import {IMAGE_UPLOAD_URL} from 'Api/urls';
 
 import globalStyles from 'Sass/global.scss';
@@ -34,7 +32,6 @@ function FormUploadImages() {
             method={'post'}
         >
             <p>Přatáhni fotky sem</p>
-            <Button label={'Ulož'}/>
         </form>
     )
 }

@@ -12,8 +12,6 @@ const ImageSchema = new Schema({
     },
     thumb: {
         type: String,
-        required: true,
-        unique: true,
     },
     created: {
         type: Date,

@@ -7,7 +7,6 @@ const ImageModel = require('../../mongo/models/Image');
 
 const uploadImage = async (req, res) => {
     var form = new formidable.IncomingForm();
-    //form.uploadDir = UPLOAD_IMAGES_DIR;
 
     form.parse(req, function (err, fields, {file}) {
         fs.readFile(file.path, function (err, data) {
@@ -17,7 +16,12 @@ const uploadImage = async (req, res) => {
                 if (err) {
                     throw err;
                 }
-                console.log('done...');
+
+                const newImage = new ImageModel({
+                    url: newPath,
+                });
+
+                newImage.save();
             });
         });
         console.log(file);

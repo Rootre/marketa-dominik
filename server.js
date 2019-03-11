@@ -14,9 +14,12 @@ const createAttendee = require('./api/server/createAttendee');
 const deleteAttendee = require('./api/server/deleteAttendee');
 const readAttendee = require('./api/server/readAttendee');
 const createGift = require('./api/server/createGift');
+const createImage = require('./api/server/createImage');
 const deleteGift = require('./api/server/deleteGift');
+const deleteImage = require('./api/server/deleteImage');
 const loginUser = require('./api/server/loginUser');
 const readGift = require('./api/server/readGift');
+const readImage = require('./api/server/readImage');
 const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
 const uploadImage = require('./api/server/uploadImage');
@@ -30,6 +33,9 @@ const {
     GIFT_EDIT_URL,
     GIFT_READ_URL,
     GIFT_SCRAPE_URL,
+    IMAGE_CREATE_URL,
+    IMAGE_DELETE_URL,
+    IMAGE_READ_URL,
     IMAGE_UPLOAD_URL,
     USER_LOGIN_URL,
 } = require('./api/urls');
@@ -78,6 +84,12 @@ app.prepare()
             }));
         });
 
+        // image handling
+        server.post(IMAGE_CREATE_URL, createImage);
+        server.get(IMAGE_READ_URL, readImage);
+        server.get(IMAGE_DELETE_URL, deleteImage);
+
+        // api handling
         server.post(ATTENDEE_CREATE_URL, createAttendee);
         server.post(ATTENDEE_DELETE_URL, deleteAttendee);
         server.post(ATTENDEE_READ_URL, readAttendee);
