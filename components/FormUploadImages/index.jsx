@@ -9,8 +9,8 @@ import styles from './styles.scss';
 
 const CONTAINER_ID = 'imageUploadZone';
 const DROPZONE_SETTINGS = {
-    thumbnailWidth: 100,
-    thumbnailHeight: 100,
+    thumbnailWidth: 120,
+    thumbnailHeight: 120,
     parallelUploads: 20,
 };
 
