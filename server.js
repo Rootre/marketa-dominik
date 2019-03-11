@@ -23,6 +23,7 @@ const readGift = require('./api/server/readGift');
 const readImage = require('./api/server/readImage');
 const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
+const updateImage = require('./api/server/updateImage');
 const uploadImage = require('./api/server/uploadImage');
 
 const {
@@ -37,6 +38,7 @@ const {
     IMAGE_CREATE_URL,
     IMAGE_DELETE_URL,
     IMAGE_READ_URL,
+    IMAGE_UPDATE_URL,
     IMAGE_UPLOAD_URL,
     USER_LOGIN_URL,
 } = require('./api/urls');
@@ -89,9 +91,12 @@ app.prepare()
         });
 
         // image handling
+        server.get(IMAGE_READ_URL, readImage);
+
         server.post(IMAGE_CREATE_URL, createImage);
         server.post(IMAGE_DELETE_URL, deleteImage);
-        server.get(IMAGE_READ_URL, readImage);
+        server.post(IMAGE_UPDATE_URL, updateImage);
+        server.post(IMAGE_UPLOAD_URL, uploadImage);
 
         // api handling
         server.post(ATTENDEE_CREATE_URL, createAttendee);
@@ -102,7 +107,6 @@ app.prepare()
         server.post(GIFT_EDIT_URL, updateGift);
         server.post(GIFT_READ_URL, readGift);
         server.post(GIFT_SCRAPE_URL, scrapeGift);
-        server.post(IMAGE_UPLOAD_URL, uploadImage);
         server.post(USER_LOGIN_URL, loginUser);
 
         server.listen(APP_PORT, (err) => {

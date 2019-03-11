@@ -33,8 +33,7 @@ function Images() {
 
             deleteImage(id);
         } catch (e) {
-            console.log(e);
-            //addNotification(e.message, 'error');
+            addNotification(e.message, 'error');
         }
 
         setFetching(false);
@@ -47,10 +46,10 @@ function Images() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
             <h2 className={globalStyles.heading}>Fotogalerie</h2>
-            {[...images.values()].map(({_id, url}) => (
+            {[...images.values()].map(({_id, url, thumb}) => (
                 <div key={_id} className={styles.item}>
                     <a href={url}>
-                        <img className={styles.thumb} src={url} alt={''}/>
+                        <img className={styles.thumb} src={thumb} alt={''}/>
                     </a>
                     {isLogged
                         ? fetching

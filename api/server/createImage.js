@@ -1,12 +1,12 @@
 const ImageModel = require('../../mongo/models/Image');
 
 const createImage = async (req, res) => {
-    const {url} = req.body;
+    const {url, thumb} = req.body;
 
     try {
         const newImage = new ImageModel({
             url,
-            thumb: url,
+            thumb,
         });
 
         await newImage.save();
