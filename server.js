@@ -52,6 +52,7 @@ app.prepare()
         const server = express();
 
         server.use(bodyParser.json());
+        server.use(bodyParser.urlencoded({extended: true}));
         server.use(cookieParser());
 
         server.all('*', checkUserToken);

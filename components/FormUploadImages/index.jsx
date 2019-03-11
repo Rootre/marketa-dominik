@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Dropzone from 'dropzone';
 import classNames from 'classnames';
 
+import Button from 'Components/Button';
+
 import {IMAGE_UPLOAD_URL} from 'Api/urls';
 
 import globalStyles from 'Sass/global.scss';
@@ -20,13 +22,20 @@ function FormUploadImages() {
     const [dropzone, setDropzone] = useState(null);
 
     useEffect(() => {
-        setDropzone(new Dropzone(`#${CONTAINER_ID}`, {url: IMAGE_UPLOAD_URL}))
+        setDropzone(new Dropzone(`#${CONTAINER_ID}`, DROPZONE_SETTINGS));
     }, []);
 
     return (
-        <div id={CONTAINER_ID} className={classNames(globalStyles.wrapper, styles.wrapper)}>
+        <form
+            action={IMAGE_UPLOAD_URL}
+            className={classNames(globalStyles.wrapper, styles.wrapper)}
+            enctype={'multipart/form-data'}
+            id={CONTAINER_ID}
+            method={'post'}
+        >
             <p>Přatáhni fotky sem</p>
-        </div>
+            <Button label={'Ulož'}/>
+        </form>
     )
 }
 
