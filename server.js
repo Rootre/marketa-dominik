@@ -16,6 +16,7 @@ const deleteAttendee = require('./api/server/deleteAttendee');
 const readAttendee = require('./api/server/readAttendee');
 const createGift = require('./api/server/createGift');
 const createImage = require('./api/server/createImage');
+const createImages = require('./api/server/createImages');
 const createThumb = require('./api/server/createThumb');
 const deleteGift = require('./api/server/deleteGift');
 const deleteImage = require('./api/server/deleteImage');
@@ -42,6 +43,7 @@ const {
     IMAGE_READ_URL,
     IMAGE_UPDATE_URL,
     IMAGE_UPLOAD_URL,
+    IMAGES_CREATE_URL,
     USER_LOGIN_URL,
 } = require('./api/urls');
 
@@ -96,6 +98,7 @@ app.prepare()
         server.get(IMAGE_READ_URL, readImage);
 
         server.post(IMAGE_CREATE_URL, createImage);
+        server.post(IMAGES_CREATE_URL, createImages);
         server.post(IMAGE_CREATE_THUMB_URL, createThumb);
         server.post(IMAGE_DELETE_URL, deleteImage);
         server.post(IMAGE_UPDATE_URL, updateImage);
