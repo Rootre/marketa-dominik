@@ -10,6 +10,12 @@
 
     &.light {
         text-shadow: 0 0 5px rgba($black, .5);
+
+        .claimSvg,
+        .dateSvg,
+        .wreath {
+            filter: drop-shadow(0 0 2px rgba($black, .9));
+        }
     }
 }
 .claimSvg {

@@ -9,7 +9,6 @@ import Countdown from 'Components/Countdown';
 import FormNewAttendee from 'Components/FormNewAttendee';
 import GamePlan from 'Components/GamePlan';
 import Gifts from 'Components/Gifts';
-import Images from 'Components/Images';
 import Menu from 'Components/menu/Menu';
 import Navigation from 'Components/Navigation';
 import Notification from 'Components/Notification';
@@ -75,9 +74,6 @@ function Index({attendees, gifts, images}) {
                 </div>
                 <div id={'prihlaste-se'}>
                     <FormNewAttendee/>
-                </div>
-                <div id={'galerie'}>
-                    <Images/>
                 </div>
             </Navigation>
         </div>
