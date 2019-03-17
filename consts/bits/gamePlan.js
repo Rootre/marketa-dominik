@@ -25,7 +25,7 @@ export default [
     },
     {
         image: 'static/img/game-plan/cekame.jpg',
-        text: 'Po focení a gratulacích pojedeme na svatební hostinu, která se koná v Dubči. Víme, že je to daleká cesta, ale věříme, že to pro vás nebude překážkou. Nejlepší spojení je ze zastávky Břevnovský klášter tramvají 22 na zastávku Malostranská a potom metrem A na zastávku Skalka. Z té autobusem 111 nebo 329 na zastávku Dubeč. Ze zastávky pak 2 minuty pěšky ke špejcharu.',
+        text: 'Po focení a gratulacích se zvaní hosté přesunou na svatební oslavu, která se koná v Dubči. Víme, že je to daleká cesta, ale věříme, že to pro vás nebude překážkou. Nejlepší spojení je ze zastávky Břevnovský klášter tramvají 22 na zastávku Malostranská a potom metrem A na zastávku Skalka. Z té autobusem 111 nebo 329 na zastávku Dubeč. Ze zastávky pak 2 minuty pěšky ke špejcharu.',
         time: '17:30',
         title: 'Přesun na hostinu',
         map: {
