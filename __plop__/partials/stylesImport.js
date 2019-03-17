@@ -1,0 +1,1 @@
+module.exports = `import styles from './styles.scss';`;

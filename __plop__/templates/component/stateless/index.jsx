@@ -2,7 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 import globalStyles from 'Sass/global.scss';
-import styles from './styles.scss';
+{{> stylesImport}}
+
 
 function {{name}}() {
     return (
