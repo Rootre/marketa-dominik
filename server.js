@@ -27,6 +27,7 @@ const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
 const updateImage = require('./api/server/updateImage');
 const uploadImage = require('./api/server/uploadImage');
+// API_METHODS_IMPORT
 
 const {
     ATTENDEE_CREATE_URL,
@@ -94,7 +95,7 @@ app.prepare()
             }));
         });
 
-        // image handling
+        // IMAGE_HANDLING
         server.get(IMAGE_READ_URL, readImage);
 
         server.post(IMAGE_CREATE_URL, createImage);
@@ -104,7 +105,7 @@ app.prepare()
         server.post(IMAGE_UPDATE_URL, updateImage);
         server.post(IMAGE_UPLOAD_URL, uploadImage);
 
-        // api handling
+        // API_HANDLING
         server.post(ATTENDEE_CREATE_URL, createAttendee);
         server.post(ATTENDEE_DELETE_URL, deleteAttendee);
         server.post(ATTENDEE_READ_URL, readAttendee);

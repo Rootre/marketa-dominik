@@ -11,6 +11,6 @@ module.exports = {
         type: 'addMany',
         base: '__plop__/templates/component/stateless/',
         destination: 'components/{{name}}/',
-        templateFiles: 'frontend/__plop__/templates/component/stateless/*',
+        templateFiles: '__plop__/templates/component/stateless/*',
     }],
 };

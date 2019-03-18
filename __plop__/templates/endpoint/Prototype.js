@@ -35,22 +35,12 @@ function update(selector, set) {
 }
 
 async function get(id) {
-    if (typeof id === 'number') {
-        try {
-            const result = await apiFetch({{toUpperCase name}}_READ_URL, 'GET', {
-                id,
-            });
-
-            return result.data;
-        } catch (e) {
-            return console.error(e);
-        }
-    }
-
-    let data = [];
+    let data;
 
     try {
-        const result = await apiFetch({{toUpperCase name}}_READ_URL, 'GET');
+        const result = await apiFetch({{toUpperCase name}}_READ_URL, 'GET', {
+            id,
+        });
 
         data = result.data;
     } catch (e) {
