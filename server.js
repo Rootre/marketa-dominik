@@ -27,6 +27,14 @@ const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
 const updateImage = require('./api/server/updateImage');
 const uploadImage = require('./api/server/uploadImage');
+const createContent = require('./api/server/Content/create');
+const readContent = require('./api/server/Content/read');
+const updateContent = require('./api/server/Content/update');
+const deleteContent = require('./api/server/Content/delete');
+const createHook = require('./api/server/Hook/create');
+const readHook = require('./api/server/Hook/read');
+const updateHook = require('./api/server/Hook/update');
+const deleteHook = require('./api/server/Hook/delete');
 // API_METHODS_IMPORT
 
 const {
@@ -46,6 +54,14 @@ const {
     IMAGE_UPLOAD_URL,
     IMAGES_CREATE_URL,
     USER_LOGIN_URL,
+    CONTENT_CREATE_URL,
+    CONTENT_DELETE_URL,
+    CONTENT_READ_URL,
+    CONTENT_UPDATE_URL,
+    HOOK_CREATE_URL,
+    HOOK_DELETE_URL,
+    HOOK_READ_URL,
+    HOOK_UPDATE_URL,
 } = require('./api/urls');
 
 const app = next({ dev });
@@ -106,6 +122,14 @@ app.prepare()
         server.post(IMAGE_UPLOAD_URL, uploadImage);
 
         // API_HANDLING
+        server.post(HOOK_CREATE_URL, createHook);
+        server.post(HOOK_DELETE_URL, deleteHook);
+        server.post(HOOK_READ_URL, readHook);
+        server.post(HOOK_UPDATE_URL, updateHook);
+        server.post(CONTENT_CREATE_URL, createContent);
+        server.post(CONTENT_DELETE_URL, deleteContent);
+        server.post(CONTENT_READ_URL, readContent);
+        server.post(CONTENT_UPDATE_URL, updategContent);
         server.post(ATTENDEE_CREATE_URL, createAttendee);
         server.post(ATTENDEE_DELETE_URL, deleteAttendee);
         server.post(ATTENDEE_READ_URL, readAttendee);

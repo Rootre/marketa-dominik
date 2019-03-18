@@ -17,4 +17,12 @@ module.exports = {
     IMAGE_UPLOAD_URL: `${API_URL}image/upload`,
     IMAGES_CREATE_URL: `${API_URL}images/create`,
     USER_LOGIN_URL: `${API_URL}user/login`,
+    CONTENT_CREATE_URL: `${API_URL}content/create`,
+    CONTENT_DELETE_URL: `${API_URL}content/delete`,
+    CONTENT_READ_URL: `${API_URL}content/read`,
+    CONTENT_UPDATE_URL: `${API_URL}content/update`,
+    HOOK_CREATE_URL: `${API_URL}hook/create`,
+    HOOK_DELETE_URL: `${API_URL}hook/delete`,
+    HOOK_READ_URL: `${API_URL}hook/read`,
+    HOOK_UPDATE_URL: `${API_URL}hook/update`,
 };
