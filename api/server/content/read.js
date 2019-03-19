@@ -1,12 +1,14 @@
+const mongoose = require('mongoose');
+
 const Model = require('../../../mongo/models/Content');
 
 const readContent = async (req, res) => {
-    const {id} = req.body;
+    const {belongsTo} = req.body;
 
     let data;
     try {
-        if (id) {
-            data = await Model.findOne({_id: id});
+        if (belongsTo) {
+            data = await Model.find({belongsTo: mongoose.Types.ObjectId(belongsTo)});
         } else {
             data = await Model.find();
         }

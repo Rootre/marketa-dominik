@@ -129,7 +129,7 @@ app.prepare()
         server.post(CONTENT_CREATE_URL, createContent);
         server.post(CONTENT_DELETE_URL, deleteContent);
         server.post(CONTENT_READ_URL, readContent);
-        server.post(CONTENT_UPDATE_URL, updategContent);
+        server.post(CONTENT_UPDATE_URL, updateContent);
         server.post(ATTENDEE_CREATE_URL, createAttendee);
         server.post(ATTENDEE_DELETE_URL, deleteAttendee);
         server.post(ATTENDEE_READ_URL, readAttendee);

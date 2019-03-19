@@ -34,12 +34,12 @@ function update(selector, set) {
     });
 }
 
-async function get(id) {
+async function get(belongsTo) {
     let data;
 
     try {
-        const result = await apiFetch(CONTENT_READ_URL, 'GET', {
-            id,
+        const result = await apiFetch(CONTENT_READ_URL, 'POST', {
+            belongsTo,
         });
 
         data = result.data;

@@ -38,7 +38,7 @@ async function get(id) {
     let data;
 
     try {
-        const result = await apiFetch(HOOK_READ_URL, 'GET', {
+        const result = await apiFetch(HOOK_READ_URL, 'POST', {
             id,
         });
 

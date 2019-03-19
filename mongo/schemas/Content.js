@@ -12,6 +12,10 @@ const ContentSchema = new Schema({
     text: {
         type: String,
     },
+    position: {
+        type: Number,
+        default: 0,
+    },
     created: {
         type: Date,
         default: Date.now,

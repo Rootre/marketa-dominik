@@ -5,6 +5,7 @@ const HookSchema = new Schema({
     name: {
         type: String,
         required: true,
+        unique: true,
     },
     created: {
         type: Date,

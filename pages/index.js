@@ -9,6 +9,7 @@ import Countdown from 'Components/Countdown';
 import FormNewAttendee from 'Components/FormNewAttendee';
 import GamePlan from 'Components/GamePlan';
 import Gifts from 'Components/Gifts';
+import Hook from 'Components/Hook';
 import Menu from 'Components/menu/Menu';
 import Navigation from 'Components/Navigation';
 import Notification from 'Components/Notification';
@@ -54,6 +55,7 @@ function Index({attendees, gifts, images}) {
                 <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
             <Notification notifications={notifications}/>
+            <Hook id={'5c8fd493c3005c2631f0becc'}/>
             <Navigation>
                 <div id={'intro'}>
                     <Claim heading={'Markéta a Dominik'} date={TheDate}/>

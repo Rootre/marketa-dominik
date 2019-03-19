@@ -90,7 +90,7 @@ export async function apiFetch(url, method = 'POST', body, headers = {
     let result;
 
     if (method.toUpperCase() === 'GET') {
-        url += getDataAsURL(body);
+        url += '?' + getDataAsURL(body);
     }
 
     try {
