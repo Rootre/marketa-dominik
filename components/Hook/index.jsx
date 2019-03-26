@@ -29,6 +29,11 @@ function Hook({name}) {
         const hookModel = new HookPrototype();
         const contentModel = new ContentPrototype();
         const hookData = await hookModel.get(name);
+        
+        if (!hookData) {
+            return false;
+        }
+
         const contentData = await contentModel.get(hookData._id);
 
         contentData && setContents(contentData);
