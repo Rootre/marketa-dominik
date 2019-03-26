@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-
 const Model = require('../../../mongo/models/Content');
 
 const readContent = async (req, res) => {
@@ -8,7 +6,7 @@ const readContent = async (req, res) => {
     let data;
     try {
         if (belongsTo) {
-            data = await Model.find({belongsTo: mongoose.Types.ObjectId(belongsTo)});
+            data = await Model.find({belongsTo});
         } else {
             data = await Model.find();
         }

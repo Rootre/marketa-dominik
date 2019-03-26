@@ -1,12 +1,12 @@
 const Model = require('../../../mongo/models/Hook');
 
 const readHook = async (req, res) => {
-    const {id} = req.body;
+    const {name} = req.body;
 
     let data;
     try {
-        if (id) {
-            data = await Model.findOne({_id: id});
+        if (name) {
+            data = await Model.findOne({name});
         } else {
             data = await Model.find();
         }

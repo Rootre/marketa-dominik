@@ -17,6 +17,8 @@ import OurStory from 'Components/OurStory';
 
 import useGlobalMap from 'Hooks/useGlobalMap';
 
+import UserPrototype from 'Prototypes/User';
+
 import bitsOurStory from 'Consts/bits/ourStory';
 import bitsGamePlan from 'Consts/bits/gamePlan';
 import menuItems from 'Consts/menu';
@@ -31,6 +33,7 @@ setGlobal({
     fetching: new Map(),
     gifts: new Map(),
     images: new Map(),
+    isLogged: false,
     isRetina: false,
     isSliderLight: false,
     notifications: new Map(),
@@ -40,9 +43,13 @@ function Index({attendees, gifts, images}) {
     const [, addAttendee] = useGlobalMap('attendees');
     const [, addGift] = useGlobalMap('gifts');
     const [, addImage] = useGlobalMap('images');
+    const [, setIsLogged] = useGlobal('isLogged');
     const [notifications] = useGlobal('notifications');
 
     useEffect(() => {
+        const admin = new UserPrototype('admin');
+
+        setIsLogged(admin.isLogged());
         attendees && attendees.forEach(attendee => addAttendee(attendee._id, attendee));
         gifts && gifts.forEach(gift => addGift(gift._id, gift));
         images && images.forEach(image => addImage(image._id, image));
@@ -55,7 +62,7 @@ function Index({attendees, gifts, images}) {
                 <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
             <Notification notifications={notifications}/>
-            <Hook id={'5c8fd493c3005c2631f0becc'}/>
+            <Hook name={'Test'}/>
             <Navigation>
                 <div id={'intro'}>
                     <Claim heading={'Markéta a Dominik'} date={TheDate}/>

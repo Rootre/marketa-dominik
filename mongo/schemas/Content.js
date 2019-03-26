@@ -11,6 +11,7 @@ const ContentSchema = new Schema({
     },
     text: {
         type: String,
+        required: true,
     },
     position: {
         type: Number,

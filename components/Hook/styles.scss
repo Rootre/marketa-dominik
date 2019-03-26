@@ -1,3 +1,17 @@
 @import "~Sass/helpers.scss";
 
-.wrapper {}
+.wrapper {
+    svg {
+        cursor: pointer;
+
+        &.add {
+            fill: $mountain-meadow;
+        }
+        &.close {
+            fill: $wild-strawberry;
+        }
+        &.plus {
+            fill: $mountain-meadow;
+        }
+    }
+}

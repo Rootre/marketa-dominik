@@ -34,12 +34,12 @@ function update(selector, set) {
     });
 }
 
-async function get(id) {
+async function get(name) {
     let data;
 
     try {
         const result = await apiFetch(HOOK_READ_URL, 'POST', {
-            id,
+            name,
         });
 
         data = result.data;

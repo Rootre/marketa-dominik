@@ -1,4 +1,28 @@
 @import "~Sass/helpers.scss";
 
+.controls {
+    float: right;
+
+    svg {
+        cursor: pointer;
+
+        &.bin {
+            fill: $wild-strawberry;
+        }
+        &.close {
+            fill: $wild-strawberry;
+        }
+        &.save {
+            fill: $mountain-meadow;
+        }
+    }
+}
 .text {}
-.wrapper {}
+.wrapper {
+    &.isLogged {
+        &.editing,
+        &:hover {
+            box-shadow: 0 0 0 1px $black;
+        }
+    }
+}
