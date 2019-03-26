@@ -27,14 +27,14 @@ const scrapeGift = require('./api/server/scrapeGift');
 const updateGift = require('./api/server/updateGift');
 const updateImage = require('./api/server/updateImage');
 const uploadImage = require('./api/server/uploadImage');
-const createContent = require('./api/server/Content/create');
-const readContent = require('./api/server/Content/read');
-const updateContent = require('./api/server/Content/update');
-const deleteContent = require('./api/server/Content/delete');
-const createHook = require('./api/server/Hook/create');
-const readHook = require('./api/server/Hook/read');
-const updateHook = require('./api/server/Hook/update');
-const deleteHook = require('./api/server/Hook/delete');
+const createContent = require('./api/server/content/create');
+const readContent = require('./api/server/content/read');
+const updateContent = require('./api/server/content/update');
+const deleteContent = require('./api/server/content/delete');
+const createHook = require('./api/server/hook/create');
+const readHook = require('./api/server/hook/read');
+const updateHook = require('./api/server/hook/update');
+const deleteHook = require('./api/server/hook/delete');
 // API_METHODS_IMPORT
 
 const {
