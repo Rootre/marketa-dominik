@@ -9,6 +9,7 @@ import {
 const Content = () => {
     return {
         create,
+        deleteMany,
         deleteOne,
         get,
         update,
@@ -24,6 +25,13 @@ function create(data) {
 function deleteOne(id) {
     return apiFetch(CONTENT_DELETE_URL, 'POST', {
         id,
+    });
+}
+
+
+function deleteMany(conditions) {
+    return apiFetch(CONTENT_DELETE_URL, 'POST', {
+        conditions,
     });
 }
 

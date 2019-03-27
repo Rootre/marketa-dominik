@@ -20,6 +20,7 @@ function Hook({name}) {
     const [hook, setHook] = useState(null);
     const [contents, setContents] = useState([]);
 
+    const headingRef = React.createRef();
     const inputRef = React.createRef();
 
     const addContent = async () => {
@@ -29,8 +30,9 @@ function Hook({name}) {
         const hookModel = new HookPrototype();
         const contentModel = new ContentPrototype();
         const hookData = await hookModel.get(name);
-        
+
         if (!hookData) {
+            console.error('Hook not found:', name);
             return false;
         }
 
@@ -44,7 +46,7 @@ function Hook({name}) {
         fetchHook();
     }, []);
 
-    if (contents.length === 0) {
+    if (!hook || !isLogged && contents.length === 0) {
         return null;
     }
 
@@ -58,6 +60,7 @@ function Hook({name}) {
             )}
             {showForm && (
                 <>
+                    <input ref={headingRef} type={'text'} placeholder={'Nadpis'}/>
                     <textarea ref={inputRef} placeholder={'Text'}/>
                     <CheckSVG onClick={() => addContent()} className={styles.add}/>
                     <CloseSVG onClick={() => setShowForm(false)} className={styles.close}/>

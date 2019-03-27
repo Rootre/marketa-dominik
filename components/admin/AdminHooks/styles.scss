@@ -1,0 +1,25 @@
+@import "~Sass/helpers.scss";
+
+.add {
+    cursor: pointer;
+    font-family: $font-family-hand;
+
+    svg {
+        display: inline-block;
+        fill: $mountain-meadow;
+        margin-right: $margin--small;
+        vertical-align: middle;
+    }
+}
+.close {
+    cursor: pointer;
+    fill: $wild-strawberry;
+}
+.delete {
+    cursor: pointer;
+    fill: $wild-strawberry;
+}
+.wrapper {
+    border: 1px solid $gray-chateau;
+    padding: $padding--default;
+}

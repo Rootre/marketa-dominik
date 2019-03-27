@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import AdminAttendees from 'Components/admin/AdminAttendees';
+import AdminHooks from 'Components/admin/AdminHooks';
 import AdminGallery from 'Components/admin/AdminGallery';
 import AdminGifts from 'Components/admin/AdminGifts';
 
@@ -15,6 +16,7 @@ function Admin() {
 
             <AdminGifts/>
             <AdminAttendees/>
+            <AdminHooks/>
             <AdminGallery/>
         </div>
     )
