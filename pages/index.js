@@ -62,7 +62,6 @@ function Index({attendees, gifts, images}) {
                 <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
             <Notification notifications={notifications}/>
-            <Hook name={'Test'}/>
             <Navigation>
                 <div id={'intro'}>
                     <Claim heading={'Markéta a Dominik'} date={TheDate}/>

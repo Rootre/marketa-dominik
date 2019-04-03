@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import Content from 'Components/Content';
 
+import useMap from 'Hooks/useMap';
+
 import ContentPrototype from 'Prototypes/Content';
 import HookPrototype from 'Prototypes/Hook';
 
@@ -18,12 +20,28 @@ function Hook({name}) {
     const [isLogged] = useGlobal('isLogged');
     const [showForm, setShowForm] = useState(false);
     const [hook, setHook] = useState(null);
-    const [contents, setContents] = useState([]);
+    const [contents, addContent] = useMap();
+    const [, addNotification] = useGlobal('notifications');
 
     const headingRef = React.createRef();
     const inputRef = React.createRef();
 
-    const addContent = async () => {
+    const createContent = async () => {
+        const contentModel = new ContentPrototype();
+
+        try {
+            const {data: contentData} = await contentModel.create({
+                belongsTo: hook._id,
+                heading: headingRef.current.value,
+                text: inputRef.current.value,
+            });
+
+            addContent(contentData._id, contentData);
+            setShowForm(false);
+        } catch (e) {
+            addNotification(e.message, 'error');
+        }
+
 
     };
     const fetchHook = async () => {
@@ -38,7 +56,7 @@ function Hook({name}) {
 
         const contentData = await contentModel.get(hookData._id);
 
-        contentData && setContents(contentData);
+        contentData && contentData.map(content => addContent(content._id, content));
         setHook(hookData);
     };
 
@@ -62,11 +80,11 @@ function Hook({name}) {
                 <>
                     <input ref={headingRef} type={'text'} placeholder={'Nadpis'}/>
                     <textarea ref={inputRef} placeholder={'Text'}/>
-                    <CheckSVG onClick={() => addContent()} className={styles.add}/>
+                    <CheckSVG onClick={() => createContent()} className={styles.add}/>
                     <CloseSVG onClick={() => setShowForm(false)} className={styles.close}/>
                 </>
             )}
-            {contents.map(content => <Content content={content}/>)}
+            {[...contents.values()].map(content => <Content key={content._id} content={content}/>)}
         </div>
     )
 }

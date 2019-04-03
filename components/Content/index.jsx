@@ -13,11 +13,28 @@ import styles from './styles.scss';
 
 function Content({content: {_id, heading, text: initialText}}) {
     const [editing, setEditing] = useState(false);
+    const [deleted, setDeleted] = useState(false);
     const [text, setText] = useState(initialText);
     const [isLogged] = useGlobal('isLogged');
     const [, addNotifications] = useGlobal('notifications');
 
     const inputRef = React.createRef();
+
+    const deleteContent = async () => {
+        if (!confirm('Opravdu smazat?')) {
+            return;
+        }
+
+        const content = new ContentPrototype();
+
+        try {
+            await content.deleteOne(_id);
+
+            setDeleted(true);
+        } catch (e) {
+            addNotifications(e.message, 'error');
+        }
+    };
 
     const saveChanges = async () => {
         const content = new ContentPrototype();
@@ -39,6 +56,10 @@ function Content({content: {_id, heading, text: initialText}}) {
         setEditing(true);
     };
 
+    if (deleted) {
+        return null;
+    }
+
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper, {
             [styles.isLogged]: isLogged,
@@ -56,7 +77,7 @@ function Content({content: {_id, heading, text: initialText}}) {
                             <CloseSVG onClick={() => setEditing(false)} className={styles.close}/>
                         </>
                     )}
-                    <BinSVG className={styles.bin}/>
+                    <BinSVG onClick={() => deleteContent()} className={styles.bin}/>
                 </div>
             )}
         </div>
