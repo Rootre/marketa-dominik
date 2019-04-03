@@ -1,13 +1,13 @@
 @import "~Sass/helpers.scss";
 
 .spinner {
-    animation: rotate 500ms linear infinite;
+    animation: rotateMe 500ms linear infinite;
 }
 .wrapper {
     text-align: center;
 }
 
-@keyframes rotate {
+@keyframes rotateMe {
     0% {
         transform: rotate(0deg);
     }
