@@ -1,0 +1,30 @@
+@import "~Sass/helpers.scss";
+
+.controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    svg {
+        cursor: pointer;
+
+        &.close {
+            fill: $wild-strawberry;
+        }
+        &.save {
+            fill: $mountain-meadow;
+        }
+    }
+}
+.textarea {
+    font-family: $font-family;
+    font-size: $font-size;
+    border: none;
+    line-height: 1.6;
+    outline: none;
+    padding: 0;
+    width: 100%;
+}
+.wrapper {
+    position: relative;
+}

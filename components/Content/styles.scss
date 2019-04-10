@@ -1,7 +1,9 @@
 @import "~Sass/helpers.scss";
 
 .controls {
-    float: right;
+    bottom: 0;
+    position: absolute;
+    right: 0;
 
     svg {
         cursor: pointer;
@@ -9,16 +11,18 @@
         &.bin {
             fill: $wild-strawberry;
         }
-        &.close {
-            fill: $wild-strawberry;
-        }
-        &.save {
-            fill: $mountain-meadow;
-        }
     }
 }
-.text {}
+.text {
+    .isLogged & {
+        cursor: pointer;
+        padding-right: $padding--big;
+    }
+}
 .wrapper {
+    padding: 0;
+    position: relative;
+
     &.isLogged {
         &.editing,
         &:hover {

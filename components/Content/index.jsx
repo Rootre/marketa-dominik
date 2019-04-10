@@ -1,15 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useGlobal} from 'reactn';
 import classNames from 'classnames';
 
 import ContentPrototype from 'Prototypes/Content';
 
 import BinSVG from 'Svg/bin.svg';
-import CheckSVG from 'Svg/check.svg';
-import CloseSVG from 'Svg/close.svg';
 
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
+import EditContent from "../EditContent";
 
 function Content({content: {_id, heading, text: initialText}}) {
     const [editing, setEditing] = useState(false);
@@ -17,8 +16,6 @@ function Content({content: {_id, heading, text: initialText}}) {
     const [text, setText] = useState(initialText);
     const [isLogged] = useGlobal('isLogged');
     const [, addNotifications] = useGlobal('notifications');
-
-    const inputRef = React.createRef();
 
     const deleteContent = async () => {
         if (!confirm('Opravdu smazat?')) {
@@ -36,12 +33,12 @@ function Content({content: {_id, heading, text: initialText}}) {
         }
     };
 
-    const saveChanges = async () => {
+    const saveChanges = async (textInput) => {
         const content = new ContentPrototype();
 
         try {
-            await content.update({_id}, {text: inputRef.current.value});
-            setText(inputRef.current.value);
+            await content.update({_id}, {text: textInput.value});
+            setText(textInput.value);
             setEditing(false);
         } catch (e) {
             addNotifications(e.message, 'error');
@@ -66,17 +63,12 @@ function Content({content: {_id, heading, text: initialText}}) {
             [styles.editing]: editing,
         })}>
             {heading && <h2>{heading}</h2>}
-            <div className={styles.text} onClick={textClickHandler}>
-                {editing ? <textarea ref={inputRef} defaultValue={text}/> : text}
-            </div>
+            {editing
+                ? <EditContent saveChanges={saveChanges} setClose={() => setEditing(false)} text={text}/>
+                : <div className={styles.text} onClick={textClickHandler}>{text}</div>
+            }
             {isLogged && (
                 <div className={styles.controls}>
-                    {editing && (
-                        <>
-                            <CheckSVG onClick={() => saveChanges()} className={styles.save}/>
-                            <CloseSVG onClick={() => setEditing(false)} className={styles.close}/>
-                        </>
-                    )}
                     <BinSVG onClick={() => deleteContent()} className={styles.bin}/>
                 </div>
             )}
