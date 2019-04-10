@@ -4,8 +4,7 @@ import classNames from 'classnames';
 
 import Content from 'Components/Content';
 
-import {get as getStore} from 'Helpers/store';
-
+import useGlobalMap from 'Hooks/useGlobalMap';
 import useMap from 'Hooks/useMap';
 
 import ContentPrototype from 'Prototypes/Content';
@@ -21,8 +20,8 @@ function Hook({name}) {
     const [isLogged] = useGlobal('isLogged');
     const [showForm, setShowForm] = useState(false);
     const [, addNotification] = useGlobal('notifications');
-    const hooks = getStore('hooks');
-    const hookContents = getStore('hookContents');
+    const [hooks] = useGlobalMap('hooks');
+    const [hookContents] = useGlobalMap('hookContents');
 
     const hook = hooks.get(name);
 
@@ -32,7 +31,7 @@ function Hook({name}) {
 
     const filteredHookContents = [...hookContents.values()].filter(({belongsTo}) => belongsTo === hook._id);
 
-    const [contents, addContent] = useMap(filteredHookContents.map(content => [content._id, content]));
+    const [contents, addContent] = useMap(new Map(filteredHookContents.map(content => [content._id, content])));
 
     if (!isLogged && contents.length === 0) {
         return null;
@@ -56,8 +55,6 @@ function Hook({name}) {
         } catch (e) {
             addNotification(e.message, 'error');
         }
-
-
     };
 
     return (
