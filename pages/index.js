@@ -15,6 +15,8 @@ import Navigation from 'Components/Navigation';
 import Notification from 'Components/Notification';
 import OurStory from 'Components/OurStory';
 
+import {add as addStore} from 'Helpers/store';
+
 import useGlobalMap from 'Hooks/useGlobalMap';
 
 import UserPrototype from 'Prototypes/User';
@@ -39,12 +41,14 @@ setGlobal({
     notifications: new Map(),
 });
 
-function Index({attendees, gifts, images}) {
+function Index({attendees, gifts, hooks, hookContents, images}) {
     const [, addAttendee] = useGlobalMap('attendees');
     const [, addGift] = useGlobalMap('gifts');
     const [, addImage] = useGlobalMap('images');
     const [, setIsLogged] = useGlobal('isLogged');
     const [notifications] = useGlobal('notifications');
+    addStore('hooks', new Map(hooks.map(hook => [hook.name, hook])));
+    addStore('hookContents', new Map(hookContents.map(hookContent => [hookContent._id, hookContent])));
 
     useEffect(() => {
         const admin = new UserPrototype('admin');
@@ -62,6 +66,7 @@ function Index({attendees, gifts, images}) {
                 <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
             <Notification notifications={notifications}/>
+            <Hook name={'My'}/>
             <Navigation>
                 <div id={'intro'}>
                     <Claim heading={'Markéta a Dominik'} date={TheDate}/>
@@ -88,10 +93,12 @@ function Index({attendees, gifts, images}) {
     );
 }
 
-Index.getInitialProps = ({req, res: {attendees, gifts, images}}) => {
+Index.getInitialProps = async ({req, res: {attendees, gifts, hookContents, hooks, images}}) => {
     return {
         attendees,
         gifts,
+        hookContents,
+        hooks,
         images,
     };
 };

@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useGlobal} from 'reactn';
 import classNames from 'classnames';
 
 import Content from 'Components/Content';
 
+import {get as getStore} from 'Helpers/store';
+
 import useMap from 'Hooks/useMap';
 
 import ContentPrototype from 'Prototypes/Content';
-import HookPrototype from 'Prototypes/Hook';
 
 import CheckSVG from 'Svg/check.svg';
 import CloseSVG from 'Svg/close.svg';
@@ -19,9 +20,23 @@ import styles from './styles.scss';
 function Hook({name}) {
     const [isLogged] = useGlobal('isLogged');
     const [showForm, setShowForm] = useState(false);
-    const [hook, setHook] = useState(null);
-    const [contents, addContent] = useMap();
     const [, addNotification] = useGlobal('notifications');
+    const hooks = getStore('hooks');
+    const hookContents = getStore('hookContents');
+
+    const hook = hooks.get(name);
+
+    if (!hook) {
+        return null;
+    }
+
+    const filteredHookContents = [...hookContents.values()].filter(({belongsTo}) => belongsTo === hook._id);
+
+    const [contents, addContent] = useMap(filteredHookContents.map(content => [content._id, content]));
+
+    if (!isLogged && contents.length === 0) {
+        return null;
+    }
 
     const headingRef = React.createRef();
     const inputRef = React.createRef();
@@ -44,29 +59,6 @@ function Hook({name}) {
 
 
     };
-    const fetchHook = async () => {
-        const hookModel = new HookPrototype();
-        const contentModel = new ContentPrototype();
-        const hookData = await hookModel.get(name);
-
-        if (!hookData) {
-            console.error('Hook not found:', name);
-            return false;
-        }
-
-        const contentData = await contentModel.get(hookData._id);
-
-        contentData && contentData.map(content => addContent(content._id, content));
-        setHook(hookData);
-    };
-
-    useEffect(() => {
-        fetchHook();
-    }, []);
-
-    if (!hook || !isLogged && contents.length === 0) {
-        return null;
-    }
 
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
