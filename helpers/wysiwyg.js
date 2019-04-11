@@ -1,6 +1,5 @@
-import {stateToHTML} from 'draft-js-export-html';
-import {convertFromRaw} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
 export function getHTMLFromStringifiedState(stringState) {
-    return stateToHTML(convertFromRaw(JSON.parse(stringState)))
+    return draftToHtml(JSON.parse(stringState))
 }

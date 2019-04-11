@@ -26,7 +26,7 @@ function Wysiwyg({autofocus = false, formattedValue = '', label, name, value=''}
     return (
         <div className={styles.wrapper}>
             <Input type={'hidden'} name={name} value={JSON.stringify(convertToRaw(editorState.getCurrentContent()))}/>
-            <label>{label}</label>
+            {label && <label>{label}</label>}
             <Editor
                 editorRef={ref => autofocus && ref && ref.focus()}
                 editorState={editorState}
