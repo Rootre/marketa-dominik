@@ -5,13 +5,14 @@ import Spinner from '../Spinner';
 
 import styles from './styles.scss';
 
-function Button({label = '', gray, busy, red, small, type = 'submit', ...rest}) {
+function Button({busy, className = '', gray, inline, label = '', red, small, type = 'submit', ...rest}) {
 
     return (
         <button
             type={type}
-            className={classNames(styles.button, {
+            className={classNames(styles.button, className, {
                 [styles.gray]: gray,
+                [styles.inline]: inline,
                 [styles.red]: red,
                 [styles.small]: small,
             })}

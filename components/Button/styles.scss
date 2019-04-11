@@ -10,7 +10,8 @@
     font-size: $font-size-lg;
     font-family: $font-family-hand;
     line-height: 56px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     min-width: 200px;
     padding: 0 20px;
     text-align: center;
@@ -20,20 +21,25 @@
         background-color: darken($cosmos, 5%);
     }
 
+    &.inline {
+        display: inline-block;
+        margin: 0 $margin--default;
+    }
+
     &.gray {
         background-color: $mischka;
-        color: $gray-chateau;
 
         &:hover {
-            background-color: darken($gray-chateau, 5%);
+            background-color: darken($mischka, 5%);
         }
     }
 
     &.red {
-        background-color: $wild-strawberry;
+        background-color: $red;
+        color: $white;
 
         &:hover {
-            background-color: darken($wild-strawberry, 5%);
+            background-color: darken($red, 5%);
         }
     }
 

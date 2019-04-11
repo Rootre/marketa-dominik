@@ -10,6 +10,9 @@ import BinSVG from 'Svg/bin.svg';
 import styles from './styles.scss';
 import EditContent from "../EditContent";
 
+/**
+ * @return {null}
+ */
 function Content({content: {_id, text: initialText}}) {
     const [editing, setEditing] = useState(false);
     const [deleted, setDeleted] = useState(false);

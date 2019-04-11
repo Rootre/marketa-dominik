@@ -1,19 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import CloseSVG from 'Svg/close.svg';
+import Button from 'Components/Button';
+import Form from 'Components/Form';
+import Wysiwyg from 'Components/Wysiwyg';
 
 import styles from './styles.scss';
-import Wysiwyg from "../Wysiwyg";
-import Form from "../Form";
-import Button from "../Button";
 
 function EditContent({className = '', saveChanges, setClose, text = ''}) {
-    const keyUpHandler = e => {
-        if (e.keyCode === 27) {
-            setClose && setClose();
-        }
-    };
     const submitHandler = refs => {
         const text = refs.get('text').current;
 
@@ -24,11 +18,11 @@ function EditContent({className = '', saveChanges, setClose, text = ''}) {
         <div className={classNames(styles.wrapper, className)}>
             <Form onSubmit={submitHandler}>
                 <Wysiwyg autofocus name={'text'} formattedValue={text}/>
-                <Button type={'submit'} label={'Uložit'}/>
+                <div className={styles.buttons}>
+                    {setClose && <Button gray inline type={'button'} label={'Zavřít'} onClick={() => setClose()}/>}
+                    <Button inline type={'submit'} label={'Uložit'}/>
+                </div>
             </Form>
-            <div className={styles.controls}>
-                {setClose && <CloseSVG onClick={() => setClose()} className={styles.close}/>}
-            </div>
         </div>
     )
 }
