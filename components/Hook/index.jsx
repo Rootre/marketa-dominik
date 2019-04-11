@@ -1,7 +1,7 @@
 import React from 'react';
 import {useGlobal} from 'reactn';
 
-import HookContents from 'Components/HookContents';
+import Content from 'Components/Content';
 import HookEdit from 'Components/HookEdit';
 
 import useGlobalMap from 'Hooks/useGlobalMap';
@@ -26,7 +26,11 @@ function Hook({name}) {
 
     return isLogged
         ? <HookEdit hook={hook} contents={contents} name={name}/>
-        : <HookContents contents={contents}/>;
+        : (
+            <>
+                {[...contents.values()].map(content => <Content key={content._id} content={content}/>)}
+            </>
+        );
 }
 
 export default Hook;
