@@ -23,6 +23,8 @@ const checkUserToken = (req, res, next) => {
 
         res.cookie(COOKIE.name, newToken, {maxAge: COOKIE.maxAge});
 
+        Object.assign(res,{isLogged: newToken});
+
         // when reaching admin api
         if (!newToken && req.url.match(/\/admin\//)) {
             return res.status(200).json({error: 'Musíte být přihlášený'});

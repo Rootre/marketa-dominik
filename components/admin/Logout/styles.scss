@@ -1,0 +1,11 @@
+@import "~Sass/helpers.scss";
+
+.logout {
+    cursor: pointer;
+
+    svg {
+        @include square(30px);
+        fill: $wild-strawberry
+    }
+}
+.wrapper {}
