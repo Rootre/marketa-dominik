@@ -13,8 +13,8 @@ import styles from './styles.scss';
 function Admin() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <h1>Vítej v administraci</h1>
             <Logout/>
+            <h1>Vítej v administraci</h1>
 
             <AdminGifts/>
             <AdminAttendees/>

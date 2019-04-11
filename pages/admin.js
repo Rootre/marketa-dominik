@@ -59,7 +59,7 @@ Admin.getInitialProps = ({req, res: {attendees, gifts, hookContents, hooks, imag
         hookContents,
         hooks,
         images,
-        isLogged,
+        isLogged: !!isLogged,
     };
 };
 

@@ -2,6 +2,7 @@
 
 .logout {
     cursor: pointer;
+    float: right;
 
     svg {
         @include square(30px);
