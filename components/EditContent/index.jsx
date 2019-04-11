@@ -1,22 +1,32 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import classNames from 'classnames';
 
-import CheckSVG from 'Svg/check.svg';
 import CloseSVG from 'Svg/close.svg';
 
 import styles from './styles.scss';
+import Wysiwyg from "../Wysiwyg";
+import Form from "../Form";
+import Button from "../Button";
 
-function EditContent({saveChanges, setClose, text = ''}) {
-    const inputRef = React.createRef();
+function EditContent({className = '', saveChanges, setClose, text = ''}) {
+    const keyUpHandler = e => {
+        if (e.keyCode === 27) {
+            setClose && setClose();
+        }
+    };
+    const submitHandler = refs => {
+        const text = refs.get('text').current;
 
-    useEffect(() => {
-        inputRef.current.focus();
-    }, []);
+        saveChanges(text.value());
+    };
 
     return (
-        <div className={styles.wrapper}>
-            <textarea className={styles.textarea} ref={inputRef} defaultValue={text}/>
+        <div className={classNames(styles.wrapper, className)}>
+            <Form onSubmit={submitHandler}>
+                <Wysiwyg autofocus name={'text'} formattedValue={text}/>
+                <Button type={'submit'} label={'Uložit'}/>
+            </Form>
             <div className={styles.controls}>
-                <CheckSVG onClick={() => saveChanges(inputRef.current)} className={styles.save}/>
                 {setClose && <CloseSVG onClick={() => setClose()} className={styles.close}/>}
             </div>
         </div>

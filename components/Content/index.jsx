@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useGlobal} from 'reactn';
 import classNames from 'classnames';
 
 import ContentPrototype from 'Prototypes/Content';
+import {getHTMLFromStringifiedState} from 'Helpers/wysiwyg';
 
 import BinSVG from 'Svg/bin.svg';
 
-import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
 import EditContent from "../EditContent";
 
-function Content({content: {_id, heading, text: initialText}}) {
+function Content({content: {_id, text: initialText}}) {
     const [editing, setEditing] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const [text, setText] = useState(initialText);
@@ -33,12 +33,12 @@ function Content({content: {_id, heading, text: initialText}}) {
         }
     };
 
-    const saveChanges = async (textInput) => {
+    const saveChanges = async (textValue) => {
         const content = new ContentPrototype();
 
         try {
-            await content.update({_id}, {text: textInput.value});
-            setText(textInput.value);
+            await content.update({_id}, {text: textValue});
+            setText(textValue);
             setEditing(false);
         } catch (e) {
             addNotifications(e.message, 'error');
@@ -57,23 +57,21 @@ function Content({content: {_id, heading, text: initialText}}) {
         return null;
     }
 
-    return (
-        <div className={classNames(globalStyles.wrapper, styles.wrapper, {
-            [styles.isLogged]: isLogged,
-            [styles.editing]: editing,
-        })}>
-            {heading && <h2>{heading}</h2>}
-            {editing
-                ? <EditContent saveChanges={saveChanges} setClose={() => setEditing(false)} text={text}/>
-                : <div className={styles.text} onClick={textClickHandler}>{text}</div>
-            }
-            {isLogged && (
-                <div className={styles.controls}>
-                    <BinSVG onClick={() => deleteContent()} className={styles.bin}/>
-                </div>
-            )}
-        </div>
-    )
+    if (isLogged) {
+        return (
+            <div className={classNames(styles.wrapper, styles.isLogged, {
+                [styles.editing]: editing,
+            })}>
+                {editing
+                    ? <EditContent saveChanges={saveChanges} setClose={() => setEditing(false)} text={text}/>
+                    : <div className={styles.text} onClick={textClickHandler} dangerouslySetInnerHTML={{__html: getHTMLFromStringifiedState(text)}}/>
+                }
+                <BinSVG onClick={() => deleteContent()} className={styles.bin}/>
+            </div>
+        )
+    }
+
+    return <div dangerouslySetInnerHTML={{__html: getHTMLFromStringifiedState(text)}}/>;
 }
 
 export default Content;

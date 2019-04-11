@@ -11,9 +11,6 @@
         &.close {
             fill: $wild-strawberry;
         }
-        &.save {
-            fill: $mountain-meadow;
-        }
     }
 }
 .textarea {
@@ -26,5 +23,6 @@
     width: 100%;
 }
 .wrapper {
+    border: 1px solid $black;
     position: relative;
 }

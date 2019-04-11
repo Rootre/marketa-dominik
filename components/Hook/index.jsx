@@ -36,13 +36,13 @@ function Hook({name}) {
         return null;
     }
 
-    const createContent = async (textInput) => {
+    const createContent = async (textValue) => {
         const contentModel = new ContentPrototype();
 
         try {
             const {data: contentData} = await contentModel.create({
                 belongsTo: hook._id,
-                text: textInput.value,
+                text: textValue,
             });
 
             addContent(contentData._id, contentData);
@@ -52,17 +52,27 @@ function Hook({name}) {
         }
     };
 
-    return (
-        <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            {isLogged && (
+    if (isLogged) {
+        return (
+            <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
                 <div className={styles.intro}>
-                    {!showForm && <PlusSVG onClick={() => setShowForm(true)} className={styles.plus}/>}
+                    {!showForm && (
+                        <span onClick={() => setShowForm(true)} title={'Přidat nový obsah'}>
+                        <PlusSVG className={styles.plus}/>
+                    </span>
+                    )}
                     <p>Hook {name}:</p>
                 </div>
-            )}
-            {showForm && <EditContent saveChanges={createContent} setClose={() => setShowForm(false)}/>}
+                {showForm && <EditContent className={styles.editor} saveChanges={createContent} setClose={() => setShowForm(false)}/>}
+                {[...contents.values()].map(content => <Content key={content._id} content={content}/>)}
+            </div>
+        )
+    }
+
+    return (
+        <>
             {[...contents.values()].map(content => <Content key={content._id} content={content}/>)}
-        </div>
+        </>
     )
 }
 
