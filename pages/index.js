@@ -9,13 +9,10 @@ import Countdown from 'Components/Countdown';
 import FormNewAttendee from 'Components/FormNewAttendee';
 import GamePlan from 'Components/GamePlan';
 import Gifts from 'Components/Gifts';
-import Hook from 'Components/Hook';
 import Menu from 'Components/menu/Menu';
 import Navigation from 'Components/Navigation';
 import Notification from 'Components/Notification';
 import OurStory from 'Components/OurStory';
-
-import UserPrototype from 'Prototypes/User';
 
 import bitsOurStory from 'Consts/bits/ourStory';
 import bitsGamePlan from 'Consts/bits/gamePlan';
@@ -38,11 +35,9 @@ setGlobal({
     notifications: new Map(),
 });
 
-function Index({attendees, gifts, hooks, hookContents, images}) {
-    const admin = new UserPrototype('admin');
-
+function Index({attendees, gifts, hookContents, hooks, images, isLogged: logged}) {
     setGlobal({
-        isLogged: !!admin.isLogged(),
+        isLogged: logged,
         gifts: new Map(gifts.map(gift => [gift._id, gift])),
         hookContents: new Map(hookContents.map(hookContent => [hookContent._id, hookContent])),
         hooks: new Map(hooks.map(hook => [hook.name, hook])),
@@ -58,6 +53,7 @@ function Index({attendees, gifts, hooks, hookContents, images}) {
                 <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
             <Notification notifications={notifications}/>
+
             <Navigation>
                 <div id={'intro'}>
                     <Claim heading={'Markéta a Dominik'} date={TheDate}/>
@@ -84,13 +80,14 @@ function Index({attendees, gifts, hooks, hookContents, images}) {
     );
 }
 
-Index.getInitialProps = async ({req, res: {attendees, gifts, hookContents, hooks, images}}) => {
+Index.getInitialProps = async ({req, res: {attendees, gifts, hookContents, hooks, images, isLogged}}) => {
     return {
         attendees,
         gifts,
         hookContents,
         hooks,
         images,
+        isLogged: !!isLogged,
     };
 };
 
