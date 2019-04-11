@@ -1,27 +1,25 @@
 @import "~Sass/helpers.scss";
 
-.controls {
-    float: right;
-
-    svg {
+.bin {
+    bottom: 0;
+    cursor: pointer;
+    fill: $wild-strawberry;
+    margin: 6px;
+    position: absolute;
+    right: 0;
+}
+.text {
+    .isLogged & {
         cursor: pointer;
-
-        &.bin {
-            fill: $wild-strawberry;
-        }
-        &.close {
-            fill: $wild-strawberry;
-        }
-        &.save {
-            fill: $mountain-meadow;
-        }
+        padding-right: $padding--big;
     }
 }
-.text {}
 .wrapper {
+    padding: 0;
+    position: relative;
+
     &.isLogged {
-        &.editing,
-        &:hover {
+        &:not(.editing):hover {
             box-shadow: 0 0 0 1px $black;
         }
     }

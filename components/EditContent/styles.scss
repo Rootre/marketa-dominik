@@ -1,0 +1,32 @@
+@import "~Sass/helpers.scss";
+
+.buttons {
+    margin-bottom: $margin--default;
+    text-align: center;
+}
+.controls {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    svg {
+        cursor: pointer;
+
+        &.close {
+            fill: $wild-strawberry;
+        }
+    }
+}
+.textarea {
+    font-family: $font-family;
+    font-size: $font-size;
+    border: none;
+    line-height: 1.6;
+    outline: none;
+    padding: 0;
+    width: 100%;
+}
+.wrapper {
+    border: 1px solid $black;
+    position: relative;
+}

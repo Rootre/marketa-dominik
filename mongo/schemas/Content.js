@@ -6,9 +6,6 @@ const ContentSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'hook',
     },
-    heading: {
-        type: String,
-    },
     text: {
         type: String,
         required: true,

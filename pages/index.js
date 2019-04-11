@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Head from 'next/head';
 import {setGlobal, useGlobal} from 'reactn';
 
@@ -9,15 +9,10 @@ import Countdown from 'Components/Countdown';
 import FormNewAttendee from 'Components/FormNewAttendee';
 import GamePlan from 'Components/GamePlan';
 import Gifts from 'Components/Gifts';
-import Hook from 'Components/Hook';
 import Menu from 'Components/menu/Menu';
 import Navigation from 'Components/Navigation';
 import Notification from 'Components/Notification';
 import OurStory from 'Components/OurStory';
-
-import useGlobalMap from 'Hooks/useGlobalMap';
-
-import UserPrototype from 'Prototypes/User';
 
 import bitsOurStory from 'Consts/bits/ourStory';
 import bitsGamePlan from 'Consts/bits/gamePlan';
@@ -27,11 +22,12 @@ import TheDate from 'Consts/TheDate';
 import 'Sass/global.scss';
 
 setGlobal({
-    attendees: new Map(),
     activeItem: 0,
     breakpoint: '',
     fetching: new Map(),
     gifts: new Map(),
+    hookContents: new Map(),
+    hooks: new Map(),
     images: new Map(),
     isLogged: false,
     isRetina: false,
@@ -39,21 +35,16 @@ setGlobal({
     notifications: new Map(),
 });
 
-function Index({attendees, gifts, images}) {
-    const [, addAttendee] = useGlobalMap('attendees');
-    const [, addGift] = useGlobalMap('gifts');
-    const [, addImage] = useGlobalMap('images');
-    const [, setIsLogged] = useGlobal('isLogged');
+function Index({attendees, gifts, hookContents, hooks, images, isLogged: logged}) {
+    setGlobal({
+        isLogged: logged,
+        gifts: new Map(gifts.map(gift => [gift._id, gift])),
+        hookContents: new Map(hookContents.map(hookContent => [hookContent._id, hookContent])),
+        hooks: new Map(hooks.map(hook => [hook.name, hook])),
+        images: new Map(images.map(image => [image._id, image])),
+    });
+
     const [notifications] = useGlobal('notifications');
-
-    useEffect(() => {
-        const admin = new UserPrototype('admin');
-
-        setIsLogged(admin.isLogged());
-        attendees && attendees.forEach(attendee => addAttendee(attendee._id, attendee));
-        gifts && gifts.forEach(gift => addGift(gift._id, gift));
-        images && images.forEach(image => addImage(image._id, image));
-    }, []);
 
     return (
         <div>
@@ -62,7 +53,7 @@ function Index({attendees, gifts, images}) {
                 <title>{`Markéta & Dominik | Svatba`}</title>
             </Head>
             <Notification notifications={notifications}/>
-            <Hook name={'Test'}/>
+
             <Navigation>
                 <div id={'intro'}>
                     <Claim heading={'Markéta a Dominik'} date={TheDate}/>
@@ -89,11 +80,14 @@ function Index({attendees, gifts, images}) {
     );
 }
 
-Index.getInitialProps = ({req, res: {attendees, gifts, images}}) => {
+Index.getInitialProps = async ({req, res: {attendees, gifts, hookContents, hooks, images, isLogged}}) => {
     return {
         attendees,
         gifts,
+        hookContents,
+        hooks,
         images,
+        isLogged: !!isLogged,
     };
 };
 

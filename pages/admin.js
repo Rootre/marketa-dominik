@@ -2,44 +2,34 @@ import React, {useEffect, useState} from 'react';
 import Head from 'next/head';
 import {setGlobal, useGlobal} from 'reactn';
 
-import AdminContent from '../components/admin/AdminContent';
-import AdminLogin from '../components/admin/AdminLogin';
-import Loading from '../components/Loading';
-import Notification from '../components/Notification';
+import AdminContent from 'Components/admin/AdminContent';
+import AdminLogin from 'Components/admin/AdminLogin';
+import Loading from 'Components/Loading';
+import Notification from 'Components/Notification';
 
-import UserPrototype from 'Prototypes/User';
-
-import '../static/sass/global.scss';
-import useGlobalMap from "../hooks/useGlobalMap";
+import 'Sass/global.scss';
 
 setGlobal({
-    attendees: new Map(),
     fetching: new Map(),
-    gifts: new Map(),
-    hooks: new Map(),
-    images: new Map(),
     isLogged: false,
     notifications: new Map(),
 });
 
-function Admin({attendees, gifts, hooks, images}) {
-    const [, addAttendee] = useGlobalMap('attendees');
-    const [, addGift] = useGlobalMap('gifts');
-    const [, addHook] = useGlobalMap('hooks');
-    const [, addImage] = useGlobalMap('images');
+function Admin({attendees, gifts, hookContents, hooks, images, isLogged: logged}) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isLogged, setIsLogged] = useGlobal('isLogged');
     const [notifications] = useGlobal('notifications');
 
-
     useEffect(() => {
-        const admin = new UserPrototype('admin');
+        setGlobal({
+            attendees: new Map(attendees.map(attendee => [attendee._id, attendee])),
+            gifts: new Map(gifts.map(gift => [gift._id, gift])),
+            hookContents: new Map(hookContents.map(hookContent => [hookContent._id, hookContent])),
+            hooks: new Map(hooks.map(hook => [hook.name, hook])),
+            images: new Map(images.map(image => [image._id, image])),
+        });
 
-        setIsLogged(admin.isLogged());
-        attendees && attendees.forEach(attendee => addAttendee(attendee._id, attendee));
-        gifts && gifts.forEach(gift => addGift(gift._id, gift));
-        hooks && hooks.forEach(hook => addHook(hook._id, hook));
-        images && images.forEach(image => addImage(image._id, image));
+        setIsLogged(logged);
         setIsLoaded(true);
     }, []);
 
@@ -49,8 +39,8 @@ function Admin({attendees, gifts, hooks, images}) {
                 <title>{`Svatba Markéty a Dominika | admin sekce`}</title>
             </Head>
 
-
             <Notification notifications={notifications}/>
+
             {isLoaded ? isLogged ? (
                 <AdminContent/>
             ) : (
@@ -62,12 +52,14 @@ function Admin({attendees, gifts, hooks, images}) {
     );
 }
 
-Admin.getInitialProps = ({req, res: {attendees, gifts, hooks, images}}) => {
+Admin.getInitialProps = ({req, res: {attendees, gifts, hookContents, hooks, images, isLogged}}) => {
     return {
         attendees,
         gifts,
+        hookContents,
         hooks,
         images,
+        isLogged: !!isLogged,
     };
 };
 

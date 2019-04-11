@@ -8,11 +8,12 @@ import groom from 'Consts/about-us/groom';
 
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
+import Hook from "../../Hook";
 
 function AboutUs() {
     return (
         <div className={classNames(globalStyles.wrapper, styles.wrapper)}>
-            <h2 className={globalStyles.heading}>Co o nás napsali svědci</h2>
+            <h2 className={globalStyles.heading}><Hook name={'My'}/></h2>
             <div className={styles.us}>
                 <Persona
                     image={bride.image}

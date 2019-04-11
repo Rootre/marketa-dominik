@@ -13,6 +13,7 @@ function User(name) {
     return {
         isLogged,
         login,
+        logout,
     }
 }
 
@@ -32,6 +33,10 @@ function login() {
     }, SALT, {
         expiresIn: IDLE_TIME,
     });
+}
+
+function logout() {
+    cookie.remove(cookieName);
 }
 
 module.exports = User;

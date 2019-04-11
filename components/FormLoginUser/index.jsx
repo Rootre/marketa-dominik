@@ -24,6 +24,7 @@ function FormLoginUser() {
 
             deleteAllNotifications();
             setIsLogged(true);
+            return;
         } catch (e) {
             setNotification(e.message, 'error');
         }

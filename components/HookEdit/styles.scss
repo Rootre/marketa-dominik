@@ -1,6 +1,23 @@
 @import "~Sass/helpers.scss";
 
+.editor {
+    margin-bottom: $margin--default;
+}
+.intro {
+    font-size: $font-size;
+    font-family: $font-family;
+    font-weight: 700;
+    text-align: left;
+
+    .plus {
+        float: right;
+    }
+}
 .wrapper {
+    border: 1px solid $black;
+    margin: 0;
+    padding: 10px;
+
     svg {
         cursor: pointer;
 

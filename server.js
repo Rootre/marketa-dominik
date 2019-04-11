@@ -6,12 +6,12 @@ const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
 
-const AttendeeModel = require('./mongo/models/Attendee');
-const GiftModel = require('./mongo/models/Gift');
-const HookModel = require('./mongo/models/Hook');
-const ImageModel = require('./mongo/models/Image');
+if (dev) {
+    mongoose.set('debug', true);
+}
 
 const checkUserToken = require('./api/server/checkUserToken');
+const prepopulateMainPages = require('./api/server/prepopulateMainPages');
 const createAttendee = require('./api/server/createAttendee');
 const deleteAttendee = require('./api/server/deleteAttendee');
 const readAttendee = require('./api/server/readAttendee');
@@ -86,34 +86,15 @@ app.prepare()
         server.use(bodyParser.urlencoded({extended: true}));
         server.use(cookieParser());
 
+        // checks and updates login token
         server.all('*', checkUserToken);
 
-        server.get('*', async (req, res) => {
-            let attendees = [];
-            let gifts = [];
-            let hooks = [];
-            let images = [];
+        // fetching data for relevant pages
+        server.get('/', prepopulateMainPages);
+        server.get('/admin', prepopulateMainPages);
 
-            const url = req.url.replace(/\?.*$/, '');
-
-            if (['/', '/admin'].indexOf(url) >= 0) {
-                try {
-                    gifts = await GiftModel.find({active: true});
-                    attendees = await AttendeeModel.find();
-                    hooks = await HookModel.find();
-                    images = await ImageModel.find();
-                } catch (e) {
-                    console.error(e);
-                }
-            }
-
-            return handle(req, Object.assign(res, {
-                attendees,
-                gifts,
-                hooks,
-                images,
-            }));
-        });
+        // next.js handler
+        server.get('*', (req, res) => handle(req, res));
 
         // IMAGE_HANDLING
         server.get(IMAGE_READ_URL, readImage);
