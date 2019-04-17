@@ -6,13 +6,6 @@ import Input from 'Components/Input';
 
 import AttendeePrototype from 'Prototypes/Attendee';
 
-import {
-    ERR_BACKEND,
-    MONGO_ERRORS,
-    MONGO_ERROR_CODES,
-    MONGO_INPUTS,
-} from 'Api/errors';
-
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
 import useGlobalMap from "../../hooks/useGlobalMap";
@@ -25,7 +18,6 @@ const initialValues = {
 function FormNewAttendee() {
     const [fetching, setFetching] = useState(false);
     const [values, setValues] = useState(initialValues);
-    const [, addAttendee] = useGlobalMap('attendees');
     const [, addNotification] = useGlobalMap('notifications');
 
 
@@ -41,9 +33,8 @@ function FormNewAttendee() {
         setFetching(true);
 
         try {
-            const {newAttendee} = await attendeeModel.create();
+            await attendeeModel.create();
 
-            addAttendee(newAttendee._id, newAttendee);
             setValues(initialValues);
             addNotification('Počítáme s vámi!', 'success');
         } catch (e) {
