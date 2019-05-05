@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import Hook from 'Components/Hook';
 import Persona from '../Persona';
 
 import bride from 'Consts/about-us/bride';
@@ -8,7 +9,6 @@ import groom from 'Consts/about-us/groom';
 
 import globalStyles from 'Sass/global.scss';
 import styles from './styles.scss';
-import Hook from "../../Hook";
 
 function AboutUs() {
     return (

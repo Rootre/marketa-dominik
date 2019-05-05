@@ -12,15 +12,8 @@ export default [
         link: '#jak-se-to-semlelo',
     },
     {
-        title: 'Co by se nám hodilo',
-        link: '#dary',
-    },
-    {
-        title: 'Kdy a kde',
-        link: '#plan-dne',
-    },
-    {
-        title: 'Přijdete?',
-        link: '#prihlaste-se',
+        admin: true,
+        title: 'Galerie',
+        link: '#galerie',
     },
 ];
