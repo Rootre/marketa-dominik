@@ -5,17 +5,13 @@ import {setGlobal, useGlobal} from 'reactn';
 import AboutUs from 'Components/about-us/AboutUs';
 import BreakpointWatcher from 'Components/BreakpointWatcher';
 import Claim from 'Components/Claim';
-import Countdown from 'Components/Countdown';
-import FormNewAttendee from 'Components/FormNewAttendee';
-import GamePlan from 'Components/GamePlan';
-import Gifts from 'Components/Gifts';
+import Gallery from 'Components/Gallery';
 import Menu from 'Components/menu/Menu';
 import Navigation from 'Components/Navigation';
 import Notification from 'Components/Notification';
 import OurStory from 'Components/OurStory';
 
 import bitsOurStory from 'Consts/bits/ourStory';
-import bitsGamePlan from 'Consts/bits/gamePlan';
 import menuItems from 'Consts/menu';
 import TheDate from 'Consts/TheDate';
 
@@ -28,7 +24,6 @@ setGlobal({
     gifts: new Map(),
     hookContents: new Map(),
     hooks: new Map(),
-    images: new Map(),
     isLogged: false,
     isRetina: false,
     isSliderLight: false,
@@ -41,7 +36,6 @@ function Index({attendees, gifts, hookContents, hooks, images, isLogged: logged}
         gifts: new Map(gifts.map(gift => [gift._id, gift])),
         hookContents: new Map(hookContents.map(hookContent => [hookContent._id, hookContent])),
         hooks: new Map(hooks.map(hook => [hook.name, hook])),
-        images: new Map(images.map(image => [image._id, image])),
     });
 
     const [notifications] = useGlobal('notifications');
@@ -61,19 +55,12 @@ function Index({attendees, gifts, hookContents, hooks, images, isLogged: logged}
                 </div>
                 <div id={'my'}>
                     <AboutUs/>
-                    <Countdown date={TheDate}/>
                 </div>
                 <div id={'jak-se-to-semlelo'}>
                     <OurStory bits={bitsOurStory}/>
                 </div>
-                <div id={'dary'}>
-                    <Gifts/>
-                </div>
-                <div id={'plan-dne'}>
-                    <GamePlan bits={bitsGamePlan}/>
-                </div>
-                <div id={'prihlaste-se'}>
-                    <FormNewAttendee/>
+                <div id={'galerie'}>
+                    {logged && <Gallery images={images}/>}
                 </div>
             </Navigation>
         </div>
