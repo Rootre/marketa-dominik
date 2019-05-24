@@ -11,6 +11,7 @@ if (dev) {
 }
 
 const checkUserToken = require('./api/server/checkUserToken');
+const checkAdminRequest = require('./api/server/checkAdminRequest');
 const prepopulateMainPages = require('./api/server/prepopulateMainPages');
 const createAttendee = require('./api/server/createAttendee');
 const deleteAttendee = require('./api/server/deleteAttendee');
@@ -88,6 +89,8 @@ app.prepare()
 
         // checks and updates login token
         server.all('*', checkUserToken);
+        // checks if requests for admin have valid token
+        server.all(/admin\/[a-zA-Z0-9]{3,}/, checkAdminRequest);
 
         // fetching data for relevant pages
         server.get('/', prepopulateMainPages);
