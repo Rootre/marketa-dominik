@@ -16,7 +16,7 @@ module.exports = {
     IMAGE_UPDATE_URL: `${API_URL}image/update`,
     IMAGE_UPLOAD_URL: `${API_URL}image/upload`,
     IMAGES_CREATE_URL: `${API_URL}images/create`,
-    USER_LOGIN_URL: `${API_URL}user/login`,
+    USER_LOGIN_URL: `/user/login`,
     CONTENT_CREATE_URL: `${API_URL}content/create`,
     CONTENT_DELETE_URL: `${API_URL}content/delete`,
     CONTENT_READ_URL: `${API_URL}content/read`,

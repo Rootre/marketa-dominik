@@ -13,8 +13,8 @@ import styles from './styles.scss';
 
 const CONTAINER_ID = 'imageUploadZone';
 const DROPZONE_SETTINGS = {
-    thumbnailWidth: 120,
-    thumbnailHeight: 120,
+    thumbnailWidth: 180,
+    thumbnailHeight: 180,
     parallelUploads: 20,
     resizeWidth: 2000,
 };
@@ -24,8 +24,6 @@ function FormUploadImages() {
     const [, addNotification] = useGlobalMap('notifications');
     const [, addImage] = useGlobalMap('images');
     const processedImages = new Map();
-    let thumbNailsGenerated = 0;
-    let imagesCreated = false;
 
     const addedFile = ({name}) => {
         console.log('addedFile');
@@ -35,18 +33,15 @@ function FormUploadImages() {
         });
     };
     const createImages = async () => {
-        if (imagesCreated) {
-            return;
-        }
         console.log('!createImages');
 
-        imagesCreated = true;
         const image = new ImagePrototype();
 
         try {
             const {newImages} = await image.createMany([...processedImages.values()]);
 
-            setTimeout(() => newImages.forEach(newImage => addImage(newImage._id, newImage)), 100);
+            newImages.forEach(newImage => addImage(newImage._id, newImage));
+            processedImages.clear();
         } catch (e) {
             addNotification(e.message, 'error');
         }
@@ -54,18 +49,11 @@ function FormUploadImages() {
     const queueComplete = async () => {
         console.log('queueComplete');
 
-        if (thumbNailsGenerated === processedImages.size) {
-            await createImages();
-        }
+        await createImages();
     };
     const thumbnailCreated = async ({name}, dataUrl) => {
         console.log('thumbnailCreated');
         const image = new ImagePrototype();
-        thumbNailsGenerated++;
-
-        if (thumbNailsGenerated === processedImages.size) {
-            await createImages();
-        }
 
         try {
             await image.createThumb(dataUrl, UPLOAD_IMAGE_THUMBS_DIR + name);

@@ -1,4 +1,6 @@
 const fs = require('fs');
+const mkdirp = require('mkdirp');
+var getDirName = require('path').dirname;
 
 const createThumb = async (req, res) => {
     const {dataUrl, thumbUrl} = req.body;
@@ -6,13 +8,19 @@ const createThumb = async (req, res) => {
     const base64thumb = dataUrl.split(';base64,').pop();
 
     try {
-        fs.writeFile(thumbUrl, base64thumb, {encoding: 'base64'}, function (err) {
+        await mkdirp(getDirName(thumbUrl), function (err) {
             if (err) {
                 throw err;
             }
 
-            console.log(' === CREATED THUMB IMAGE FILE: ===');
-            console.log(thumbUrl);
+            return fs.writeFile(thumbUrl, base64thumb, {encoding: 'base64', flag: 'w'}, function (err) {
+                if (err) {
+                    throw err;
+                }
+
+                console.log(' === CREATED THUMB IMAGE FILE: ===');
+                console.log(thumbUrl);
+            });
         });
 
         res.status(200).json({

@@ -31,6 +31,9 @@ build:
 stop:
 	docker-compose -p m_d $(COMPOSE_FILES) stop
 
+restart:
+	docker-compose -p m_d $(COMPOSE_FILES) restart
+
 kill:
 	docker-compose -p m_d $(COMPOSE_FILES) kill
 
