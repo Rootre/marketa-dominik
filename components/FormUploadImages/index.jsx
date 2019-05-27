@@ -17,6 +17,7 @@ const DROPZONE_SETTINGS = {
     thumbnailHeight: 180,
     parallelUploads: 20,
     resizeWidth: 2000,
+    acceptedFiles: 'image/*',
 };
 
 function FormUploadImages() {
