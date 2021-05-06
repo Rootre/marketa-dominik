@@ -31,7 +31,7 @@
     "react": "^16.8.3",
     "react-countdown-now": "^2.1.0",
     "react-dom": "^16.8.3",
-    "react-draft-wysiwyg": "^1.13.2",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-grid-gallery": "^0.5.4",
     "react-lazyload": "^2.5.0",
     "react-slick": "^0.23.2",
